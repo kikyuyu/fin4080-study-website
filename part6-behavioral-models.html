@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta property="og:title" content="FIN4080 行为金融学学习站"><meta property="og:description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta name="description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta property="og:image" content="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg"><link rel="icon" href="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+<title>FIN4080 行为金融学学习站</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="assets/tex-mml-svg.js" id="MathJax-script" async></script>
+<script>
+/* Fallback: 若本地 MathJax 包不可用，从 jsDelivr 兜底加载。 */
+(function () {
+  function loadCdn() {
+    if (window.MathJax && window.MathJax.startup) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-svg.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function () { setTimeout(loadCdn, 400); });
+})();
+</script>
+    <script src="assets/figures.js"></script>
+    <script src="assets/mindmap.js"></script>
+    <script src="assets/marks.js?v=20261017a"></script>
+</head>
+<body data-page="part6" data-root="">
+
+<header id="site-topbar"></header>
+
+<div class="layout">
+  <aside class="toc" id="site-toc"></aside>
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Part 6 · 课件外补充（对应课程结构 IV）</div>
+      <h1>行为资产定价模型：同一台机器产出动量与反转</h1>
+      <p>课程结构中的 <strong>IV. Models and Predictions</strong> 是全课程的「缝合点」：把 Part 3 的心理学与 Part 4、Part 5 的事实拼成同一台机器。本 Part 讲解四篇必考模型——<strong>DSSW (1990)</strong>、<strong>BSV (1998)</strong>、<strong>DHS (1998)</strong>、<strong>HS (1999)</strong>，加上用前景理论解释高股权溢价的 <strong>BHS (2001)</strong>，最后落到课程学习产出之一：<strong>构造行为因子并设计交易策略</strong>。</p>
+      <div class="tags">
+        <span>DSSW (1990)</span><span>BSV (1998)</span><span>DHS (1998)</span><span>Hong–Stein (1999)</span><span>BHS (2001)</span><span>Bounded Rationality</span><span>Social Contagion</span>
+      </div>
+    </div>
+
+    <div id="mindmap-host"></div>
+
+    <!-- ============ S1 ============ -->
+    <section id="why">
+      <h2 class="sec">为什么必须要模型 <span class="badge">Why Models</span></h2>
+
+      <div class="box key">
+        <div class="box-title">▸ 两条建模路线</div>
+        <ul>
+          <li><strong>偏好路线（Preferences）</strong>：让投资者按<b>前景理论</b>式的偏好评估风险 —— 对应课程结构里的 <em>(Preferences) Prospect theory</em> 与 <em>Ambiguity aversion and other preference specifications</em>。</li>
+          <li><strong>信念路线（Beliefs）</strong>：让投资者的信念更新<b>偏离 Bayes' rule</b> —— 对应 <em>(Beliefs) Heterogeneous beliefs</em> 与 <em>(Beliefs) Overconfidence and over-extrapolation</em>。</li>
+        </ul>
+        <p>两者的共同点是：<b>只有一部分人是非理性的</b>，并且他们的作用必须经由 <b>Part 2 的套利限制</b>才传导到价格上。缺了任何一半，模型都不成立。</p>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 自我约束：评价一个模型的四个问题</div>
+        <ol class="steps">
+          <li><b>它解释了哪些事实？</b>（逐个对照 Part 4、Part 5 的清单）</li>
+          <li><b>它提出了什么新预测？</b>（必须是可以被证伪、且此前没人测过的）</li>
+          <li><b>它的假设是否与证据一致？</b>（每个心理假设都应该有实验证据支持）</li>
+          <li><b>有没有更简单的解释？</b>（摩擦/风险类的替代解释能不能同样解释？）</li>
+        </ol>
+        <p>这正是回应 Part 1 中<b>缺乏纪律质疑（lack-of-discipline critique）</b>的标准做法：<b>用新预测而不是事后解释来立身</b>。</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 本讲 Learning Objectives</div>
+        <ul>
+          <li>能说出四个模型各自的<b>心理学假设</b>与<b>主要后果</b>。</li>
+          <li>能说明每个模型<b>同时</b>解释哪几项事实（这是区分高下的重要标准）。</li>
+          <li>能用<b>简化的 DSSW 形式</b>算出情绪推动的价格偏离。</li>
+          <li>能构造一个<b>动量组合</b>并算出它的收益与三因子 α。</li>
+          <li>能说明 <b>BHS (2001)</b> 如何让风险厌恶随前期盈亏变化，从而同时解释高溢价与高波动。</li>
+          <li>能设计一个<b>行为合成因子</b>（composite issuance / IVOL / BAB）并说明如何检验它。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S2 ============ -->
+    <section id="dssw">
+      <h2 class="sec">DSSW (1990)：噪声交易者作为一个定价因素 <span class="badge">Noise Traders</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ De Long, Shleifer, Summers &amp; Waldman (1990)</div>
+        <p>模型里有两类投资者：<b>理性套利者</b>（用正确的期望做均值–方差优化）与<b>噪声交易者</b>（对期望收益的<b>误判</b>为 \(\rho_t\)，且 \(\rho_t\) 随机波动）。关键结论：即使<b>没有基本面风险</b>，只要套利者<b>风险厌恶且视野短</b>，噪声交易者风险本身就足以限制套利 ⇒ 情绪<b>系统性地进入价格</b>。</p>
+      </div>
+
+      <div class="formula hi">
+        \[p_t \;\approx\; p_t^{f} \;+\; \underbrace{\frac{\mu\,\rho_t}{1+r}}_{\text{情绪部分}} \]
+        <div class="fnote">这是课件层面的<b>简化表达</b>（用于说明机制，不做完整推导）。\(p_t^{f}\)：基本面价格；\(\mu\)：<b>噪声交易者在市场中的占比</b>；\(\rho_t\)：噪声交易者对期望收益的<b>误判幅度</b>（乐观时为正）；\(r\)：贴现率。含义：<b>价格偏离基本面</b>的幅度与「噪声交易者的<b>规模</b>」和「他们的<b>错误程度</b>」都成正比。</div>
+      </div>
+
+      <div class="fig" data-fig="dssw" data-cap="DSSW (1990)：价格 = 基本面 + 情绪；噪声交易者越乐观，价格越高。"></div>
+
+      <div class="box note">
+        <div class="box-title">▸ 这个模型解释了什么</div>
+        <ul>
+          <li><b>过度波动</b>：价格除了基本面冲击，还在<b>额外</b>承受 \(\rho_t\) 的波动 ⇒ 波动<b>必然</b>大于基本面现金流的波动（Part 4 的波动之谜）。</li>
+          <li><b>封闭式基金折价之谜</b>：同样资产、不同持有人结构 ⇒ 折价随散户情绪波动。</li>
+          <li><b>收益的部分可预测性</b>：情绪终会回归 ⇒ 情绪高时后续收益低（与 Part 4 的可预测性一致）。</li>
+          <li><b>"Friedman 假说" 的失败</b>：噪声交易者<b>没有被</b>套利者消灭，反而因为他们创造了<b>真实风险</b>而拿到更高的平均收益。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S3 ============ -->
+    <section id="bsv">
+      <h2 class="sec">BSV (1998)：用一个机制同时产出两个事实 <span class="badge">Conservatism &amp; Representativeness</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ Barberis, Shleifer &amp; Vishny (1998)</div>
+        <p>投资者<b>观察到的盈利是随机游走的</b>，但他们<b>并不相信</b>这一点。他们使用的是两种<b>相互竞争的认知模式</b>：</p>
+      </div>
+
+      <h3 class="sub">两个心理学假设</h3>
+      <div class="grid2">
+        <div class="box key">
+          <div class="box-title">▸ 假设一：保守性 Conservatism</div>
+          <p><em>Conservatism: investors are slow to update their beliefs in the face of new evidence.</em> 收到公开信息时<b>更新不足</b> ⇒ 价格初期<b>反应不足（underreaction）</b> ⇒ <b>动量</b>与<b>盈余公告后的价格漂移（PEAD）</b>。</p>
+        </div>
+        <div class="box key">
+          <div class="box-title">▸ 假设二：代表性 Representativeness</div>
+          <p><em>Representativeness: seeing a series of good earnings news, investors conclude the firm is in a trending regime and extrapolate.</em> 看到一连串好消息就<b>外推</b>，认为进入了趋势状态 ⇒ 价格<b>过度反应（overreaction）</b> ⇒ <b>长期反转</b>。</p>
+        </div>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 机制链（务必能口述）</div>
+        <p>一条好消息 → 保守性 ⇒ 价格只上去一半（反应不足）⇒ <b>动量</b>。连续多条好消息 → 触发<b>代表性启发式</b>，投资者开始<b>外推</b> ⇒ 价格冲过头（过度反应）⇒ <b>反转</b>。<b>一个模型、两个方向相反的事实</b>，这正是 BSV 被认为有分量的原因。</p>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 1</span> 用 BSV 的两状态机制解释一次「连续好消息」</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">A firm receives five consecutive pieces of good news, each worth +$1 of permanent value. Under BSV (1998), investors initially under-react (weight 0.5) but switch to the "trending regime" belief after three consecutive good signals and then extrapolate (+0.5 extra per signal). Compute the price path relative to the $5 fundamental value.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>基本面：5 条消息 × $1 ⇒ <b>真实价值上升 $5</b>。</li>
+              <li>阶段一（前 3 条，保守性，权重 0.5）：价格上升 \(3\times0.5=\$1.5\)。</li>
+              <li>阶段二（第 4、5 条，切换到趋势状态后，每条 \(1+0.5=1.5\)）：价格再上升 \(2\times1.5=\$3.0\)。</li>
+              <li>合计价格上升 \(\$1.5+\$3.0=\$4.5\)？——注意<b>上一步漏了</b>：在第 4、5 条消息上，投资者<b>外推</b>到的是「趋势将继续」，通常还会在<br>第 5 条之后<b>继续</b>预期第 6、7 条 ⇒ 价格会<b>超过 $5</b>。</li>
+              <li><b>修正算法</b>（更标准的写法）：前 3 条贡献 1.5；第 4、5 条各按 1.0 计入基本面 + 0.5 的<b>外推</b> ⇒ 贡献 3.0；此外投资者还在第 5 条之后<b>预期</b>第 6 条 ⇒ 再加约 1.0。合计约 \(\mathbf{\$5.5}\)。</li>
+              <li>结论：价格先<b>低于</b>基本面（反应不足 ⇒ 动量），随后<b>超过</b>基本面（过度反应 ⇒ 反转）。这正是 BSV 想同时捕捉的两件事。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> Early signals are under-weighted (1.5 vs 3.0 of fundamental value), so the price is too low — momentum. After the regime switches, each later signal is over-weighted plus extrapolated, so the price overshoots the $5 fundamental value — reversal. The same model produces both facts.<br><strong>中文：</strong>前期价格落后于基本面（动量），后期冲过头（反转）；同一个模型同时产出两个方向相反的事实。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ S4 ============ -->
+    <section id="dhs">
+      <h2 class="sec">DHS (1998)：过度自信与自我归因 <span class="badge">Overconfidence</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ Daniel, Hirshleifer &amp; Subrahmanyam (1998)</div>
+        <p>投资者<b>过度倚重自己的私有信息信号</b>，并且在结果<b>证实</b>自己时把功劳归于自己、在被<b>否定</b>时归咎于运气——这就是<strong>自我归因偏差（biased self-attribution）</strong>。</p>
+      </div>
+
+      <div class="grid2">
+        <div class="box key">
+          <div class="box-title">▸ 第一步：私有信息 → 过度反应</div>
+          <p>过度自信使投资者把<b>私有信号</b>的精度看得过高 ⇒ 价格<b>先</b>偏离基本面（<b>过度反应</b>）。</p>
+        </div>
+        <div class="box key">
+          <div class="box-title">▸ 第二步：自我归因 → 偏差加深</div>
+          <p>若随后的<b>公开信息</b>证实了他们的私有信号，自信进一步<b>增强</b>；若证伪，则归因于噪声 ⇒ 偏差<b>不易</b>被修正，反而<b>加深</b>。</p>
+        </div>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 与 BSV 的关键差别（答题必写）</div>
+        <ul>
+          <li><b>BSV</b>：投资者对<b>公开信息</b>反应不足（保守性），偏差由<b>外部冲击</b>驱动。</li>
+          <li><b>DHS</b>：投资者对<b>私有信息</b>反应过度（过度自信），并且<b>自我归因</b>让偏差在面对公开信息时<b>持续存在</b>。</li>
+          <li>共同点：最终<b>都需要公开信息把价格拉回来</b> ⇒ 长期<b>反转</b>。</li>
+        </ul>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 与 Part 5 的事实对接</div>
+        <p>过度自信直接预测了<b>过度交易</b>（Barber &amp; Odean, 2000 的个人投资者低净收益）与<b>买入行为依赖过去收益</b>（Barber &amp; Odean, 2009）。这是模型与事实的<b>跨 Part 校验</b>：一个模型如果能同时解释「交易行为」与「价格异象」，说服力会强得多。</p>
+      </div>
+
+      <div class="fig" data-fig="reaction_map" data-cap="统一理论的共同结构：初期反应不足产生动量，后期过度反应产生反转。"></div>
+    </section>
+
+    <!-- ============ S5 ============ -->
+    <section id="hs">
+      <h2 class="sec">HS (1999)：渐进信息扩散 <span class="badge">Gradual Diffusion</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ Hong &amp; Stein (1999)</div>
+        <p>模型里有两类<b>有限理性</b>的投资者：</p>
+        <ul>
+          <li><strong>信息观察者（newswatchers）</strong>：只根据<b>自己收到的那部分</b>私有信息预测，<b>不</b>利用价格信息；</li>
+          <li><strong>动量交易者（momentum traders）</strong>：只能执行<b>最简单的趋势策略</b>（看过去的价格变化），做<b>有限条件</b>的均值–方差优化。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">为什么这样就能产生动量</h3>
+      <div class="box key">
+        <div class="box-title">▸ 核心：信息是<b>渐进</b>扩散的</div>
+        <p>一条关于基本面的消息<b>不会一次性</b>到达所有人。它先被一部分信息观察者接收到（价格先动一小步），随后才逐渐扩散到其他人 ⇒ 价格<b>分多期</b>才走完应走的幅度 ⇒ <b>短期动量</b>。而动量交易者的<b>追价行为</b>会进一步<b>放大</b>这个过程，最终把价格推过基本面 ⇒ <b>长期反转</b>。</p>
+      </div>
+
+      <div class="fig" data-fig="hs" data-cap="Hong &amp; Stein (1999)：信息分多期扩散产生动量，动量交易者的追价行为最终导致过度反应与反转。"></div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 2</span> 把「渐进扩散」算出来</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">A piece of good news is worth $6 in permanent value. In the Hong–Stein (1999) setup, one third of newswatchers learn about it in each of the next three periods. Momentum traders then add +$1 of over-reaction in the third period. Compute the price path and the resulting return autocorrelation pattern over periods 1–4.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>第 1 期：1/3 的人知道 ⇒ 价格上升 \(6\times\frac13=\$2\)。累计 <b>$2</b>。</li>
+              <li>第 2 期：再 1/3 ⇒ 累计 \(\$4\)。</li>
+              <li>第 3 期：剩余 1/3 获悉 ⇒ 累计 \(\$6\)；<b>同时</b>动量交易者追价，再推高 \(\$1\) ⇒ 累计 <b>$7</b>（超过基本面 $6）。</li>
+              <li>第 4 期：价格<b>回落</b>到 \(\$6\) ⇒ 收益为 <b>−$1</b>（即 \(-1/7\approx-14.3\%\)）。</li>
+              <li><b>收益序列</b>：+2、+2、+3、−1 ⇒ 前三个连续<b>正</b>收益 ⇒ <b>动量（正自相关）</b>；第四期由正转负 ⇒ <b>反转（负自相关）</b>。</li>
+              <li>这就是 HS 的核心：<b>信息扩散本身就能产生动量</b>，不需要假设投资者「有偏差地解读信息」——它假设的是<b>信息到达的顺序</b>。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> Cumulative price: $2, $4, $7, $6. Returns +2, +2, +3, −1 — three consecutive positive returns (momentum) followed by a reversal when the over-reaction unwinds.<br><strong>中文：</strong>累计价格 2、4、7、6 美元；收益 +2/+2/+3/−1，先动量后反转。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ HS 与 BSV/DHS 的定位差异</div>
+        <p><b>BSV/DHS</b> 假设了<b>具体的心理偏差</b>（保守性、代表性、过度自信）；<b>HS</b> 假设的是<b>信息摩擦 + 策略约束</b>，属于课程结构里 <em>psychology-free models</em> 与 <em>bounded rationality approaches</em> 的範疇。这也是它被认为「更难被指责为事后挑选心理学」的原因。</p>
+      </div>
+    </section>
+
+    <!-- ============ S6 ============ -->
+    <section id="bhs">
+      <h2 class="sec">BHS (2001)：前景理论直接解释股权溢价 <span class="badge">Prospect Theory &amp; Prices</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ Barberis, Huang &amp; Santos (2001)</div>
+        <p>投资者按<b>前景理论</b>评估<b>股票账户</b>的盈亏（即 Part 3 的<b>窄框架</b>），并且<b>前期的结果会改变后续的风险态度</b>：</p>
+      </div>
+
+      <div class="grid2">
+        <div class="box key">
+          <div class="box-title">▸ 前期盈利 ⇒ 敢于冒险</div>
+          <p>先前已经有盈利，则新的损失会被<b>缓冲</b>（可以与既有收益相抵），损失厌恶<b>减弱</b> ⇒ 投资者<b>愿意承担更多风险</b> ⇒ 要求的溢价<b>下降</b>。</p>
+        </div>
+        <div class="box key">
+          <div class="box-title">▸ 前期亏损 ⇒ 风险厌恶骤增</div>
+          <p>先前已经亏损，则新的损失会<b>雪上加霜</b>（不能相抵），损失厌恶<b>放大</b> ⇒ 要求<b>极高</b>的溢价 ⇒ 股价<b>下跌</b>。</p>
+        </div>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 为什么这能同时解决两个谜</div>
+        <ol class="steps">
+          <li><b>高股权溢价</b>：因为投资者对<b>每一期</b>的账户波动都单独计一次损失厌恶，整体而言持有股票是「痛苦」的 ⇒ 平均而言必须支付<b>很高</b>的预期收益才愿意持有。</li>
+          <li><b>过度波动</b>：风险厌恶是<b>时变</b>的：前期涨 ⇒ 厌恶低 ⇒ 折现率<b>低</b> ⇒ 价格<b>更</b>高（涨幅被放大）；前期跌 ⇒ 厌恶高 ⇒ 折现率<b>高</b> ⇒ 价格<b>更</b>低。这就把<b>基本面的小幅冲击放大成了价格的大幅波动</b>。</li>
+          <li><b>可预测性</b>：当前期盈利充分时，厌恶低 ⇒ 后续收益其<b>期望反而低</b> ⇒ 出现「高估值 + 低预期收益」，与 Part 4 的 P/D 预测力一致。</li>
+        </ol>
+      </div>
+
+      <div class="fig" data-fig="pt_value" data-cap="BHS (2001) 的原料：带折点、收益区凹、损失区凸的价值函数。"></div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 常见误解</div>
+        <p>BHS 中<b>不是</b>「投资者讨厌股票」，而是<b>投资者讨厌股票账户的短期波动</b>。它与 Part 5 的<b>短视损失厌恶</b>（myopic loss aversion，BHT 2006）是同一机制的两种写法：<b>评估频率越高，要求的溢价越高</b>。</p>
+      </div>
+    </section>
+
+    <!-- ============ S7 ============ -->
+    <section id="other-models">
+      <h2 class="sec">其他路线与如何构造行为因子 <span class="badge">Other Approaches</span></h2>
+
+      <h3 class="sub">课程结构里的其余路线</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>路线</th><th>思路</th><th>代表作 / 要点</th></tr></thead>
+        <tbody>
+          <tr><td><b>异质信念</b> Heterogeneous beliefs</td><td>投资者对未来有<b>不同的先验</b>，价格反映<b>乐观者</b>的估值</td><td>Miller (1977)：在卖空受限时，价格由乐观者决定 ⇒ 高估值 + 低后续收益</td></tr>
+          <tr><td><b>心理学免费模型</b> Psychology-free models</td><td>只用<b>有限理性/信息摩擦</b>，不引入具体心理机制</td><td>Hong &amp; Stein (1999)；不注意力（inattention）类模型</td></tr>
+          <tr><td><b>有限理性</b> Bounded rationality</td><td>投资者<b>想</b>理性，但受<b>认知能力</b>限制</td><td>简化启发式、注意力分配</td></tr>
+          <tr><td><b>社会传染</b> Social contagion</td><td>想法与情绪在<b>人群网络</b>中传播</td><td>用于解释<b>泡沫</b>与<b>参与度</b>的时间序列</td></tr>
+          <tr><td><b>公司行为模型</b> Models of firm behavior</td><td>投资者非理性 + 管理者理性 / 管理者非理性</td><td>见 Part 7</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">学习产出之一：构造行为因子并设计交易策略</h3>
+      <div class="box key">
+        <div class="box-title">▸ 标准五步流程</div>
+        <ol class="steps">
+          <li><b>第 1 步 选变量</b>：从 Part 4 的清单里挑一个有<b>理论支撑</b>的变量（例如<b>发行 issuance</b>、<b>IVOL</b>、<b>应计</b>、<b>动量</b>）。挑的时候要问：它对应的<b>心理机制</b>是什么？</li>
+          <li><b>第 2 步 排序与构建</b>：按该变量<b>分组排序</b>（通常是十档分位），构造<b>多空（long-short）</b>组合。务必<b>跳过最近一个月</b>（短期反转）以避开微结构噪声。</li>
+          <li><b>第 3 步 净化</b>：对<b>三因子</b>（或五因子）回归，得到 α。只有<b>α 不为零</b>才说明它不是已知风险的线性组合。</li>
+          <li><b>第 4 步 现实化</b>：扣除<b>双边交易成本、卖空费用、冲击成本</b>。这一步是美国证据中 α 消失的主要原因。</li>
+          <li><b>第 5 步 可复制性</b>：做<b>样本外</b>与<b>跨市场</b>检验；检查<b>公开发表后是否衰减</b>（McLean &amp; Pontiff, 2016）。</li>
+        </ol>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 常用工具：合成发行指标与 BAB</div>
+        <ul>
+          <li><b>Composite issuance（合成发行指标，Daniel &amp; Titman, 2006）</b>：把<b>股票发行的五年累计变化</b>合成为一个指标，避免只看单一期的发行事件。它<b>负向</b>预测收益。</li>
+          <li><b>BAB（Betting Against Beta, Frazzini &amp; Pedersen, 2010）</b>：做多<b>低 β</b>、做空<b>高 β</b>（都按 β 调整到 1 的目标杠杆）。其存在本身就是对 CAPM 的<b>直接反驳</b>；机制上可归因于<b>杠杆约束</b>（摩擦）与投资者<b>对高 β 的偏好</b>（行为）。</li>
+          <li><b>IVOL 异象（Ang et al., 2006）</b>：特质波动负向预测收益——但请务必同时讨论<b>卖空成本</b>这一替代解释。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S8 ============ -->
+    <!-- ============ Concept cheat-sheet ============ -->
+    <section id="concepts">
+      <h2 class="sec">概念考点速查：双语解释 + 例子 <span class="badge">Concept Cheat-Sheet</span></h2>
+      <p class="lede">下列每个行为模型都给出<b>英文解释、中文解释与佐证例子</b>，专供「解释类（explanation）」考题复习。点击展开。</p>
+
+      <details class="concept" data-concept="dssw">
+        <summary class="concept-bar">
+          <span class="concept-en">DSSW (1990) — Noise Traders as a Priced Factor</span>
+          <span class="concept-cn">DSSW：噪声交易者是定价风险</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>De Long, Shleifer, Summers &amp; Waldmann model noise traders whose sentimental demand is correlated and mean-reverting. Because their demand fluctuates unpredictably, rational arbitrageurs bearing the resulting risk earn a premium → noise traders become a <b>priced source of risk</b>, and can even earn higher expected returns (they survive). Closed-form with two assets.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>De Long, Shleifer, Summers &amp; Waldmann 把"噪声交易者"建模为情绪需求相关且均值回复的群体。由于其需求不可预测地波动，承担该风险的理性套利者获得溢价→噪声交易者成为一种<b>被定价的风险来源</b>，甚至能拿到更高期望收益（得以生存）。两资产闭式解。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Even a rational investor wants to hold the asset that noise traders will bid up next period, pushing its price above fundamental value persistently. <b>中文：</b>即便理性投资者也想持有噪声交易者下期会推高的资产，使其价格持续高于基本面。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="bsv">
+        <summary class="concept-bar">
+          <span class="concept-en">BSV (1998) — Conservatism + Representativeness</span>
+          <span class="concept-cn">BSV：保守性 + 代表性</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Barberis, Shleifer &amp; Vishny: investors are (a) <b>conservative</b> — under-react to earnings news (price drifts → post-earnings-announcement drift, momentum), and (b) <b>representative</b> — over-extrapolate recent patterns (price overshoots → long-term reversal). One model produces both momentum and reversal.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>Barberis, Shleifer &amp; Vishny：投资者(a)<b>保守</b>——对盈利消息反应不足（价格漂移→盈余公告后漂移、动量）；(b)<b>代表性</b>——过度外推近期模式（价格超调→长期反转）。一个模型同时产生动量与反转。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">A string of good earnings → initial under-reaction (momentum) → eventually investors see a "pattern" and over-extrapolate → overvaluation → reversal. <b>中文：</b>一连串好盈利→起初反应不足（动量）→投资者最终看出"规律"并过度外推→高估→反转。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="dhs">
+        <summary class="concept-bar">
+          <span class="concept-en">DHS (1998) — Overconfidence + Self-Attribution</span>
+          <span class="concept-cn">DHS：过度自信 + 自我归因</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Daniel, Hirshleifer &amp; Subrahmanyam: investors are overconfident about their private signal and suffer <b>self-attribution bias</b> — they credit their own skill on success and blame bad luck on failure. This makes them under-react to public info early (momentum) but over-react later (reversal).</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>Daniel, Hirshleifer &amp; Subrahmanyam：投资者对私有信号过度自信，并有<b>自我归因偏差</b>——成功归己、失败归运气。这使其早期对公开信息反应不足（动量），后期过度反应（反转）。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Biased self-attribution leads the investor to weight his own signal too heavily; as public info accumulates and contradicts, the initial misvaluation reverses. <b>中文：</b>自我归因偏差让投资者过度看重自己的信号；当公开信息累积并与之冲突时，初始错误定价反转。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="hs">
+        <summary class="concept-bar">
+          <span class="concept-en">HS (1999) — Gradual Information Diffusion</span>
+          <span class="concept-cn">HS：信息渐进扩散</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Hong &amp; Stein: two trader types — "news watchers" (only react to fundamentals) and "momentum traders" (only react to past prices). Information diffuses gradually across news watchers → initial under-reaction; momentum traders then jump on the trend → over-reaction → reversal. The mechanism is information diffusion, not psychology per se.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>Hong &amp; Stein：两类交易者——"新闻观察者"（只看基本面）与"动量交易者"（只看历史价格）。信息在新闻观察者间逐步扩散→初期反应不足；动量交易者随后追趋势→过度反应→反转。机制是信息扩散，而非心理学本身。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Good news takes time to spread among fundamental traders, so the price rises slowly at first, then momentum traders amplify it before it corrects. <b>中文：</b>利好在基本面交易者间逐步传开，价格先缓涨，随后动量交易者放大，之后才修正。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="bhs">
+        <summary class="concept-bar">
+          <span class="concept-en">BHS (2001) — Prospect Theory → Equity Premium</span>
+          <span class="concept-cn">BHS：前景理论解释股权溢价</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Barberis, Huang &amp; Santos apply prospect theory directly to consumption/investing: loss aversion over stock gains/losses raises the risk premium investors demand, helping explain the equity premium puzzle without an implausibly high constant γ. Adds "habit" so losses are judged relative to recent consumption.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>Barberis, Huang &amp; Santos 把前景理论直接用于消费/投资：对股票盈亏的损失厌恶提高了投资者要求的溢价，从而无需不合理的恒定 γ 就能帮助解释股权溢价之谜。加入"习惯"使盈亏相对近期消费判断。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Because a market drop feels like a loss relative to recent gains, investors demand extra compensation to hold stocks → higher equity premium. <b>中文：</b>由于市场下跌相对近期收益像是一种损失，投资者要求额外补偿才肯持股→更高的股权溢价。</div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="exercises" data-exgroup>
+      <h2 class="sec">Part 6 练习 <span class="badge">Exercises</span></h2>
+      <p class="lede">本 Part 的题目以<b>机制复述 + 模型匹配</b>为主，计算集中在「情绪推动的价格偏离」与「动量组合的收益与 α」两处。</p>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Sentiment and prices in DSSW</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Using the simplified DSSW expression \(p_t=p^f_t+\mu\rho_t/(1+r)\), take \(p^f_t=100\), \(r=5\%\) and the noise-trader share \(\mu=0.40\). Compute the price when \(\rho_t=0.05\), when \(\rho_t=0.15\), and when noise traders turn pessimistic with \(\rho_t=-0.10\). Comment on the resulting volatility relative to fundamentals.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>直接代入，重点是<b>把三个价格之间的差额</b>与「基本面完全没动」这一事实对照起来。</p></div>
+            <ol class="steps">
+              <li>\(\rho_t=0.05\)：\(p=100+0.40\times0.05/1.05=100+0.0190=100.019\)。</li>
+              <li>\(\rho_t=0.15\)：\(p=100+0.40\times0.15/1.05=100+0.0571=100.057\)。</li>
+              <li>\(\rho_t=-0.10\)：\(p=100+0.40\times(-0.10)/1.05=100-0.0381=99.962\)。</li>
+              <li><b>关键点</b>：基本面始终是 100，价格却在 99.96 到 100.06 之间起伏 ⇒ <b>全部价格波动都来自情绪的波动</b>，与现金流毫无关系。</li>
+              <li>这就是<b>过度波动</b>在 DSSW 里的含义：<b>价格方差 = 基本面方差 + 情绪方差（外加协方差）</b>，后者是纯粹的额外部分。</li>
+              <li>推论：<b>μ 越大（散户占比越高），情绪对价格的影响越大</b> ⇒ 可直接检验「散户参与度高的市场/时段波动更大」。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> Prices: 100.019, 100.057 and 99.962, even though the fundamental value is constant at 100. All the price variation is sentiment-driven, which is exactly the excess volatility DSSW generates.<br><strong>中文：</strong>价格 100.019 / 100.057 / 99.962，而基本面始终是 100 —— 全部波动都来自情绪，这就是过度波动。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Building a momentum portfolio</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Formation period returns for five stocks: A +40%, B +25%, C +10%, D −15%, E −30%. You go long the top two and short the bottom two, equally weighted. The next six months these stocks return: A +8%, B +5%, C +3%, D +2%, E −6%. (a) Compute the six-month long-short return. (b) If the market returned 4% and the portfolio's market beta is −0.20 with a risk-free rate of 1%, compute the alpha.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>先按形成期排序选股，再用持有期的真实收益评估；最后剥离市场敞口得到 α。</p></div>
+            <ol class="steps">
+              <li>排序：A(40) &gt; B(25) &gt; C(10) &gt; D(−15) &gt; E(−30) ⇒ <b>做多 A、B；做空 D、E</b>。</li>
+              <li>多头部分：\((8\%+5\%)/2=6.5\%\)。</li>
+              <li>空头部分：\((2\%+(-6\%))/2=-2.0\%\)；做空收益 \(=+2.0\%\)。</li>
+              <li>(a) 组合收益 \(=6.5\%+2.0\%=8.5\%\)（半年）。</li>
+              <li>(b) 基准：\(r_f+\beta(E(r_m)-r_f)\) ——注意β 是<b>负值</b>：\(1\%+(-0.20)\times(4\%-1\%)=1\%-0.6\%=0.4\%\)。</li>
+              <li>\(\alpha=8.5\%-0.4\%=+8.1\%\)（半年，即年化的<b>粗算</b> 16.2%）。</li>
+              <li><b>提醒</b>：动量组合的 β 常为<b>负</b>，因为它<b>做空过去下跌的</b>(通常高 β)股票；这是动量策略在<b>崩盘时</b>会<b>巨幅回撤</b>的直接原因——真实的多空组合还要承受<b>双边成本</b>与<b>动量崩盘（momentum crash）</b>风险。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Long leg 6.5%, short leg +2.0%, total 8.5% over six months. (b) Benchmark = 1% − 0.20(4% − 1%) = 0.4%, so α ≈ +8.1% over six months.<br><strong>中文：</strong>(a) 半年 +8.5%；(b) α 约 +8.1%。注意动量组合 β 为负，崩盘时会巨幅回撤。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Match the model to the facts <span class="kbd">概念</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">For each model, name its key psychological (or informational) assumption and the two facts it jointly explains. (a) BSV (1998); (b) DHS (1998); (c) Hong and Stein (1999); (d) BHS (2001); (e) DSSW (1990).</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这是本 Part 的<b>必背表</b>。记得写「假设 → 两个后果」这个结构，不要只写名字。</p></div>
+            <ol class="steps">
+              <li><b>(a) BSV (1998)</b>：<b>保守性 + 代表性</b> ⇒ ①<b>短期动量/PEAD</b>；②<b>长期反转</b>。</li>
+              <li><b>(b) DHS (1998)</b>：<b>过度自信 + 自我归因</b> ⇒ ①对<b>私有信息</b>的过度反应（及过度交易）；②公开信息到来时的<b>反转</b>。</li>
+              <li><b>(c) Hong &amp; Stein (1999)</b>：<b>渐进信息扩散 + 动量交易者</b> ⇒ ①<b>动量</b>；②<b>长期反转</b>（且无需具体心理偏差）。</li>
+              <li><b>(d) BHS (2001)</b>：<b>前景理论 + 前期盈亏改变风险态度</b> ⇒ ①<b>高股权溢价</b>；②<b>过度波动</b>（外加条件夏普比率时变 ⇒ 可预测性）。</li>
+              <li><b>(e) DSSW (1990)</b>：<b>噪声交易者情绪 + 噪声交易者风险</b> ⇒ ①<b>过度波动</b>；②<b>收益的部分可预测性</b>与<b>噪声交易者可以拿到更高平均收益</b>（Friedman 假说的失败）。</li>
+              <li>共同点评述：这五个模型都<b>只让一部分人非理性</b>，并且都依赖<b>套利限制</b>才能把心理映射到价格上。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Conservatism + representativeness → momentum and long-term reversal. (b) Overconfidence + self-attribution → overreaction to private information and subsequent reversal. (c) Gradual information diffusion + momentum traders → momentum then reversal, without specific biases. (d) Prospect theory with prior outcomes affecting risk aversion → high equity premium and excess volatility. (e) Noise-trader sentiment + noise-trader risk → excess volatility and predictable returns.<br><strong>中文：</strong>(a) 保守性 + 代表性 ⇒ 动量 + 反转；(b) 过度自信 + 自我归因；(c) 渐进扩散 + 动量交易者；(d) 前景理论 + 前期盈亏 ⇒ 高溢价 + 高波动；(e) 情绪 + 噪声交易者风险 ⇒ 过度波动 + 可预测性。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Critiquing a behavioural model <span class="kbd">拓展</span> <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">A critic says: "Behavioural models can explain anything ex post; you just pick whichever bias fits the data." Using the four-criteria checklist, respond on behalf of behavioural finance and give an example of a genuinely new prediction.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这道題直接考 Part 1 里遗留的<b>缺乏纪律质疑</b>。回答要有<b>结构</b>，不能只喊「我们有做预测」。</p></div>
+            <ol class="steps">
+              <li><b>承认</b>：这个批评<b>部分是合理的</b>。行为金融的<b>正确回应不是否认，而是自我约束</b>（admitting the force of the criticism 是重要的答题姿态）。</li>
+              <li><b>约束一：心理假设必须来自实验证据</b>。例如 BSV 的保守性与代表性都有<b>独立的实验文献</b>支持，不能临时造。</li>
+              <li><b>约束二：单个模型必须同时解释多个事实</b>。BSV 必须同时解释动量与反转，<b>只解释一半就算失败</b>——这是很高的门槛，人为挑选做不到。</li>
+              <li><b>约束三：必须提出新预测并检验</b>（这是最关键的）。</li>
+              <li><b>新预测的示例</b>：①<b>换手率</b>应在异象出现时同步放大（Hong &amp; Stein, 2007）；②<b>异象在公开发表后应衰减</b>（McLean &amp; Pontiff, 2016）；③<b>动量崩盘</b>应发生在<b>市场反弹</b>之后（即恐慌后回暖期），因为那时<b>过去下跌</b>的股票（空头）会<b>暴涨</b>；④<b>散户参与度高的市场</b>波动应更大（DSSW 的 μ 推论）；⑤<b>分析师修正</b>滞后应加剧 PEAD。</li>
+              <li><b>结论</b>：一个能<b>预先说中</b>「换手率放大、发表后衰减、动量在反弹中崩盘」的模型，不是事后挑选的产物。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> The valid response is discipline, not denial: psychological assumptions must have independent experimental support, each model must jointly explain several facts, and — most importantly — models must generate new, falsifiable predictions. Examples: turnover should rise alongside the anomaly; anomalies should decay after publication; momentum should crash in sharp market rebounds; higher retail participation should mean higher volatility.<br><strong>中文：</strong>回应不是否认而是自我约束：心理假设要有实验依据、模型要同时解释多个事实、并必须提出可证伪的新预测（换手率放大、发表后衰减、反弹期动量崩盘、散户占比高 ⇒ 波动大）。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Scenario: designing a behavioural factor <span class="kbd">拓展</span> <span class="kbd">场景</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Your team wants to build a "behavioural composite" factor. Plan the whole pipeline: which variables to combine, how to sort and hold, how to control for known factors, and which costs and robustness checks matter. Also state one genuine behavioural prediction that would distinguish your factor from a risk-based story.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这是课程学习产出 (b) 的<b>直接落地</b>。答成一份「研究计划」最合适。</p></div>
+            <ol class="steps">
+              <li><b>变量选择</b>：组合三个有<b>理论支撑</b>的变量——<b>合成发行（composite issuance）</b>、<b>IVOL</b>、<b>应计</b>。每个变量对应一个机制：发行 ⇒ 管理层择时迎合高估值；IVOL ⇒ 投资者对硬彩类收益的偏好；应计 ⇒ 投资者<b>盯着会计利润</b>而忽视现金流（<b>有限关注</b>）。</li>
+              <li><b>排序与持有</b>：每月按<b>合成得分</b>分成十档，做多最低分位、做空最高分位；<b>跳过最近一个月</b>（避开短期反转）；<b>按行业中性化</b>以避免押注行业。</li>
+              <li><b>剥离已知风险</b>：对 <b>Fama–French 三因子 + 动量</b>（四因子）回归，看 α 是否为零；再做<b>Fama–MacBeth</b> 检验，确认在控制其他特征后仍有增量解释力。</li>
+              <li><b>成本与容量</b>：双边交易成本、卖空费用、<b>小市值冲击成本</b>；按<b>换手率</b>做<b>净 α</b>的<b>盈亏平衡</b>分析（breakeven turnover）。</li>
+              <li><b>稳健性</b>：样本外（<b>发表时间之后</b>）与跨市场检验；<b>换仓频率</b>敏感性；剔出微型股；<b>极端月份</b>（2009 反弹）的表现。</li>
+              <li><b>区分行为 vs 风险的新预测</b>（关键加分项）：<b>换手率</b>与<b>散户参与度</b>应<b>显著</b>高于同等特征的其他组合；且该因子在<b>散户参与度高</b>的市场/时段应<b>更强</b>（DSSW 的 μ 推论）；在被<b>媒体大量报道</b>之后其 α 应<b>衰减</b>（McLean &amp; Pontiff 2016）。若纯粹是风险，这些<b>都不应该发生</b>。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> Combine composite issuance, IVOL and accruals; sort into deciles with a one-month skip and industry-neutral construction; test four-factor alpha and Fama–MacBeth slopes; subtract two-sided transaction, shorting and impact costs and run break-even turnover analysis; check out-of-sample and cross-market robustness. Behavioural prediction: turnover and retail participation should be elevated, returns should be stronger where retail participation is high, and the alpha should decay after heavy media coverage — none of which a pure risk story implies.<br><strong>中文：</strong>合成发行 + IVOL + 应计；十档排序、跳过近一月、行业中性；四因子 α + Fama–MacBeth；扣双边成本做盈亏平衡；区分行为 vs 风险的新预测是「换手率与散户参与度更高、散户多的市场更强、媒体报道后衰减」。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 本 Part 一句话总结</div>
+        <p>四个模型的差别只有一句话：<b>BSV 是"公开信息更新不足"</b>，<b>DHS 是"私有信息权重过高"</b>，<b>HS 是"信息到达有先有后"</b>，<b>BHS 是"盈亏改变风险态度"</b>。它们共同的结构是：<b>初期反应不足 → 动量；最终过度反应 → 反转</b>。</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  FIN 4080 Behavioral Finance · Part 6 行为资产定价模型 · 对应课程结构 IV，为课件外补充
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

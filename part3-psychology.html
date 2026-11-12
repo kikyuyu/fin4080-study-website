@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta property="og:title" content="FIN4080 行为金融学学习站"><meta property="og:description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta name="description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta property="og:image" content="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg"><link rel="icon" href="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+<title>FIN4080 行为金融学学习站</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="assets/tex-mml-svg.js" id="MathJax-script" async></script>
+<script>
+/* Fallback: 若本地 MathJax 包不可用，从 jsDelivr 兜底加载。 */
+(function () {
+  function loadCdn() {
+    if (window.MathJax && window.MathJax.startup) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-svg.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function () { setTimeout(loadCdn, 400); });
+})();
+</script>
+    <script src="assets/figures.js"></script>
+    <script src="assets/mindmap.js"></script>
+    <script src="assets/marks.js?v=20261017a"></script>
+</head>
+<body data-page="part3" data-root="">
+
+<header id="site-topbar"></header>
+
+<div class="layout">
+  <aside class="toc" id="site-toc"></aside>
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Part 3 · Lecture 3–4</div>
+      <h1>心理学基础：偏差从哪里来</h1>
+      <p>要推导投资者非理性会产生什么后果，我们必须先知道「非理性」<strong>长什么样</strong>——这一步的指导来源是心理学文献。本 Part 覆盖<strong>偏好侧</strong>（<strong>前景理论 Prospect Theory</strong>、<strong>窄框架 Narrow Framing</strong>、<strong>模糊厌恶 Ambiguity Aversion</strong>、<strong>双曲折现 Hyperbolic Discounting</strong>）与<strong>信念侧</strong>（代表性、锚定、证实偏差、过度自信等），并补上社会心理学线索。这里也是这门课<b>计算量最集中</b>的 Part。</p>
+      <div class="tags">
+        <span>Prospect Theory</span><span>Loss Aversion</span><span>Probability Weighting</span><span>Narrow Framing</span><span>Ambiguity Aversion</span><span>Hyperbolic Discounting</span><span>Overconfidence</span>
+      </div>
+    </div>
+
+    <div id="mindmap-host"></div>
+
+    <!-- ============ S1 ============ -->
+    <section id="overview">
+      <h2 class="sec">为什么要有心理学这一块 <span class="badge">Roadmap</span></h2>
+
+      <div class="box key">
+        <div class="box-title">▸ 本章主题 Core rationale</div>
+        <p>要推导投资者非理性所导致的<strong>预测</strong>（predictions），通常需要对非理性的<b>具体形式</b>做出更多假设。一个重要的指导来源就是<b>心理学文献</b>。换句话说：<b>没有具体的心理学假设，就没有具体的可检验预测</b>——这正是回应 Part 1 里「缺乏纪律质疑」的方式。</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 本讲 Learning Objectives</div>
+        <ul>
+          <li>能复述理性的<b>两根支柱</b>，并说出行为金融分别放松的是哪一根。</li>
+          <li>能列出前景理论的<b>四大特征</b>，并能用课件里的四个例子反推它们。</li>
+          <li>能用 Tversky–Kahneman (1992) 的参数<b>算出</b>一个赌局的前景值，并解释<b>累积前景理论</b>修补了什么。</li>
+          <li>能解释<b>窄框架</b>与<b>损失厌恶</b>如何共同决定了投资者对短期波动的过度厌恶。</li>
+          <li>能用 Ellsberg 悖论说明<b>模糊厌恶</b>，并用<b>能力假说</b>解释它何时会消失。</li>
+          <li>能用 (β, δ) 模型展示<b>时间不一致</b>，并区分 naive 与 sophisticated。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">路线图：认知心理学 + 社会心理学</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>分支</th><th>主题</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="3"><strong>认知心理学</strong><br><em>Cognitive psychology</em></td><td><b>偏好心理学</b>（客观概率已知）</td><td>前景理论、窄框架（Prospect theory, narrow framing）</td></tr>
+          <tr><td><b>偏好心理学</b>（客观概率未知）</td><td>模糊厌恶（Ambiguity aversion）</td></tr>
+          <tr><td><b>时间偏好</b></td><td>双曲折现（Hyperbolic discounting）</td></tr>
+          <tr><td><strong>信念心理学</strong></td><td>偏离 Bayes' rule</td><td>代表性、不信任大数定律；信念坚持/证实偏差、锚定、记忆偏差；过度自信</td></tr>
+          <tr><td><strong>情绪影响</strong></td><td>affective vs cognitive feelings</td><td>情感性感受与认知性感受如何改变偏好与信念</td></tr>
+          <tr><td><strong>社会心理学</strong></td><td>具体发现</td><td>认知失调（cognitive dissonance）、从众（conformity）、群体思维（groupthink）、服从（obedience）</td></tr>
+          <tr><td><strong>宽泛发现</strong></td><td>人格 + 环境</td><td>人格特质（personality）与情境环境（environment）两条路径</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="fig" data-fig="rational_bench" data-cap="理性的两根支柱与行为金融在两侧分别做出的放松。"></div>
+    </section>
+
+    <!-- ============ S2 ============ -->
+    <section id="prospect">
+      <h2 class="sec">前景理论 Prospect Theory <span class="badge">Preferences</span></h2>
+
+      <p>大量研究工作表明，在实验情境下人们<b>并不按 EU 来评估风险</b>。有许多非 EU 模型试图解释这些违反现象，其中最有名的是 <strong>Kahneman &amp; Tversky (1979)</strong> 提出的<strong>前景理论（prospect theory）</strong>——它也是卡尼曼获得 2002 年经济学诺奖的关键。</p>
+
+      <h3 class="sub">基本对象：一个 prospect</h3>
+      <div class="box def">
+        <div class="box-title">▸ Definition: Prospect</div>
+        <p><em>A prospect \((x_1,p_1;\,x_2,p_2)\) is a lottery that yields outcome \(x_i\) with probability \(p_i\).</em> 本课程限制在<b>客观概率 / 标准概率</b>的赌局上——即<b>隐含假定被感知的概率是正确的</b>（这一点在后续放松到模糊厌恶时会被拿掉）。</p>
+      </div>
+
+      <h3 class="sub">四个例子反推出的四大特征</h3>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 1</span> 例一：参考点依赖 Reference dependence</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">Version A: in addition to whatever you own, you have been given $1,000. Choose: \((1000, 0.5;\,0, 0.5)\) vs \((500, 1)\). Version B: you have been given $2,000. Choose: \((0, 0.5;\,-1000, 0.5)\) vs \((-500, 1)\). Most prefer the certain option in A and the gamble in B. Explain why this is inconsistent with EU.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>把两个版本都翻译成<b>最终财富状态</b>：版本 A 是 \((1000,0.5;\,2000,0.5)\) vs \((1500,1)\)（相对原状）；版本 B 给出 \((2000,0.5;\,1000,0.5)\) vs \((1500,1)\)。</li>
+              <li>可见两道题在<b>最终状态上完全相同</b>：\((2000,0.5;\,1000,0.5)\) vs \((1500,1)\)。</li>
+              <li>但受试者的选择相反 ⇒ <b>他们没有把赠金与赌局并入同一个账户</b>（they did not integrate）。</li>
+              <li>结论：人们的效用来自<b>相对某个参考点的收益与损失（gains and losses）</b>，而不是最终财富水平。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> Viewed in terms of final states the two problems are identical — (2000, 0.5; 1000, 0.5) vs (1500, 1) — yet choices reverse. Subjects evaluate outcomes as changes relative to a reference point, not as final wealth levels: reference dependence.<br><strong>中文：</strong>两题最终状态相同却选择相反，说明价值的载体是<b>损益</b>而非最终财富，即参考点依赖。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 2</span> 例二：损失厌恶 Loss aversion</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">Which would you prefer? \((-100, 0.5;\,110, 0.5)\) vs \((0, 1)\). Most people prefer the second option, even though the first has a higher expected value. What does this imply?</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>期望值比较：\(0.5\times110+0.5\times(-100)=+5&gt;0\) ⇒ 期望效用框架下应当<b>接受</b>赌局。</li>
+              <li>但多数人拒绝 ⇒ 人们对损失<b>远比对等额收益敏感</b>。</li>
+              <li>数学表达：\(v(x)\) 在原点有<b>折点 kink</b>，损失区的斜率约为收益区的 <b>λ ≈ 2.25</b> 倍。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> Individuals are loss averse — much more sensitive to losses, even small ones, than to gains of equal magnitude.<br><strong>中文：</strong>损失厌恶：损失带来的痛苦远大于等额收益带来的快乐。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 3</span> 例三：边际敏感度递减 Diminishing sensitivity</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">Most people prefer \((500,1)\) over \((1000,0.5;\,0,0.5)\), but prefer \((-1000,0.5;\,0,0.5)\) over \((-500,1)\). What do the two preferences together imply about the shape of \(v(\cdot)\)?</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>收益区选择确定 ⇒ 相对于同期望值的赌局偏好确定 ⇒ <b>凹性（风险厌恶）</b>。</li>
+              <li>损失区选择赌局 ⇒ 偏好"搏一把" ⇒ <b>凸性（风险寻求）</b>。</li>
+              <li>结论：\(v(\cdot)\) <b>在收益区凹、在损失区凸</b> ⇒ 边际敏感度递减。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> Risk aversion over gains (concavity) and risk seeking over losses (convexity) — diminishing sensitivity, inferred from (500,1) ≻ (1000,0.5) and (−500,1) ≺ (−1000,0.5).<br><strong>中文：</strong>收益区凹（风险厌恶）、损失区凸（风险寻求），这就是边际敏感度递减。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 4</span> 例四：概率权重 Probability weighting</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">Most people prefer \((5000, 0.001;\,0, 0.999)\) over \((5,1)\), and prefer \((-5,1)\) over \((-5000,0.001;\,0,0.999)\). Explain how the weighting function \(\pi(\cdot)\) captures both at once.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>同是极低概率，人们<b>同时</b>喜欢买彩票（收益端）与买保险（损失端）。</li>
+              <li>这说明小概率被<b>系统性高估</b>：\(\pi(0.001)\gg0.001\)。</li>
+              <li>后面我们会算出：\(\pi(0.001)\approx0.011\)，是高估约 <b>11 倍</b>。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> π(p) overweights low-probability tails: the same person simultaneously likes lotteries and insurance because both rely on a small probability being over-weighted.<br><strong>中文：</strong>概率权重函数高估小概率：彩票与保险被同一个人同时喜欢，正是它的两面。</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub">四大特征的规范表述</h3>
+      <div class="box def">
+        <div class="box-title">▸ Four key features of prospect theory</div>
+        <ol class="steps">
+          <li><strong>价值的载体是收益与损失</strong>，而不是最终财富水平（reference dependence）。</li>
+          <li><strong>\(v(\cdot)\) 在原点有折点</strong>，表示对损失的敏感度远大于等额收益——<strong>loss aversion（损失厌恶）</strong>；由拒绝 \((110,0.5;-100,0.5)\) 推断。</li>
+          <li><strong>\(v(\cdot)\) 在收益区凹、在损失区凸</strong>（diminishing sensitivity）；由 \((500,1)\succ(1000,0.5)\) 且 \((-500,1)\prec(-1000,0.5)\) 推断。</li>
+          <li><strong>用权重函数 \(\pi(\cdot)\) 变换概率，它会高估低概率</strong>（probability weighting）；由 \((5,1)\prec(5000,0.001)\) 且 \((-5,1)\succ(-5000,0.001)\) 推断。</li>
+        </ol>
+      </div>
+
+      <div class="fig" data-fig="pt_value" data-cap="前景理论的价值函数：S 形，原点处有折点，损失区更陡（λ ≈ 2.25）。"></div>
+
+      <h3 class="sub">正式 expression：从 EU 到 PT</h3>
+      <p>考虑一个赌局 \((x,p;\,y,q)\)（为简洁假设只有两个结果）：</p>
+
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ Expected Utility</div>
+          <p class="formula hi">\[p\,U(W+x)+q\,U(W+y)\]
+          <div class="fnote">效用定义在<b>最终财富</b> \(W\) 之上。</div></p>
+        </div>
+        <div class="box key">
+          <div class="box-title">▸ Prospect Theory</div>
+          <p class="formula hi">\[\pi(p)\,v(x)+\pi(q)\,v(y)\]
+          <div class="fnote">价值定义在<b>相对参考点的损益</b>之上，概率还要经过 \(\pi(\cdot)\) 变换。</div></p>
+        </div>
+      </div>
+
+      <div class="fig" data-fig="eu_vs_pt" data-cap="同一个选择问题：EU 按最终财富算，PT 按损益算，前者预测相同选择，后者预测偏好反转。"></div>
+
+      <h3 class="sub">累积前景理论 CPT</h3>
+      <div class="box def">
+        <div class="box-title">▸ Definition: Cumulative Prospect Theory（Tversky &amp; Kahneman, 1992）</div>
+        <p>原始版本有一个弱点，CPT 予以修正：把概率权重函数<b>作用在累积分布函数</b>上。给定有序结果 \((x_{-m},p_{-m};\dots;x_0,p_0;\dots;x_n,p_n)\)（其中 \(x_i&lt;x_j\) 对 \(i&lt;j\)，且 \(x_0=0\)），其值为</p>
+      </div>
+
+      <div class="formula">
+        \[\sum_{i=-m}^{n} \pi_i\, v(x_i),\qquad
+        \pi_i = \begin{cases}
+        \pi(p_i+\dots+p_n)-\pi(p_{i+1}+\dots+p_n), & 0\le i\le n\\[4pt]
+        \pi(p_{-m}+\dots+p_i)-\pi(p_{-m}+\dots+p_{i-1}), & -m\le i&lt;0
+        \end{cases}\]
+        <div class="fnote">\(\pi_i\)：第 \(i\) 个结果对应的<b>决策权重（decision weight）</b>，由累积概率经 \(\pi(\cdot)\) 变换后<b>差分</b>得到；注意<b>损失区从最坏的结果往上累积</b>，收益区从最好的结果往下累积。这样代理人会<b>同时高估分布的两端尾部</b>，保留对硬彩类赌局的偏好。</div>
+      </div>
+
+      <h3 class="sub">参数化：三个数字记住一辈子</h3>
+      <div class="formula hi">
+        \[v(x)=\begin{cases} x^{\alpha}, & x\ge 0\\[2pt] -\lambda(-x)^{\alpha}, & x&lt;0\end{cases}\qquad
+        \pi(P)=\frac{P^{\delta}}{\bigl(P^{\delta}+(1-P)^{\delta}\bigr)^{1/\delta}}\]
+        <div class="fnote">Tversky &amp; Kahneman (1992) 建议的校准值：\(\alpha=0.88\)，\(\lambda=2.25\)，\(\delta=0.65\)。<b>α</b> 控制曲率（&lt;1 ⇒ 凹凸）；<b>λ</b> 是损失厌恶系数；<b>δ</b> 控制权重的"倒 S 形"程度。更近期的校准见 Gonzalez &amp; Wu (1999)、Abdellaoui (2000) 以及 Han, Sui &amp; Yang (2025)。</div>
+      </div>
+
+      <div class="fig" data-fig="pt_weight" data-cap="概率权重函数 π(p)：小概率被高估（左上），中等与高概率被低估（右上）。"></div>
+
+      <div class="box note">
+        <div class="box-title">▸ 概率权重的三个心理学解释（解释题素材）</div>
+        <ul>
+          <li><strong>敏感度递减（Tversky &amp; Kahneman, 1992）</strong>：离参考点越远，我们对变化的敏感度越低。0.99 与 1.00 之间的<b>心理</b>距离，远大于 0.45 与 0.55 之间，尽管客观差值同为 0.01。</li>
+          <li><strong>进化学解释（evolutionary）</strong>：祖先活在充满危险的世界里，把风吹草动误认为捕食者是<b>低成本的错误</b>，而反应不足则是致命的。</li>
+          <li><strong>显著性（salience, Bordalo–Gennaioli–Shleifer, 2012）</strong>：注意力被新颖或极端（相对于参考点）<b>凸显</b>的属性吸引，凸显的结果占用更多认知资源，于是在决策中被<b>过度加权</b>。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">两个不可或缺的补充</h3>
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ 禀赋效应 Endowment effect</div>
+          <p>损失厌恶最著名的<b>无风险版本</b>：<em>simply owning something increases its subjective value.</em> 经典实验把大学生随机分成<b>卖方（得到马克杯，报愿意接受的最低价格 WTA）</b>、<b>买方（不给杯，报愿付的最高价格 WTP）</b>、<b>选择者（不给杯，在"一个杯"与"一笔钱"之间报无差异金额）</b>。</p>
+        </div>
+        <div class="box tip">
+          <div class="box-title">▸ 双系统视角 Two-system framework</div>
+          <p>前景理论常被解释为"双系统框架"（Kahneman &amp; Frederick, 2002）中的 <strong>System I</strong>（快速、自动的直觉系统），而缓慢、受控的 <strong>System II</strong> 才是 EU 式的推理。这解释了为什么偏差<b>不会因为 "知道" 就自动消失</b>。</p>
+        </div>
+      </div>
+
+      <div class="fig" data-fig="endowment" data-cap="禀赋效应：卖方要价远高于买方出价，持有本身抬高了主观价值。"></div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 5</span> 用 T&amp;K 参数算前景值（必做计算题）</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">Using \(v(x)=x^{0.88}\) for gains, \(v(x)=-2.25(-x)^{0.88}\) for losses, and \(\pi(P)=P^{0.65}/(P^{0.65}+(1-P)^{0.65})^{1/0.65}\), evaluate: (a) \((5000, 0.001;\,0, 0.999)\) versus \((5,1)\); (b) \((-5000,0.001;\,0,0.999)\) versus \((-5,1)\). Show that these choices reproduce the observed preferences.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>先算权重：\(0.001^{0.65}=0.01124\)，\(0.999^{0.65}=0.99935\)，两者之和为 \(1.01059\)；\((1.01059)^{1/0.65}=(1.01059)^{1.5385}=1.01634\)。故 \(\pi(0.001)=0.01124/1.01634\approx0.0111\)。</li>
+              <li>再算价值：\(v(5000)=5000^{0.88}=e^{0.88\ln 5000}=e^{7.495}\approx1797\)；\(v(5)=5^{0.88}=e^{1.416}\approx4.12\)。</li>
+              <li>(a) 赌博：\(\pi(0.001)\times1797=0.0111\times1797\approx19.9\)；确定：<b>4.12</b>。\(19.9&gt;4.12\) ⇒ <b>选择买彩票</b> ✓。</li>
+              <li>损失侧：\(v(-5000)=-2.25\times1797\approx-4043\)；\(v(-5)=-2.25\times4.12\approx-9.27\)。</li>
+              <li>(b) 赌博：\(0.0111\times(-4043)\approx-44.9\)；确定：<b>−9.27</b>。\(-9.27&gt;-44.9\) ⇒ <b>选择确定的小额损失</b>（买保险）✓。</li>
+              <li>结论：<b>同一个 δ 参数</b>同时解释了我们为何<b>既买彩票又买保险</b>，这是 PT 相对其他非 EU 模型的漂亮之处。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> π(0.001) ≈ 0.0111. (a) Prospect value of the lottery ≈ 0.0111 × 1,797 ≈ 19.9 &gt; v(5) = 4.12, so the lottery is chosen. (b) ≈ 0.0111 × (−4,043) ≈ −44.9 &lt; v(−5) = −9.27, so the certain loss is chosen.<br><strong>中文：</strong>π(0.001)≈0.0111；(a) 彩票约 19.9 &gt; 确定的 4.12；(b) 赌博约 −44.9 &lt; 确定的 −9.27。小概率被高估约 11 倍。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 从这里继续：PT 的两条后续路线（新增 Part 指引）</div>
+        <ul>
+          <li><b>路线一 · 应用</b>：把 PT 偏好直接接入资产定价与交易行为——偏度定价、短视损失厌恶与股权溢价、实现效用与处置效应，详见 <b>Part 8 前景理论的应用</b>。</li>
+          <li><b>路线二 · 修补</b>：固定加权函数 \(\pi(\cdot)\) 解释不了 <b>Allais 悖论</b>（同一个低概率事件在不同选择情境下被不同程度地高估）。<b>显著性理论（Salience Theory, BGS）</b>用「注意力聚焦最显著 payoff」给出 context-dependent 的替代解释，并推出可检验的 ST 定价因子，详见 <b>Part 9 显著性理论</b>。上面「概率权重的心理学解释」第三条（salience）正是这条路线的伏笔。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S3 ============ -->
+    <section id="narrow">
+      <h2 class="sec">窄框架 Narrow Framing <span class="badge">Framing</span></h2>
+
+      <div class="box key">
+        <div class="box-title">▸ Crucial question：\(v(\cdot)\) 的自变量应该是什么？</div>
+        <p>这是一个<b>框架（framing）</b>问题，同时有<b>横截面</b>与<b>时间</b>两个维度：</p>
+        <ul>
+          <li>在标准模型里（效用定义在财富或消费上），代理人评估一个新风险的流程是：<b>把它与既存风险合并</b>，检验合并后是否变好。</li>
+          <li>但在实验中，人们常常<b>孤立地</b>评估新风险，与同时存在的其他风险分开处理——这就是<strong>窄框架（narrow framing）</strong>；等价地说，他们从某个具体风险的结果中<b>直接</b>获得效用，而不是通过总财富间接地获得。</li>
+        </ul>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 易错点：Example Two 是双重证据</div>
+        <p>普遍拒绝 \((110,0.5;\,-100,0.5)\) 的<b>不只是损失厌恶</b>的证据，<b>同时也是窄框架的证据</b>（Barberis, Huang &amp; Thaler, 2006）。一个「宽框架」的人会把这局与公司价值、人力资本、其他资产合并后再评估，最终很可能接受它。<b>答题时把两条一起写上才算完整。</b></p>
+      </div>
+
+      <div class="fig" data-fig="narrow_framing" data-cap="窄框架把每个风险孤立地评估；宽框架把风险合并到总财富里再做判断。"></div>
+
+      <div class="box note">
+        <div class="box-title">▸ 金融含义 Financial implications</div>
+        <ul>
+          <li>我们会把 PT 的「收益/损失」理解为<b>财富中某个特定组成部分</b>的收益与损失——例如<b>股票市场账户</b>的盈亏、或<b>某只具体股票</b>的盈亏。</li>
+          <li>直接后果：投资者会<b>过度厌恶短期波动</b>，因为每一次下跌都在「股票账户」这一个账户里被单独计一次痛苦。这是后面 BHS (2001) 解释高股权溢价的出发点。</li>
+          <li>注意课件提醒：<b>窄框架的来源至今并未被完全理解</b>（The source of narrow framing is not fully understood）。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S4 ============ -->
+    <section id="ambiguity">
+      <h2 class="sec">模糊厌恶 Ambiguity Aversion <span class="badge">Unknown Probabilities</span></h2>
+
+      <p>到此为止我们讨论的都是<strong>客观概率已知</strong>的风险。一旦概率本身不清楚，就会出现另一种偏离。</p>
+
+      <h3 class="sub">Ellsberg 悖论（1961）</h3>
+      <div class="box def">
+        <div class="box-title">▸ 设定</div>
+        <ul>
+          <li><strong>已知瓮 C</strong>：100 个球，50 红、50 黑。</li>
+          <li><strong>未知瓮 U</strong>：100 个球，全是红或黑，但比例未知。</li>
+          <li>第一组选择：从 C 中抽红(After)得 $20（<b>赌局 R1</b>） vs. 从 U 中抽红得 $20（<b>R2</b>）。</li>
+          <li>第二组选择：从 C 中抽黑得 $20（<b>B1</b>） vs. 从 U 中抽黑得 $20（<b>B2</b>）。</li>
+        </ul>
+      </div>
+
+      <div class="fig" data-fig="ellsberg" data-cap="Ellsberg 双瓮：无论押红还是押黑，人们都偏好概率已知的瓮 U 之外的那个瓮。"></div>
+
+      <h3 class="sub">两个候选解释</h3>
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ 模糊厌恶假说 Ambiguity aversion hypothesis</div>
+          <p><em>People dislike situations where they feel uncertain about the probability distribution of outcomes — situations of "ambiguity".</em> 例如：押一个事件 vs. 押一台会响的机器。</p>
+        </div>
+        <div class="box key">
+          <div class="box-title">▸ 能力假说 Competence hypothesis</div>
+          <p><em>People prefer betting on the known rather than the vague distribution when they don't feel competent, but prefer the vague distribution when they do feel competent.</em> 「能力」是<b>你觉得自己知道的部分，相对于可以被知道的部分</b>。</p>
+        </div>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 证据与可操纵性（Heath &amp; Tversky, 1991；Fox &amp; Tversky, 1995）</div>
+        <ul>
+          <li>自认<b>懂足球</b>的人更愿意赌足球赛事的不确定性，而不是赌一个纯粹的随机装置。</li>
+          <li>有趣的是：可以通过<b>操纵胜任感</b>来操纵模糊厌恶的程度——把该赌局与<b>更模糊</b>的赌局放在一起比较；或者把受试者与<b>更知情</b>的人放在一起。</li>
+          <li>最经典的：<b>当两个瓮被分开单独评估时，Ellsberg 悖论就消失了</b>。</li>
+        </ul>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 金融含义（答题素材）</div>
+        <p>模糊厌恶可以直接解释：<b>本土偏好/本地偏好</b>（对本地公司"自认懂"）、<b>不参与</b>（对股市整体判断胜任感低）、以及投资者<b>偏爱熟悉的大盘资产</b>。同时也可以解释为什么新资产、新市场、新兴产业的估值需要更高的风险补偿。</p>
+      </div>
+    </section>
+
+    <!-- ============ S5 ============ -->
+    <section id="hyperbolic">
+      <h2 class="sec">双曲折现 Hyperbolic Discounting <span class="badge">Time Preferences</span></h2>
+
+      <p>多数模型假定<strong>指数折现（exponential discounting）</strong>：</p>
+      <div class="formula">
+        \[u(c_0)+\delta\,u(c_1)+\delta^2 u(c_2)+\dots\]
+        <div class="fnote">\(\delta\)：每期折现因子；\(c_t\)：第 \(t\) 期的消费。指数折现的<b>关键性质</b>：任意相邻两期之间的折现率恒定 ⇒ <b>时间一致</b>。</div>
+      </div>
+
+      <p>但这并不能很好地刻画真实的时间偏好。课件用两个对照实验质疑它：<b>在今天的 $100 与明天的 $110 之间选择</b>，大多数人要今天的钱；<b>在 30 天后的 $100 与 31 天后的 $110 之间选择</b>，多数人却愿意多等那一天。同一个「多等一天换 $10」在远近不同的两个时点给出了不同的答案。</p>
+
+      <div class="box def">
+        <div class="box-title">▸ (β, δ) 模型</div>
+        <p class="formula hi">\[u(c_0)+\beta\bigl(\delta\,u(c_1)+\delta^2 u(c_2)+\dots\bigr),\qquad \beta&lt;1\]
+        <div class="fnote">\(c_0\)：<b>当期</b>消费；\(\beta\)：<b>现时偏误（present bias）</b>参数，\(\beta&lt;1\) 表示<i>当下</i>的收益格外愉快、当下的损失格外痛苦；\(\delta\)：标准的长期折现因子。神经科学证据同样支持这种形式。</div></p>
+      </div>
+
+      <div class="fig" data-fig="hyperbolic" data-cap="指数折现平滑下降，双曲折现在第 1 期处有一个由 β 造成的陡降。"></div>
+
+      <div class="box key">
+        <div class="box-title">▸ 时间不一致 Time inconsistency</div>
+        <p>双曲折现预测了<strong>时间不一致</strong>（time inconsistency）：计划与执行会脱节。行为取决于当事人<b>是否意识到</b>这种不一致：</p>
+        <ul>
+          <li><strong>Naive（天真型）</strong>：以为未来的自己会照今天的计划执行 → 不断拖延。</li>
+          <li><strong>Sophisticated（成熟型）</strong>：预见到未来的自己会食言，于是提前设置<b>承诺装置</b>。参见 O'Donoghue &amp; Rabin (1999)。</li>
+        </ul>
+        <p>金融场景：这正是<strong>储蓄不足</strong>与 Part 7 的 <strong>Save More Tomorrow（SMarT）</strong> 方案的心理学基础。</p>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 6</span> 算一遍偏好反转</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">Let one period be one month and \(\delta=0.95\). Compare $100 today with $110 in one period; then compare $100 in 10 periods with $110 in 11 periods. Model the first decision as a choice made "today" and use \(\beta=0.6\). Compute the discounted values under exponential and hyperbolic discounting and show the reversal.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li><b>指数折现</b>（近）：\(100\) vs \(\delta\times110=0.95\times110=104.5\) ⇒ 等。</li>
+              <li><b>指数折现</b>（远）：\(\delta^{10}\times100=0.5987\times100=59.87\) vs \(\delta^{11}\times110=0.5688\times110=62.57\) ⇒ 等。<b>两次都选"等"</b> ⇒ 时间一致。</li>
+              <li><b>双曲折现</b>（近）：\(100\) vs \(\beta\delta\times110=0.6\times104.5=62.7\) ⇒ <b>拿今天的 100</b>。</li>
+              <li><b>双曲折现</b>（远）：\(\beta\delta^{10}\times100=0.6\times59.87=35.92\) vs \(\beta\delta^{11}\times110=0.6\times62.57=37.54\) ⇒ <b>愿意多等一期</b>。</li>
+              <li>结论：同一个「多等一期换 $10」的决定，在"现在"与"第 10 期"给出相反答案 ⇒ <b>时间不一致</b>。这解释了"今天要爽、明天再说"，也是储蓄不足与拖延的机制。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> Exponential: 100 vs 104.5 → wait; 59.87 vs 62.57 → wait (consistent). Hyperbolic (β = 0.6): 100 vs 62.7 → take today; 35.92 vs 37.54 → wait. The reversal is time inconsistency.<br><strong>中文：</strong>指数折现两次都选等待；双曲折现在近处拿今天的钱、远处却愿意等，出现偏好反转。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ S6 ============ -->
+    <section id="beliefs">
+      <h2 class="sec">信念侧偏差与社会心理学 <span class="badge">Beliefs &amp; Society</span></h2>
+
+      <p>偏好侧覆盖完成之后，来看<strong>信念侧</strong>：人们如何<b>偏离 Bayes' rule</b>。这一块是 Part 6 中 BSV / DHS / HS 等模型的直接原料库。</p>
+
+      <div class="fig" data-fig="beliefs_biases" data-cap="六种最常见的信念侧偏差：每种都给出代表人物与其在价格上的含义。"></div>
+
+      <h3 class="sub">六个必须能默写的偏差</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>偏差 English</th><th>含义</th><th>对应的价格现象</th></tr></thead>
+        <tbody>
+          <tr><td><strong>代表性</strong> Representativeness</td><td>用「好样本/典型模式」代替基础比率做判断；看到一个短暂的盈利改善序列就认定是公司质地变好了</td><td>股价长期<b>过度反应</b>，随后反转</td></tr>
+          <tr><td><strong>小数定律</strong> Non-belief in the law of large numbers</td><td>相信小样本也服从大数定律；把随机序列当成有规律的模式</td><td>对"连续上涨"外推</td></tr>
+          <tr><td><strong>信念坚持</strong> Belief perseverance<br><strong>证实偏差</strong> Confirmation bias</td><td>偏好支持既有信念的证据，忽视反面证据</td><td>公开信息与私有信息不对称 weighting ⇒ DHS (1998)</td></tr>
+          <tr><td><strong>锚定</strong> Anchoring</td><td>判断停留在某个初始值（购买价、52 周高点）附近</td><td>处置效应；要约收购定价贴近 52 周高点</td></tr>
+          <tr><td><strong>记忆偏差</strong> Memory biases</td><td>记忆是<b>被重构</b>的：人们更容易回想起极端的、近期的、结果已知的片段</td><td>事后聪明（hindsight bias）⇒ 过度自信循环</td></tr>
+          <tr><td><strong>过度自信</strong> Overconfidence</td><td>高估私有信息的精度；置信区间过窄</td><td>过度交易 ⇒ Barber &amp; Odean (2000) 的低净收益</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">▸ 「感受」如何介入 Feelings</div>
+        <ul>
+          <li><strong>情感性感受（affective feelings）</strong>：情绪状态本身作为信息影响偏好与信念（晴天时更容易乐观）。</li>
+          <li><strong>认知性感受（cognitive feelings）</strong>：加工流畅度、可得性、「这听起来很熟」的感受 ⇒ 影响对概率的判断。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">社会心理学的四条具体发现</h3>
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ 认知失调 Cognitive dissonance</div>
+          <p>为了<b>减少心理上的不适</b>，人们会事后调整自己的信念（"我买了它，所以它一定是好的"）。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ 从众 Conformity</div>
+          <p>在群体压力下改变行为与判断，这是<b>羊群行为</b>与流行叙事的微观基础。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ 群体思维 Groupthink</div>
+          <p>追求一致的压力使群体忽视反面信息；常见于<b>公司内部决策</b>与<b>卖方一致预期</b>。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ 服从 Obedience</div>
+          <p>服从权威，即使与个人判断冲突；延伸到<b>分析师对明星 CEO 的维护</b>与<b>审计中的软弱</b>。</p>
+        </div>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 两条宽路径：人格 + 环境</div>
+        <p><strong>Personality（人格）</strong>解释的是<b>谁</b>更容易有某类偏差（例如年轻男性、单身、自信者在过度交易上更突出）；<strong>Environment（环境）</strong>解释的是<b>在什么情境下</b>偏差会被放大（信息不确定、反馈嘈杂、反馈滞后）。后者对我们设计<b>制度</b>（Part 7）尤其重要，因为人格难改、环境可设计。</p>
+      </div>
+    </section>
+
+    <!-- ============ S7 ============ -->
+    <!-- ============ Concept cheat-sheet ============ -->
+    <section id="concepts">
+      <h2 class="sec">概念考点速查：双语解释 + 例子 <span class="badge">Concept Cheat-Sheet</span></h2>
+      <p class="lede">下列每个心理学概念/假说都给出<b>英文解释、中文解释与佐证例子</b>，专供「解释类（explanation）」考题复习。点击展开。</p>
+
+      <details class="concept" data-concept="prospect-theory">
+        <summary class="concept-bar">
+          <span class="concept-en">Prospect Theory</span>
+          <span class="concept-cn">前景理论</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Kahneman &amp; Tversky (1979): people evaluate outcomes relative to a <b>reference point</b> (not final wealth), are risk-averse in gains and risk-seeking in losses (value function concave for gains, convex for losses, steeper for losses → loss aversion), and overweight small probabilities and underweight moderate/large ones (probability weighting). Decisions maximize weighted value, not expected utility.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>Kahneman &amp; Tversky (1979)：人围绕"参考点"而非最终财富评估得失；在收益域风险厌恶、在损失域风险寻求（价值函数收益段凹、损失段凸、损失段更陡→损失厌恶）；并高估小概率、低估中大概率（概率权重）。决策最大化"加权价值"而非期望效用。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">A 50% chance to win ¥100 or lose ¥100 is rejected by most people even though EV=0, because the utility loss from −100 outweighs the gain from +100. <b>中文：</b>50% 赢 100、50% 亏 100，即使期望为 0，多数人也会拒绝，因为 −100 的效用损失大于 +100 的效用所得。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="loss-aversion">
+        <summary class="concept-bar">
+          <span class="concept-en">Loss Aversion</span>
+          <span class="concept-cn">损失厌恶</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Losses loom about twice as large as equivalent gains (λ ≈ 2). This single parameter explains the disposition effect, the endowment effect, and the status-quo bias.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>损失的心理权重约为等额收益的 2 倍（λ≈2）。这一个参数就能解释处置效应、禀赋效应与现状偏差。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">People demand ~$100 to sell a mug they were given but would only pay ~$50 to buy the same mug (endowment effect / loss aversion). <b>中文：</b>人们被送一只杯子后索要约 100 元才肯卖，却只愿花约 50 元买同一只杯子（禀赋效应/损失厌恶）。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="mental-accounting">
+        <summary class="concept-bar">
+          <span class="concept-en">Mental Accounting &amp; Narrow Framing</span>
+          <span class="concept-cn">心理账户与窄框架</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>People code outcomes in separate "mental accounts" and evaluate each in isolation (narrow framing) rather than integrating them into total wealth. This makes them take more risk to avoid a loss in one account while ignoring portfolio-wide risk.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>人把结果分进不同的"心理账户"并孤立评估（窄框架），而不是并入总财富统一考量。这导致他们为避免某个账户亏损而承担更多风险，却忽视组合层面的整体风险。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">A gambler down ¥100 on the day takes a risky double-or-nothing bet to "break even" in that mental account, though overall it's a bad bet. <b>中文：</b>当天亏了 100 的赌徒会为"回本"而孤注一掷，尽管从整体看这是个糟糕的赌注。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="ambiguity-aversion">
+        <summary class="concept-bar">
+          <span class="concept-en">Ambiguity Aversion (Ellsberg)</span>
+          <span class="concept-cn">模糊厌恶（Ellsberg 悖论）</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>People prefer known probabilities (risky) to unknown probabilities (ambiguous), even at the same expected value — violating subjective expected utility. Two leading explanations: (a) uncertainty aversion — ambiguity is itself a kind of risk; (b) source preference — people distrust the mechanism generating ambiguous outcomes.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>人偏好已知概率（风险）甚于未知概率（模糊），即便期望价值相同——这违背主观期望效用。两类解释：(a) 对不确定性本身的厌恶——模糊是一种额外风险；(b) 来源偏好——人不信任产生模糊结果的机制。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Ellsberg urn: given a known 50/50 red/black urn vs. an urn with unknown composition, most prefer betting on the known urn for both colors. <b>中文：</b>Ellsberg 双缸实验：已知 50/50 的红黑缸 vs. 组成未知缸，多数人两种颜色都偏好押已知缸。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="hyperbolic-discounting">
+        <summary class="concept-bar">
+          <span class="concept-en">Hyperbolic Discounting</span>
+          <span class="concept-cn">双曲线折现</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>People discount the future by a function that is steep for near delays and flat for far ones (hyperbolic), not exponential. This produces time-inconsistency: someone who prefers $100 in 1 year over $110 in 1 year+1 day will flip to the $110 when both are moved one day closer. Explains procrastination and under-saving.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>人对未来的折现不是指数型，而是近期陡、远期平缓（双曲线）。这造成"时间不一致"：宁愿一年后拿 100 也不愿一年后零一天拿 110 的人，当两者都提前一天时又会改选 110。解释拖延与储蓄不足。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">"I'll start saving next month" — repeated forever, because the near-term $0-cost of delaying always beats the far benefit. <b>中文：</b>"下个月开始存钱"——无限重复，因为眼前"不存"的零成本总是胜过遥远的收益。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="six-biases">
+        <summary class="concept-bar">
+          <span class="concept-en">The Six Belief Biases</span>
+          <span class="concept-cn">六个信念偏差</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>The course requires memorizing six: (1) <b>Overconfidence</b> — overestimate own accuracy; (2) <b>Representativeness</b> — judge by similarity/pattern, ignoring base rates; (3) <b>Belief perseverance</b> — cling to prior views; (4) <b>Conservatism</b> — under-react to new info; (5) <b>Anchoring</b> — insufficient adjustment from an initial number; (6) <b>Confirmation</b> — seek info supporting prior beliefs. Overconfidence + self-attribution drive momentum/reversal.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>本课要求默写六个信念偏差：(1) <b>过度自信</b>——高估自己判断的准确性；(2) <b>代表性</b>——按相似/模式判断概率，忽视基率；(3) <b>信念固着</b>——固守原有观点；(4) <b>保守性</b>——对新信息反应不足；(5) <b>锚定</b>——从初始数字调整不足；(6) <b>确认偏差</b>——只找支持原有信念的信息。过度自信+自我归因驱动了动量/反转模式。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">After a few successful trades, a retail investor attributes wins to skill (self-attribution) and becomes overconfident, trading more and chasing past winners (momentum). <b>中文：</b>散户连赢几把后把成功归因于能力（自我归因）并过度自信，于是更频繁交易、追买过去赢家（动量）。</div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="exercises" data-exgroup>
+      <h2 class="sec">Part 3 练习 <span class="badge">Exercises</span></h2>
+      <p class="lede">本 Part 的计算题必须使用同一套参数：\(\alpha=0.88\)、\(\lambda=2.25\)、\(\delta=0.65\)。建议先手算一遍 \(\pi(0.5)\) 与几个 \(v(x)\)，考试时速度差很多。</p>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Computing decision weights</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Using \(\pi(P)=P^{0.65}/(P^{0.65}+(1-P)^{0.65})^{1/0.65}\), compute \(\pi(0.5)\) and \(\pi(0.9)\). Interpret each result in one sentence.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>纯代入题。注意指数是 \(1/\delta=1/0.65\approx1.5385\)。</p></div>
+            <ol class="steps">
+              <li>\(P=0.5\)：\(0.5^{0.65}=0.6374\)；分母 \((0.6374+0.6374)^{1.5385}=(1.2748)^{1.5385}=1.4528\)；\(\pi(0.5)=0.6374/1.4528\approx0.439\)。</li>
+              <li>解读：即使是最"中性"的 0.5 概率，人们也只当作约 0.44 ⇒ <b>中等与高概率整体被低估</b>。</li>
+              <li>\(P=0.9\)：\(0.9^{0.65}=e^{0.65\ln0.9}=e^{-0.0685}=0.9338\)；\(0.1^{0.65}=e^{0.65\times(-2.3026)}=e^{-1.4967}=0.2238\)；之和 \(=1.1576\)；\(1.1576^{1.5385}=e^{1.5385\times0.1463}=e^{0.2251}=1.2524\)；\(\pi(0.9)=0.9338/1.2524\approx0.746\)。</li>
+              <li>解读：0.9 的概率被当作 0.746 ⇒ <b>大概率也被低估</b>，这正是"模糊且不太可能"但"几乎确定会发生"的事件（如平均 1 年一次的崩盘）被系统性轻视的数学形式。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> π(0.5) ≈ 0.439 and π(0.9) ≈ 0.746. Moderate-to-high probabilities are under-weighted, leaving room for tail outcomes to be over-weighted.<br><strong>中文：</strong>π(0.5)≈0.439，π(0.9)≈0.746：中高概率整体上被低估。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> The (−100, 0.5; 110, 0.5) gamble</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Evaluate the gamble \((-100,0.5;\,110,0.5)\) using prospect theory with the Tversky–Kahneman (1992) parameters. (a) Compute its prospect value. (b) Find the certain amount \(X\) such that the agent is indifferent between the gamble and receiving \(X\) for sure. (c) Compare with the expected value of the gamble and comment.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>先分别算收益端与损失端的价值，再用 π(0.5) 加权求和。</p></div>
+            <ol class="steps">
+              <li>\(v(110)=110^{0.88}=e^{0.88\ln110}=e^{0.88\times4.7005}=e^{4.1364}\approx62.6\)。</li>
+              <li>\(v(-100)=-2.25\times100^{0.88}=-2.25\times e^{0.88\times4.6052}=-2.25\times e^{4.0526}=-2.25\times57.4\approx-129.2\)。</li>
+              <li>(a) 前景值 \(=\pi(0.5)\times(62.6-129.2)=0.439\times(-66.6)\approx-29.2\)。</li>
+              <li>(b) 令 \(X^{0.88}=29.2\) ⇒ \(X=29.2^{1/0.88}=e^{\ln29.2/0.88}=e^{3.374/0.88}=e^{3.834}\approx46.3\)。</li>
+              <li>(c) 期望值 \(=0.5\times110+0.5\times(-100)=+5\)。要让人接受这个期望 +5 元的赌局，需要约 <b>+46 元</b>的确定收益 ⇒ 这就是损失厌恶 + 窄框架的代价。</li>
+              <li>注意这个数字<b>远大于 EV</b>，而不是略大于 EV：损失厌恶的影响是<b>数量级</b>级别的，不是微调。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Prospect value ≈ 0.439 × (62.6 − 129.2) ≈ −29.2. (b) Certainty equivalent X ≈ $46.3. (c) The expected value is only +$5, so rejecting the gamble costs money in expectation — the gap is the price of loss aversion and narrow framing.<br><strong>中文：</strong>(a) 约 −29.2；(b) 确定性等价约 46.3 元；(c) 期望值只有 +5 元，差距就是损失厌恶的代价。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Narrow framing in the market <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Two investors face the same risky stock. Investor A checks the account once a year; investor B checks every day. Assume each "evaluation event" applies the prospect-theory value function to the period's gain or loss. Explain why B demands a much larger expected return to hold the same asset, and name the effect described in Barberis, Huang and Thaler (2006).</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这道题是 Part 6 中 BHS (2001) 解释股权溢价的<b>前置练习题</b>，务必把逻辑链写顺。</p></div>
+            <ol class="steps">
+              <li><b>Step 1 机制</b>：由于 \(v(\cdot)\) 在<b>原点有折点</b>，合并多个周期的实际感受到的价值，<b>低于</b>把每个周期单独评估再加总得到的價值（可以按 Jensen 直觉理解：凹凸交替使得"分批记账"更痛苦）。</li>
+              <li><b>Step 2 账户数量</b>：窄框架 ⇒ 每个评估事件都在「股票账户」这个<b>子账户</b>里单独计一次损益。B 每年评估 250 次，A 只评估 1 次 ⇒ B 承受的<b>总痛苦</b>远大于 A。</li>
+              <li><b>Step 3 价格传导</b>：要使 B 愿意持有，必须抬高<b>预期收益</b>（股权溢价），使期望收益端的贡献足以补偿累计的损失厌恶。</li>
+              <li><b>Step 4 推论</b>：①<b>波动越大的资产要求的溢价越高</b>；②<b>换手率/关注频率越高的人群要求的溢价越高</b>；③同一资产在<b>高波动时段</b>的<b>预期收益</b>更高。</li>
+              <li>该效应来自 <b>Barberis, Huang &amp; Thaler (2006)</b>，在 Part 6 的 BHS (2001) 中被用来同时解释<b>高股权溢价</b>与<b>过度波动</b>。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> With a kinked value function, aggregating many short-horizon evaluations creates far more (accumulated) loss disutility than one annual evaluation, so the frequently-monitoring investor requires a much larger expected return to hold the same asset. This is the narrow framing / myopic loss aversion effect of Barberis, Huang and Thaler (2006).<br><strong>中文：</strong>评估频率越高，累计的损失厌恶痛苦越大 ⇒ 要求的预期收益越高，这就是 BHT (2006) 的短视损失厌恶。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Ellsberg in a market setting <span class="kbd">拓展</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">An investor allocates between a domestic fund whose return distribution he believes he understands, and an overseas fund whose return distribution he freely admits he cannot judge. (a) Under the ambiguity aversion hypothesis, what does he do? (b) Under the competence hypothesis, when would he switch? (c) Give one real-world manipulation that would change his choice, based on Heath and Tversky (1991).</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>把 Ellsberg 的实验室结论搬到投资决策上，考的是"模糊厌恶 vs 能力假说"的区别。</p></div>
+            <ol class="steps">
+              <li>(a) <b>模糊厌恶假说</b>：他会把资产<b>重点配置</b>在本地基金，即使海外基金的<b>期望</b>收益可能更高 ⇒ 形成<b>本土偏好</b>（French &amp; Poterba 1991）。价格含义：海外资产需要更高的<b>预期收益</b>才能吸引本地资金。</li>
+              <li>(b) <b>能力假说</b>：只要让他<b>感到自己懂</b>——如果他在这个海外市场工作过、读过它的财报结构、能看懂它的会计报表——偏好就会<b>减弱甚至反转</b>，他可能反而偏爱那个" vague"的分布。</li>
+              <li>(c) 操纵方式（Heath &amp; Tversky, 1991）：①把该基金与<b>更模糊</b>的基金放在一起比较；②把投资者与<b>更知情</b>的人（如本地分析师）放在一起；③或者像 Ellsberg 实验那样，把两个选项<b>分开</b>单独评估时，悖论会消失。</li>
+              <li>金融含义：针对模糊厌恶，<b>信息供给与教育</b>会<b>实质性</b>提升参与度——这与 Part 7 的规范性政策相吻合。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) He concentrates in the domestic fund — home bias — which is consistent with the ambiguity aversion hypothesis. (b) Under the competence hypothesis he switches once he feels competent about the overseas distribution. (c) Comparing it to even more ambiguous bets, benchmarking himself against more informed investors, or evaluating the options separately.<br><strong>中文：</strong>(a) 偏重本地 ⇒ 本土偏好；(b) 感到自己懂时会反转；(c) 与更模糊的选项对比 / 与更知情的人对比 / 分开单独评估。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Time inconsistency and retirement saving <span class="kbd">拓展</span> <span class="kbd">场景</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">A worker plans in January to raise her contribution rate in July. When July arrives she postpones again. Model her with (β, δ) preferences where β = 0.5, and discuss: (a) why a naive worker keeps postponing forever; (b) what a sophisticated worker would do; (c) what policy Thaler and Benartzi (2004) would propose.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>把双曲折现映射到"储蓄不足"这个真实场景；最后一问直接连到 Part 7。</p></div>
+            <ol class="steps">
+              <li>(a) <b>Naive</b>：β=0.5 意味着每一次"未来的成本"都要打 5 折，而"当下的消费成本"打全价。1 月时她认为 7 月的自己会照做；到 7 月，提缴<b>立刻</b>变成当期成本，而收益在遥远的退休期 ⇒ 又一次推迟。<b>每一期重复同样的推理 ⇒ 永远推迟。</b></li>
+              <li>(b) <b>Sophisticated</b>：她<b>预见到</b>未来的自己会食言，于是提前设置<b>承诺装置</b>——最好的办法是签订<b>不可撤销的自动递增条款</b>：把未来的提缴<b>绑定在未来的加薪上</b>。</li>
+              <li>(c) <b>Save More Tomorrow (SMarT, Thaler &amp; Benartzi 2004)</b>：①<b>自动加入</b>（默认参保缴费）；②<b>默认缴费率</b>；③<b>提缴与每次加薪绑定</b>——因为加薪时不提缴不会"感觉到"当期收入下降，从而绕过了 β 的亏损厌恶。</li>
+              <li>进一步（开放加分）：SMarT 的精妙之处在于它<b>利用</b>了人的偏差（惰性 + 损失厌恶）来克服另一个偏差（拖延），这是 Part 7 规范性行为金融的核心精神。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) A naive (β, δ) worker under-weights the future cost each period and repeats the same reasoning, so postponement never ends. (b) A sophisticated worker pre-commits, binding future contribution increases to future pay rises. (c) "Save More Tomorrow": automatic enrolment, a default contribution rate, and automatic escalation tied to salary increases.<br><strong>中文：</strong>(a) 天真型每期重复同样的推理 ⇒ 永远拖延；(b) 成熟型提前设承诺装置；(c) SMarT：自动加入 + 默认费率 + 与加薪绑定的自动递增。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Which bias? <span class="kbd">概念</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Identify the bias most directly illustrated by each of the following, and say whether it belongs to the beliefs side or the preferences side. (a) An investor refuses to sell a losing stock because acknowledging the loss is painful. (b) An investor says "this fund manager had four great quarters, he must be a genius". (c) An investor holds mostly local companies and never buys overseas funds. (d) An investor keeps buying after every 5% rise, convinced the trend will continue.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>分类题。关键是先判断「影响的是<b>信念</b>还是<b>偏好</b>」—— 一个是关于世界如何运作，一个是关于如何估值结果。</p></div>
+            <ol class="steps">
+              <li>(a) <b>损失厌恶 + 窄框架</b>（偏好侧）：也可以接 Part 5 的<b>处置效应</b>与倒回来的<b>锚定</b>（以买入价为参考点）。</li>
+              <li>(b) <b>代表性 + 小数定律</b>（信念侧）：用四个季度的"好样本"代替先验与基础比率。</li>
+              <li>(c) <b>模糊厌恶 / 本土偏好</b>（偏好侧的决策，但根源在<b>能力感</b>）：注意也可引用<b>熟悉偏好</b>。</li>
+              <li>(d) <b>代表性 + 外推信念</b>（信念侧）：这正是 Part 6 中 BSV 用来解释<b>长期过度反应与反转</b>的那条。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Loss aversion / anchoring at the purchase price — preferences side. (b) Representativeness and the law of small numbers — beliefs side. (c) Ambiguity aversion (and the associated competence feeling) — preferences side. (d) Representativeness / extrapolative beliefs — beliefs side.<br><strong>中文：</strong>(a) 偏好侧（损失厌恶/锚定）；(b) 信念侧（代表性、小数定律）；(c) 偏好侧（模糊厌恶）；(d) 信念侧（外推信念）。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Homework 1 · PT challenges expected utility <span class="kbd">HW1</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">The Prospect Theory challenges the traditional expected utility theory in which of the following aspect(s):
+          <br>(a) People evaluate outcomes as gains or losses relative to a reference point.
+          <br>(b) People may be risk-averse when facing gains and risk-seeking when facing losses.
+          <br>(c) People assign different decision weights to probabilities, such as overweighting small probabilities.
+          <br>(d) Losses loom larger than gains.
+          <br>(e) All of the above.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>逐项判断：四个选项都是前景理论对期望效用理论（EU）的<b>真正挑战</b>，因此答案是 (e)。</p></div>
+            <ol class="steps">
+              <li>(a) <b>参考点依赖</b>：EU 在最终财富上定义效用，PT 在<b>相对参考点的损益</b>上定义价值函数 \(v(\cdot)\)。这是最本质的分歧。</li>
+              <li>(b) <b>损益两端风险态度不同</b>：价值函数在收益端<b>凹</b>（风险厌恶）、损失端<b>凸</b>（风险寻求），而 EU 通常假设全局风险厌恶。⇒ 同一个赌局在"赚"或"亏"的框架里选择会改变。</li>
+              <li>(c) <b>概率权重</b>：PT 用决策权重 \(\pi(p)\) 取代客观概率，小概率被<b>高估</b>、中高概率被<b>低估</b>；EU 直接用客观概率。</li>
+              <li>(d) <b>损失厌恶</b>：损失端的曲线比收益端更陡（\(\lambda\approx2.25\)），"losses loom larger than gains"，EU 无此不对称。</li>
+              <li>四者共同构成了对 EU 的系统性替代 ⇒ <b>(e) All of the above</b> 正确。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> The answer is (e) All of the above. Each option is a genuine departure from expected utility: (a) reference-dependence, (b) risk-aversion in gains but risk-seeking in losses, (c) non-linear decision weights \(\pi(p)\), and (d) loss aversion with steeper losses than gains.<br><strong>中文：</strong>答案为 (e) 全选。四项分别是参考点依赖、损益两端风险态度不同、概率权重非线性、损失厌恶。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Homework 1 · Prospect theory: prospect, value &amp; weighting <span class="kbd">HW1</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">(a) What is a prospect? (b) Describe the key features of the value function and the weighting function according to prospect theory. When explaining these features, use lottery examples to illustrate.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这是前景理论的"定义题"。(a) 给定义，(b) 分别讲价值函数与权重函数的形状 + 用彩票举例。</p></div>
+            <ol class="steps">
+              <li><b>(a) 什么是 prospect</b>：一个 <b>prospect（前景 / 彩票）</b> 是一组以<b>参考点为基准</b>表述的风险结果，形式为 \(\{(x_i, p_i)\}\) —— 每个选项 \(x_i\) 是相对参考点的<b>收益或损失</b>，\(p_i\) 是其概率。注意：它定义在<b>损益</b>而非最终财富上（Kahneman &amp; Tversky, 1979）。</li>
+              <li><b>(b) 价值函数 \(v(\cdot)\)</b> 的特征：①<b>参考点依赖</b>——定义于对参考点的偏离；②<b>收益端凹、损失端凸</b>——收益端风险厌恶、损失端风险寻求；③<b>原点折点 + 损失端更陡</b>——损失厌恶 \(\lambda>1\)（本 Part 用 \(\lambda=2.25\)）。</li>
+              <li><b>价值函数举例</b>：多数人会选<b>确定赚 100</b> 而非 50/50 赌 (200, 0)（收益端风险厌恶）；但面对亏损却更愿选 50/50 (−200, 0) 而非<b>确定亏 100</b>（损失端风险寻求）。同一个数值在两种框架里选择相反。</li>
+              <li><b>权重函数 \(\pi(\cdot)\)</b> 的特征：①<b>不是客观概率</b>，是对 \(p\) 的单调变换；②<b>高估小概率、低估中高概率</b>（\(\pi(0.001)\gg0.001\)，\(\pi(0.9)<0.9\)）；③满足 \(\pi(0)=0,\ \pi(1)=1\) 但整体次可加。</li>
+              <li><b>权重函数举例</b>：①人们买<b>彩票</b>（1/1000 万中大奖）是因为把极小概率高估得"值得赌"；②又买<b>保险</b>是因为把"房子烧掉"这种小概率灾害也高估了 ⇒ 同时解释博彩与避险这两件 EU 难以兼容的事。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) A prospect is a lottery \(\{(x_i,p_i)\}\) expressed as gains/losses relative to a reference point, not final wealth. (b) The value function is reference-dependent, concave in gains (risk-averse), convex in losses (risk-seeking), with a kink at zero and steeper for losses (loss aversion). Example: prefer a sure $100 gain to a 50/50 ($200,$0) gamble, but prefer a 50/50 (−$200,$0) gamble to a sure $100 loss. The weighting function replaces objective probabilities with non-linear decision weights \(\pi(p)\) that overweight small probabilities and underweight moderate/large ones. Example: lottery tickets and insurance both exploit overweighting of small probabilities.<br><strong>中文：</strong>(a) prospect = 以参考点表述损益的风险结果集合；(b) 价值函数参考点依赖、收益凹损失凸、损失端更陡（损失厌恶）；权重函数用 \(\pi(p)\) 高估小概率、低估中高概率，彩票与保险都是例子。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Homework 1 · Real-world bias examples <span class="kbd">HW1</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Can you give some real-world economic examples regarding the following psychological biases? (a) Confirmation bias; (b) Overconfidence bias; (c) Representativeness bias.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>开放举例题。每个偏差给一个清晰的<b>真实经济场景</b>即可，关键是把"机制"点出来。</p></div>
+            <ol class="steps">
+              <li><b>(a) 确认偏误 Confirmation bias</b>：投资者只关注<b>支持自己已有观点</b>的信息。例：一只重仓特斯拉的多头只追看涨研报、屏蔽负面财报；宏观上，持有某叙事（如"AI 永久改变生产力"）的人会系统性忽略反面数据 ⇒ 价格对反面信息反应不足（Part 6 中保守性偏差 / BSV 的"保守"一侧）。</li>
+              <li><b>(b) 过度自信 Overconfidence bias</b>：例①<b>男性交易更频繁、净收益更低</b>（Barber &amp; Odean, 2001）——相信自己能择时；例②CEO 高估并购协同效应 ⇒ <b>价值毁灭型收购</b>（Malmendier &amp; Tate）；例③散户高估自己跑赢指数的概率。</li>
+              <li><b>(c) 代表性偏差 Representativeness bias</b>：例①把"连续四个季度好业绩"的基金经理当成<b>天才</b>（小样本代替基础比率）；例②相信<b>连涨股票会续涨</b>（热手谬误 / 外推），忽视均值回归；例③"这家公司名字我熟悉 ⇒ 它一定好"的熟悉代表性。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Confirmation bias: a bull only reads bullish research and ignores bad earnings. (b) Overconfidence: men trade more and earn less (Barber &amp; Odean 2001); overconfident CEOs destroy value in M&amp;A (Malmendier &amp; Tate). (c) Representativeness: calling a manager with four good quarters a "genius" (law of small numbers); expecting a stock that just rose to keep rising (hot-hand / extrapolation).<br><strong>中文：</strong>(a) 只看好消息、屏蔽反面；(b) 男性过度交易致收益更低、CEO 高估并购；(c) 小样本当信号、连涨外推。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 本 Part 一句话总结</div>
+        <p>偏好侧是<b>参考点依赖 + 损失厌恶 + 边际递减 + 概率权重</b>四个词；信念侧是<b>把小样本当成信号</b>。两边合起来，才支撑得起 Part 6 里那些"既能产生动量、又能产生反转"的行为资产定价模型。</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  FIN 4080 Behavioral Finance · Part 3 心理学基础 · 内容依据 Lecture 3–4 课件整理
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

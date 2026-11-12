@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta property="og:title" content="FIN4080 行为金融学学习站"><meta property="og:description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta name="description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><link rel="icon" href="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+<title>FIN4080 行为金融学学习站</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="assets/tex-mml-svg.js" id="MathJax-script" async></script>
+<script>
+/* Fallback: 若本地 MathJax 包不可用，从 jsDelivr 兜底加载。 */
+(function () {
+  function loadCdn() {
+    if (window.MathJax && window.MathJax.startup) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-svg.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function () { setTimeout(loadCdn, 400); });
+})();
+</script>
+    <script src="assets/figures.js"></script>
+    <script src="assets/mindmap.js"></script>
+    <script src="assets/marks.js?v=20261017a"></script>
+</head>
+<body data-page="part9" data-root="">
+
+<header id="site-topbar"></header>
+
+<div class="layout">
+  <aside class="toc" id="site-toc"></aside>
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Part 9 · Lecture 8（Salience Theory）</div>
+      <h1>显著性理论：Allais 悖论、BGS 模型与 ST 因子</h1>
+      <p>前景理论用一个<b>固定的</b>概率加权函数 \(\pi(\cdot)\) 解释风险决策，但 <b>Allais 悖论</b>揭示了一个它解释不了的模式：人们对同一个低概率事件的重视程度，会随着<b>选择情境（context）</b>改变。<b>显著性理论（Salience Theory, ST）</b>由 Bordalo, Gennaioli &amp; Shleifer 提出，核心只有一句话：<b>注意力集中在最显著的 payoff 上，并高估它所在状态的决策权重</b>。本 Part 先讲悖论与两种解释的思想交锋，再给出 ST 的数学形式，最后推出资产定价含义（BGS 2013）并检验实证证据（Cosemans &amp; Frehen 2021）。</p>
+      <div class="tags">
+        <span>Salience Theory</span><span>Allais Paradox</span><span>Bordalo-Gennaioli-Shleifer</span><span>Decision Weights</span><span>ST Factor</span><span>Asset Pricing</span>
+      </div>
+    </div>
+
+    <div id="mindmap-host"></div>
+
+    <!-- ============ S1 ============ -->
+    <section id="overview">
+      <h2 class="sec">导览：ST 在课程地图上的位置 <span class="badge">Chapter Overview</span></h2>
+
+      <div class="box def">
+        <div class="box-title">课程结构定位</div>
+        <p>本讲属于课程第 IV 部分「模型与预测（Models &amp; Predictions）」，更具体地属于 IIIA「投资者行为模型」。整门课对「人如何做决策」的建模有一条清晰的 roadmap：</p>
+        <ul>
+          <li><b>概率客观已知</b>下的风险偏好：<b>Prospect Theory</b>（Part 3、Part 8）与 <b>Salience Theory</b>（本 Part）；</li>
+          <li><b>概率未知</b>下的态度：<b>Ambiguity Aversion</b>（模糊厌恶，Part 3 的 Ellsberg 悖论即其原型）；</li>
+          <li><b>时间偏好</b>：<b>Hyperbolic Discounting</b>（双曲贴现，Part 6 的自我控制问题）。</li>
+        </ul>
+        <p>ST 与 PT 是「同一生态位」的两个竞争者：它们都试图在<b>客观概率已知</b>时修正期望效用理论。区别只在于——PT 的扭曲来自 payoff 的<b>秩（rank）</b>，是固定的；ST 的扭曲来自 payoff 的<b>显著性（salience）</b>，随情境变化。</p>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">本 Part 学习路线</div>
+        <ol class="steps">
+          <li><b>Allais 悖论</b>：一个「理性人不该犯」却几乎人人都会犯的系统性偏好逆转；</li>
+          <li><b>两种解释</b>：PT 用固定加权函数解释（部分成功），ST 用情境依赖的显著性解释（更自然）；</li>
+          <li><b>ST 的形式化</b>：显著性函数 \(\sigma\)、三条公理、扭曲权重 \(\tilde{\pi}\)；</li>
+          <li><b>定价模型</b>：代表性 salient thinker 的两期交易模型 ⇒ <b>salience 影响价格</b>；</li>
+          <li><b>实证</b>：把 salience 做成可交易的 <b>ST 因子</b>——高 ST 股票未来收益更低，且套利限制越强预测力越强。</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ S2 ============ -->
+    <section id="allais">
+      <h2 class="sec">Allais 悖论：情境改变，偏好就逆转 <span class="badge">The Allais Paradox</span></h2>
+
+      <p>1953 年 Maurice Allais 设计了下面这组彩票，让 KT（Kahneman &amp; Tversky）版表述成为行为金融学的经典实验。两张彩票都依赖同一个参数 \(z\)：</p>
+
+      <div class="tablewrap">
+        <table class="data">
+          <thead><tr><th>彩票</th><th>状态与概率</th><th>含义</th></tr></thead>
+          <tbody>
+            <tr><td><b>\(L_1(z)\)</b></td><td>\(\{\$2500: 0.33,\ \$0: 0.01,\ \$z: 0.66\}\)</td><td>66% 概率稳拿 \(z\)，33% 概率多得一点（2500），但另有 1% 概率颗粒无收</td></tr>
+            <tr><td><b>\(L_2(z)\)</b></td><td>\(\{\$2400: 0.34,\ \$z: 0.66\}\)</td><td>66% 概率拿 \(z\)，34% 概率拿 2400，<b>没有</b>零收益状态</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">Case 1：\(z = 2400\)</div>
+          <p>\(L_1(2400)=\{2500:0.33,\ 0:0.01,\ 2400:0.66\}\)，\(L_2(2400)=\{2400:1.0\}\) 变成<b>确定收益</b>。</p>
+          <p>绝大多数人的选择：<b>\(L_2(2400) \succ L_1(2400)\)</b>——宁愿少拿 100，也要排除那 1% 的零收益风险。表现为<b>风险厌恶（risk averse）</b>。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">Case 2：\(z = 0\)</div>
+          <p>\(L_1(0)=\{2500:0.33,\ 0:0.67\}\)，\(L_2(0)=\{2400:0.34,\ 0:0.66\}\)。两张彩票结构几乎一样，只是一个「头奖大一点、空门概率也高一点」。</p>
+          <p>绝大多数人的选择反过来：<b>\(L_1(0) \succ L_2(0)\)</b>——为了多 100 的头奖，愿意承受略高的空门概率。表现为<b>风险寻求（risk seeking）</b>。</p>
+        </div>
+      </div>
+
+      <div class="fig" data-fig="allais" data-cap="Allais 悖论：同一个 0.01 概率的零收益事件，在 Case 1 中被「看见」并主导选择，在 Case 2 中却几乎不影响偏好。"></div>
+
+      <div class="box warn">
+        <div class="box-title">课件笔误提示（重要）</div>
+        <p>课件第 13 页幻灯片的<b>文字</b>写着「\(L_2(0)\) is preferred to \(L_1(0)\)」，但该页<b>公式</b>明确显示 \(L_1(0) \succ L_2(0)\)，且与经典 KT 实验结果、以及课件后文用 salience 给出的解释完全一致。因此正确结论是：<b>Case 2 中人们偏好 \(L_1(0)\)</b>。考试时以公式和经典结果为准。</p>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">为什么叫「悖论」</div>
+        <p>期望效用（EU）理论要求偏好对<b>共同结果</b>不敏感：把两张彩票同时删掉 66% 的公共部分（\(z\)），剩下的 \(\{2500:0.33, 0:0.01\}\) 与 \(\{2400:0.34\}\) 之间的偏好关系不应改变。但 Case 1 里人们厌恶 \(L_1\)、Case 2 里人们偏好 \(L_1\)——偏好发生了<b>系统性逆转</b>。这说明真实决策者的注意力<b>会被情境牵引</b>，这正是 ST 的切入点。</p>
+      </div>
+    </section>
+
+    <!-- ============ S3 ============ -->
+    <section id="two-explanations">
+      <h2 class="sec">两种解释：固定加权 vs 情境显著 <span class="badge">PT vs ST</span></h2>
+
+      <h3 class="sub">3.1 Prospect Theory 的解释</h3>
+      <p>PT 的加权函数 \(\pi(\cdot)\) 对小概率<b>高估</b>、对中高概率低估（ inverse-S 形状）。</p>
+      <ul>
+        <li><b>Case 1（\(z=2400\)）</b>：\(L_1\) 中那个 0.01 的零收益概率被 \(\pi\) 高估 → 「空门」在决策权重里被放大 → 决策者排斥 \(L_1\)，表现为风险厌恶。<b>高估是固定发生的</b>，因为 0.01 是小概率。</li>
+        <li><b>Case 2（\(z=0\)）</b>：此时两张彩票里 0.01 的零收益不再「显眼」——两张彩票都有很高的空门概率，决策者主要比较期望值 → \(L_1\) 的 EV 略高 → 风险寻求。</li>
+      </ul>
+      <p>这个解释能自洽，但代价是：一切扭曲都由<b>概率的秩</b>决定，\(\pi\) 的形状必须被精确校准才能同时解释两个 Case。</p>
+
+      <h3 class="sub">3.2 Salience Theory 的解释</h3>
+      <p>ST 不依赖任何固定形状的 \(\pi\)。它只问一个问题：<b>在每个状态下，哪个 payoff 与其他选项差异最大？</b>决策者会把注意力（和决策权重）集中在这个最显著的 payoff 上。</p>
+      <ul>
+        <li><b>Case 1（\(z=2400\)）</b>：\(L_1\) 的下行是 0，而 \(L_2\) 是确定的 2400——「0 比 2400 低太多」，<b>下行更显著</b>；同时 \(L_1\) 的上行 2500 只比 2400 高一点，不显著。于是决策者聚焦下行、高估 1% 空门状态的权重 → 选 \(L_2\)，风险厌恶。</li>
+        <li><b>Case 2（\(z=0\)）</b>：两张彩票的下行都是 0（无差异，不显著）；差异全在上行——2500 vs 2400，\(L_1\) 的<b>上行更显著</b> → 高估头奖状态的权重 → 选 \(L_1\)，风险寻求。</li>
+      </ul>
+
+      <div class="box theory">
+        <div class="box-title">Salience Theory 的核心前提（Bordalo, Gennaioli &amp; Shleifer）</div>
+        <ul>
+          <li>决策者的<b>注意力集中于最显著的 payoff</b>，并<b>高估该 payoff 所在状态的权重</b>；</li>
+          <li>因此选择是 <b>context-dependent（情境依赖）</b>的——同一个彩票，放进不同的选择集，会产生不同的决策权重；</li>
+          <li>「显著」的 payoff = 与其他彩票<b>差异最大</b>的那个 payoff。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S4 ============ -->
+    <section id="st-vs-pt">
+      <h2 class="sec">ST 与 PT 的关键差异 <span class="badge">Head-to-Head</span></h2>
+
+      <div class="tablewrap">
+        <table class="data">
+          <thead><tr><th>维度</th><th>Prospect Theory</th><th>Salience Theory</th></tr></thead>
+          <tbody>
+            <tr><td>扭曲来源</td><td>payoff 的<b>秩（rank）</b>：小概率被固定高估</td><td>payoff 的<b>显著性（salience）</b>：随选择情境变化</td></tr>
+            <tr><td>尾部事件</td><td><b>总是</b>被高估（由概率大小决定）</td><td><b>仅当显著时</b>才被高估（payoff 大小 + 选择情境共同决定）</td></tr>
+            <tr><td>相关性结构</td><td>各彩票<b>独立</b>处理，相关结构不影响权重</td><td><b>相关结构（correlation structure）重要</b>：状态间 payoff 是否趋同决定显著性</td></tr>
+            <tr><td>偏好稳定性</td><td>偏好由固定 \(\pi\) 生成，跨情境一致</td><td>偏好 context-dependent，可产生 Allais 式偏好逆转</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">例子：低概率 \$2000 事件——两理论分歧点</div>
+        <p>考虑一个只有 1% 概率赢 \$2000 的彩票：</p>
+        <ul>
+          <li><b>PT</b>：因为彩票被独立处理，1% 的小概率被固定高估 → 无论其他选项是什么，\$2000 事件的权重都被放大。</li>
+          <li><b>ST</b>：只有当 \$2000 与其他彩票在同一状态的 payoff <b>差异显著</b>时才被高估。若所有彩票在该状态都拿到（或都拿不到）\$2000，则该状态<b>不显著</b>，权重不被扭曲。</li>
+        </ul>
+        <p><b>结论</b>：ST 下「别人怎么样」会影响我对概率的感知——<b>correlation structure 进入了偏好</b>，这是 PT 完全没有的通道。</p>
+      </div>
+    </section>
+
+    <!-- ============ S5 ============ -->
+    <section id="formal-model">
+      <h2 class="sec">ST 的形式化：显著性函数与决策权重 <span class="badge">The Formal Model</span></h2>
+
+      <h3 class="sub">5.1 显著性函数 \(\sigma\)</h3>
+      <p>设有 \(N\) 张彩票、\(S\) 个状态，彩票 \(i\) 在状态 \(s\) 的 payoff 为 \(x_{is}\)。定义状态 \(s\) 下 payoff \(x_{is}\) 相对于「该状态 payoff 均值」的显著性：</p>
+
+      <div class="formula hi">
+        \[\sigma(x_{is},\bar{x}_s) \;=\; \frac{|x_{is}-\bar{x}_s|}{|x_{is}|+|\bar{x}_s|+\theta},\qquad \bar{x}_s=\frac{1}{N}\sum_{i=1}^{N}x_{is},\ \ \theta>0\]
+        <div class="fnote">分子 = 该 payoff 与该状态平均 payoff 的「心理距离」；分母 = 距离的<b>相对化</b>（按 payoff 规模缩放）+ 平滑参数 \(\theta\)（防止分母为零，并保证性质）。</div>
+      </div>
+
+      <p>\(\sigma\) 满足三条公理性质：</p>
+      <ul>
+        <li><b>Ordering（排序性）</b>：偏离均值越大的 payoff 越显著；</li>
+        <li><b>Diminishing sensitivity（敏感性递减）</b>：同样的绝对偏离，发生在小 payoff 区域比大 payoff 区域更显著。例：股票 +10% vs 市场 +5%（差 5%）的显著性 \(\sigma=\frac{0.05}{0.10+0.05+0.1}\approx 0.20\)；而 +5% vs 0%（同样差 5%）的显著性 \(\sigma=\frac{0.05}{0.05+0+0.1}\approx 0.333\)——后者更显著；</li>
+        <li><b>Reflection（反射性）</b>：对称性——上行偏离与下行偏离同等显著，对称地影响注意力。</li>
+      </ul>
+
+      <h3 class="sub">5.2 显著性排名与扭曲权重 \(\tilde{\pi}\)</h3>
+      <p>对每个 payoff，按显著性在状态间排名：\(k_{is}=1\) 表示<b>最显著</b>的状态，\(k_{is}=S\) 表示最不显著。定义<b>显著性扭曲权重</b>：</p>
+
+      <div class="formula hi">
+        \[\tilde{\pi}_{is} \;=\; \pi_s\cdot\omega_{is},\qquad \omega_{is} \;=\; \frac{\delta^{k_{is}}}{\sum_{s'}\delta^{k_{is'}}\,\pi_{s'}},\qquad \delta\in(0,1]\]
+        <div class="fnote">\(\pi_s\) 是状态 \(s\) 的<b>客观概率</b>；\(\delta\) 是<b>显著性敏感度（salience sensitivity）</b>：\(\delta=1\) 时 \(\omega_{is}=1\)，无扭曲（退回理性）；\(\delta<1\) 时，越显著的状态（\(k\) 越小）获得越大权重。</div>
+      </div>
+
+      <div class="fig" data-fig="salience_weight" data-cap="显著性扭曲权重：最显著状态的权重被放大（ω>1），最不显著状态被压缩（ω<1），客观概率 π 被「重新聚焦」。"></div>
+
+      <div class="box note">
+        <div class="box-title">与 PT 权重函数的对照</div>
+        <p>PT 的 \(\pi(P)\) 只吃进<b>概率</b>一个输入；ST 的 \(\omega_{is}\) 吃进<b>该状态所有彩票的整个 payoff 结构</b>（通过排名 \(k_{is}\)）。所以 ST 的扭曲天然是<b>跨彩票、跨状态</b>的，这正是它能解释 Allais 悖论的原因。</p>
+      </div>
+    </section>
+
+    <!-- ============ S6 ============ -->
+    <section id="bgs-model">
+      <h2 class="sec">从偏好到定价：BGS（2013）资产定价模型 <span class="badge">Salience in Asset Pricing</span></h2>
+
+      <h3 class="sub">6.1 模型设定</h3>
+      <ul>
+        <li>经济中有一个<b>代表性 salient thinker</b>（显著性思考者）；</li>
+        <li>市场上有 \(N\) 只股票，股票 \(i\) 价格为 \(p_i\)，在状态 \(s\) 下 payoff 为 \(x_{is}\)；</li>
+        <li>两期模型（\(t=0\) 交易，\(t=1\) 实现 payoff）；</li>
+        <li>线性效用 \(u(c)=a+bc\)；禀赋为 \(w_0\) 现金 + 每只股票各 1 股。</li>
+      </ul>
+
+      <h3 class="sub">6.2 投资者问题</h3>
+      <p>在 \(t=0\) 选择每只股票的交易量 \(\alpha_i\)，最大化「当期效用 + 显著性加权后的期望未来效用」：</p>
+
+      <div class="formula hi">
+        \[\max_{\{\alpha_i\}}\; u(c_0) \;+\; \mathbb{E}\big[\,\omega_{is}\,u(c_{1,s})\,\big]\]
+        \[\text{s.t.}\quad c_0 = w_0-\sum_i \alpha_i p_i,\qquad c_{1,s}=\sum_i (\alpha_i+1)\,x_{is}\]
+        <div class="fnote">与标准模型的唯一区别：未来效用前面乘了显著性权重 \(\omega_{is}\)——显著状态里的消费被「感觉上」放大。</div>
+      </div>
+
+      <h3 class="sub">6.3 一阶条件与均衡价格</h3>
+      <p>对 \(\alpha_i\) 求导得 FOC：</p>
+
+      <div class="formula hi">
+        \[p_i\,u'(c_0) \;=\; \mathbb{E}\big[\,\omega_{is}\,x_{is}\,u'(c_{1,s})\,\big]\]
+        <div class="fnote">左边 = 多花 1 单位现金买股票的机会成本；右边 = 该股票 payoff 的「显著性加权期望边际效用」。</div>
+      </div>
+
+      <p>代入线性效用（\(u'(c_1)/u'(c_0)=1\)）与归一化性质 \(\mathbb{E}(\omega_{is})=1\)，整理得均衡定价式：</p>
+
+      <div class="formula hi">
+        \[p_i \;=\; \underbrace{\mathbb{E}[x_{is}]}_{\text{按客观概率的期望 payoff}} \;+\; \underbrace{\mathrm{cov}[\omega_{is},\,x_{is}]}_{\text{显著性影响项}}\]
+        <div class="fnote">第一项：无扭曲时股票的「理性价值」；第二项：显著性扭曲。若股票在<b>上行状态</b>显著（\(\omega\) 与 \(x\) 正相关），该项为正 → 投资者<b>高估</b> → 愿意付更高价格；若<b>下行状态</b>显著，则<b>低估</b>。</div>
+      </div>
+
+      <div class="fig" data-fig="st_pricing" data-cap="均衡定价 p_i = E[x_is] + cov[ω_is, x_is]：上行显著的股票被高估（cov>0，未来收益低），下行显著的股票被低估（cov<0，未来收益高）。"></div>
+
+      <h3 class="sub">6.4 对预期收益的预测</h3>
+      <p>把定价式改写成收益率形式，定义 <b>ST 指标</b>：</p>
+
+      <div class="formula hi">
+        \[\mathbb{E}[r_{is}] \;=\; -\,\mathrm{cov}[\omega_{is},\,r_{is}] \;\equiv\; -\,ST_i\]
+        <div class="fnote">模型主预测：<b>上行显著（ST &gt; 0）的股票未来收益更低；下行显著（ST &lt; 0）的股票未来收益更高</b>。买入「下行显著」（被过度抛售）的组合、做空「上行显著」（被过度追捧）的组合，可获得正的超额收益。</div>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">理性基准的回归</div>
+        <p>当 \(\delta=1\) 时无扭曲，\(\omega_{is}=1\)，于是 \(\mathrm{cov}(\omega_{is},r_{is})=0\)：在<b>风险中性 + 不贴现</b>的基准下，所有股票期望收益为零。任何非零的期望收益差异都来自显著性扭曲——这给实证检验提供了干净的对照。</p>
+      </div>
+    </section>
+
+    <!-- ============ S7 ============ -->
+    <section id="empirics">
+      <h2 class="sec">实证检验：把 Salience 做成 ST 因子 <span class="badge">Cosemans &amp; Frehen (2021, JFE)</span></h2>
+
+      <h3 class="sub">7.1 ST 指标的构造</h3>
+      <ul>
+        <li><b>状态空间</b>：过去<b>一个月</b>的日收益（参照 Barberis, Mukherjee &amp; Wang 2016 式的状态表征）；</li>
+        <li><b>客观概率</b>：每个状态（交易日）= \(1/\) 当月交易日数；</li>
+        <li><b>情境（context）</b>：全市场所有股票；显著性相对于<b>市场收益</b> \(\bar{r}_s\) 计算：\(\sigma(r_{is},\bar{r}_s)=\dfrac{|r_{is}-\bar{r}_s|}{|r_{is}|+|\bar{r}_s|+\theta}\)；</li>
+        <li><b>参数</b>：\(\theta=0.1\)，\(\delta=0.7\)。按 salience 降序给每日排名 \(k_{is}\)，算 \(\omega_{is}\)，月末得到股票 \(i\) 的 <b>ST</b> 值。</li>
+      </ul>
+
+      <div class="fig" data-fig="st_measure" data-cap="ST 指标构造流程：过去一个月日收益 → 相对市场收益算显著性 → 排名得权重 ω → 加权平均得 ST。"></div>
+
+      <div class="box note">
+        <div class="box-title">为什么用一个月窗口？</div>
+        <p>课件此处写「for two reasons」但未展开。可确定的是：窗口必须足够短，使「显著性」捕捉的是<b>最近被投资者注意</b>的波动，而非长期特征——这也是它与短期反转（REV）、MAX 效应在实证上纠缠、需要双重排序加以区分的原因（见下）。</p>
+      </div>
+
+      <h3 class="sub">7.2 十分位组合检验</h3>
+      <p>每月末按 ST 分成十组，做多 Low-ST、做空 High-ST 的组合表现：</p>
+
+      <div class="tablewrap">
+        <table class="data">
+          <thead><tr><th>High − Low 价差</th><th>原始收益（%/月）</th><th>t 值</th><th>4F α</th><th>5F α</th><th>6F α</th></tr></thead>
+          <tbody>
+            <tr><td><b>等权重（EW）</b></td><td>−1.28</td><td>−10.73</td><td>−1.43（t=−12.70）</td><td>−1.44</td><td>−1.32</td></tr>
+            <tr><td><b>市值加权（VW）</b></td><td>−0.60</td><td>−4.08</td><td>−0.79（t=−5.24）</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>High-ST 组（上行显著、被追捧）未来收益显著更低，Low-ST 组（下行显著、被抛售）更高——与模型预测方向一致，且经过多因子调整后依然稳健。</p>
+
+      <div class="box def">
+        <div class="box-title">极端 ST 组的特征</div>
+        <ul>
+          <li>High-ST 与 Low-ST 组股票<b>更小、更 illiquid（流动性差）、beta 更高</b>——符合「注意力驱动的交易集中在小盘、高波动、难套利股票」的直觉；</li>
+          <li>ST 与过去一个月收益 <b>REV 正相关</b>（High−Low 组合的 REV = 22.63）——说明 salience 部分捕捉了短期反转现象。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">7.3 双重排序：ST 是独立的吗？</h3>
+      <p>对 14 个公司特征逐一做双重排序（先按特征分组、组内再按 ST 分组）：<b>大多数特征对 ST 价差影响有限</b>，但控制 <b>REV（短期反转）</b>和 <b>MAX（彩票型最大日收益）</b>后，ST 价差收窄最明显。这提示 ST 因子与反转/彩票效应有部分重叠，但并非完全等同。</p>
+
+      <h3 class="sub">7.4 Fama–MacBeth 回归：套利限制的调节作用</h3>
+      <p>检验模型更深一层的预测——显著性错误定价应集中在套利受限的股票上：</p>
+
+      <div class="formula">
+        \[r_{i,t+1}=\lambda_{0t}+\lambda_{1t}ST_{it}+\lambda_{2t}\,ST_{it}\times Z_{it}+\lambda_{3t}Z_{it}+\lambda_{4t}W_{it}+\upsilon_{it}\]
+        <div class="fnote">\(Z\) = 五个<b>套利限制</b>代理：市值 ME、非流动性 ILLIQ、特质波动 IVOL、机构持股 IO、分析师覆盖 NOA = log(1+分析师数)；\(W\) = 其他控制变量。</div>
+      </div>
+      <p>结果：<b>交互项 \(\lambda_{2t}\) 全部为正且显著</b>——套利限制越强（越小、越难卖空、越无人跟踪），ST 对下期收益的预测力越强。这正是「错误定价 + 套利限制」范式（Part 2）在 salience 场景下的再现。</p>
+
+      <h3 class="sub">7.5 Open-to-open 检验</h3>
+      <p>用<b>开盘价</b>（而非收盘价）计算收益时，ST 的预测力<b>减弱</b>。解释：开盘价在隔夜形成，投资者对隔夜信息的「感知/使用」较少——显著性驱动的注意力主要发生在交易时段，与 salience 是<b>注意力现象</b>的解释一致。</p>
+    </section>
+
+    <!-- ============ S8 ============ -->
+    <section id="summary">
+      <h2 class="sec">小结 <span class="badge">Takeaways</span></h2>
+      <div class="box key">
+        <ol class="steps">
+          <li><b>Allais 悖论</b>证明偏好会随<b>情境</b>逆转，EU 与固定 \(\pi\) 的 PT 都只能勉强跟上；</li>
+          <li><b>ST 的核心</b>：注意力聚焦最显著 payoff，高估其状态权重；显著性由<b> payoff 结构 + 选择情境</b>共同决定，因此 <b>context-dependent</b>；</li>
+          <li><b>形式化</b>：\(\sigma\) 满足 Ordering / Diminishing sensitivity / Reflection；\(\tilde{\pi}_{is}=\pi_s\,\omega_{is}\)，\(\omega_{is}=\delta^{k_{is}}/\sum_{s'}\delta^{k_{is'}}\pi_{s'}\)；</li>
+          <li><b>定价</b>：\(p_i=\mathbb{E}[x_{is}]+\mathrm{cov}[\omega_{is},x_{is}]\)，\(\mathbb{E}[r_{is}]=-\mathrm{cov}[\omega_{is},r_{is}]\equiv -ST_i\)；</li>
+          <li><b>实证</b>：EW High−Low ≈ −1.28%/月（t≈−10.7），套利限制越强预测力越强（Fama–MacBeth 交互项全部为正显著）。</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ S9 ============ -->
+    <section id="concepts">
+      <h2 class="sec">概念速查 <span class="badge">Concept Quick Reference</span></h2>
+
+      <details class="concept" data-concept="allais">
+        <summary class="concept-bar">
+          <span class="concept-en">Allais Paradox — context-dependent preference reversal</span>
+          <span class="concept-cn">阿莱悖论：情境依赖的偏好逆转</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>People choose the sure $2,400 over a gamble adding a 1% chance of $0 (risk aversion), but prefer the gamble when the common component is removed (risk seeking). Expected utility requires preferences to be invariant to common consequences — the systematic reversal violates it and motivates context-dependent theories like salience theory.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>人们宁可少拿 100 也要排除 1% 的零收益风险（风险厌恶）；但把公共部分抽掉后，又为了多 100 的头奖去赌（风险寻求）。EU 要求偏好不受共同结果影响——这种系统性逆转违反了它，也催生了显著性理论这类情境依赖的解释。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Case 1 (z=2400): most pick L₂ = sure $2,400. Case 2 (z=0): most pick L₁ = {2500: 0.33, 0: 0.67}. The same 1% zero-payoff event flips from decisive to irrelevant. <b>中文：</b>Case 1 多数人拿确定的 2400；Case 2 多数人改赌 L₁。同一个 1% 空门事件从「一票否决」变成「无关紧要」。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="salience">
+        <summary class="concept-bar">
+          <span class="concept-en">Salience Theory — attention concentrates on the most salient payoff</span>
+          <span class="concept-cn">显著性理论：注意力聚焦最显著 payoff 并高估其状态权重</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>The decision maker overweights states whose payoffs stand out most relative to other lotteries. Salience σ(x_is, x̄_s) = |x_is − x̄_s| / (|x_is| + |x̄_s| + θ) satisfies Ordering, Diminishing sensitivity and Reflection. Distorted weights: π̃_is = π_s · δ^{k_is} / Σ_s' δ^{k_is'} π_s'. Unlike PT's fixed π, salience — and hence choice — is context-dependent; correlation structure across lotteries matters.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>决策者高估「与其他彩票差异最大」的 payoff 所在状态的权重。显著性函数 σ 满足排序性、敏感性递减、反射性三条性质；扭曲权重 π̃ = π × δ^{排名} 的归一化形式。与 PT 的固定 π 不同，显著性随选择情境变化——因此相关结构也会影响偏好。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Allais explained: in Case 1 the downside $0 (vs sure $2,400) is salient → risk aversion; in Case 2 both downsides equal $0 → the upside $2,500 stands out → risk seeking. <b>中文：</b>Case 1 里下行 0 最刺眼 → 风险厌恶；Case 2 里两张彩票下行相同 → 上行 2500 最突出 → 风险寻求。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="st-pricing">
+        <summary class="concept-bar">
+          <span class="concept-en">Salience Asset Pricing — p_i = E[x_is] + cov[ω_is, x_is]</span>
+          <span class="concept-cn">显著性定价：上行显著被高估、下行显著被低估</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>In BGS (2013), a representative salient thinker with linear utility trades N stocks over two periods. The equilibrium price equals the expected payoff plus the covariance between salience weights and payoffs: upside-salient stocks are overpriced, downside-salient stocks underpriced. Main prediction: E[r_is] = −cov[ω_is, r_is] ≡ −ST_i, so high-ST stocks earn lower future returns.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>BGS(2013) 中，线性效用的代表性显著性思考者在两期经济中交易 N 只股票。均衡价格 = 期望 payoff + 显著性权重与 payoff 的协方差：上行显著的股票被买贵、下行显著的被卖便宜。主预测：E[r] = −cov[ω, r] ≡ −ST，高 ST 股票未来收益更低。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Cosemans &amp; Frehen (2021): equal-weighted High−Low ST decile spread earns −1.28% per month (t = −10.73); the predictive power strengthens with arbitrage frictions (all Fama–MacBeth interaction terms positive and significant). <b>中文：</b>EW 十分位 High−Low 价差 −1.28%/月（t=−10.73）；套利限制越强，ST 预测力越强（交互项全部为正且显著）。</div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ S10 ============ -->
+    <section id="exercises" data-exgroup>
+      <h2 class="sec">练习 <span class="badge">Exercises</span></h2>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Allais paradox logic <span class="kbd">概念</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">In the Allais paradox, why does expected utility theory predict that the preference between L₁ and L₂ should NOT change between Case 1 (z = 2400) and Case 2 (z = 0)? And which direction do most people actually choose in each case?</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>EU 的「共同结果无关性」要求偏好稳定；实证却出现系统性逆转。</p></div>
+            <ol class="steps">
+              <li><b>EU 的逻辑</b>：两张彩票在 66% 的状态下都给 \(z\)，删掉这个公共部分后剩下的 \(\{2500:0.33, 0:0.01\}\) vs \(\{2400:0.34\}\) 没变，所以偏好不该变。</li>
+              <li><b>Case 1 实际选择</b>：\(L_2(2400)\)（确定 2400）≻ \(L_1(2400)\)——风险厌恶，1% 空门一票否决。</li>
+              <li><b>Case 2 实际选择</b>：\(L_1(0)\) ≻ \(L_2(0)\)——风险寻求，为多 100 头奖接受略高空门概率。</li>
+              <li><b>含义</b>：偏好随情境逆转 ⇒ 需要一个 context-dependent 的理论（salience theory）。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Salience-weight calculation <span class="kbd">计算</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Two lotteries over three equally likely states (π = 1/3 each): A = (10, 5, 0), B = (6, 5, 4). With θ = 0.1 and δ = 0.7, compute the salience ranking k_is for both lotteries, the distorted weights ω_is and π̃_is, and the ST values V(A) and V(B). Who prefers which lottery under ST? Under expected value?</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>先算各状态均值，再算 σ 排名，最后代入权重公式。注意 V(A)=4.32 &lt; V(B)=4.87，而 EV 下两者相等。</p></div>
+            <ol class="steps">
+              <li><b>状态均值</b>：\(\bar{x}_1=(10+6)/2=8\)，\(\bar{x}_2=5\)，\(\bar{x}_3=(0+4)/2=2\)。</li>
+              <li><b>显著性 σ</b>：A：σ₁=2/18.1≈0.111，σ₂=0，σ₃=2/2.1≈0.952；B：σ₁=2/18.1≈0.111，σ₂=0，σ₃=2/6.1≈0.328。两者排名相同：<b>s₃ 最显著（k=1），s₁ 次之（k=2），s₂ 最不显著（k=3）</b>。</li>
+              <li><b>权重 ω</b>：分母 \(=(\delta^1+\delta^2+\delta^3)\cdot\frac{1}{3}=(0.7+0.49+0.343)/3=0.511\)。故 \(\omega_1=0.49/0.511\approx0.959\)，\(\omega_2=0.343/0.511\approx0.671\)，\(\omega_3=0.7/0.511\approx1.370\)。</li>
+              <li><b>扭曲权重</b>：\(\tilde{\pi}=(0.320,\ 0.224,\ 0.457)\)（和为 1，已归一化）。</li>
+              <li><b>ST 值</b>：\(V(A)=0.320×10+0.224×5+0.457×0=4.32\)；\(V(B)=0.320×6+0.224×5+0.457×4=4.87\)。<b>ST 下选 B</b>。</li>
+              <li><b>EV 对照</b>：\(EV(A)=EV(B)=5\)，期望价值下无差异。差异来自 A 的「零 payoff」状态太显著（0 对均值 2），把权重拉向最差的 s₃。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Diminishing sensitivity <span class="kbd">计算</span> <span class="kbd">概念</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">A stock returns +10% while the market returns +5%; alternatively the stock returns +5% while the market returns 0%. The absolute difference is 5% in both cases. With θ = 0.1, compute σ for both cases and explain which is more salient and why this property matters.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>同样的 5% 绝对偏离，在小 payoff 区域（0% 附近）显著性约为 0.333，是大 payoff 区域（10%/5%）0.20 的 1.7 倍。</p></div>
+            <ol class="steps">
+              <li><b>Case 1</b>：\(\sigma=\dfrac{|0.10-0.05|}{0.10+0.05+0.1}=\dfrac{0.05}{0.25}=0.20\)。</li>
+              <li><b>Case 2</b>：\(\sigma=\dfrac{|0.05-0|}{0.05+0+0.1}=\dfrac{0.05}{0.15}\approx0.333\)。</li>
+              <li><b>结论</b>：Case 2 更显著——<b>diminishing sensitivity</b>：偏离在数值小的时候（离参照点近）感觉更强烈。</li>
+              <li><b>意义</b>：这让 ST 的扭曲集中在「小幅但异常」的波动上，与彩票型股票、MAX 效应等实证现象衔接。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> ST vs PT on a rare $2,000 event <span class="kbd">对比</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Consider a 1% chance of winning $2,000. Contrast how prospect theory and salience theory treat the probability of this event, and explain why the correlation structure across lotteries matters only under ST.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>PT 只看概率本身（1% 必被高估）；ST 看该 payoff 与其他彩票在同一状态的差异，相关结构因此进入偏好。</p></div>
+            <ol class="steps">
+              <li><b>PT</b>：彩票被独立处理，\(\pi(0.01)\) 被固定高估（约 4~5 倍），与其他选项无关。</li>
+              <li><b>ST</b>：只有当 \$2,000 在该状态与其他彩票的 payoff 差异显著时才被高估；若所有彩票在该状态 payoff 相同（完全相关），该状态不显著，权重不被扭曲。</li>
+              <li><b>关键差异</b>：PT 的尾部高估是<b>无条件的</b>；ST 的尾部高估是<b>有条件的</b>（显著才高估）——correlation structure 是 ST 独有的通道。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Equilibrium pricing under salience <span class="kbd">推导</span> <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">In the BGS two-period model with linear utility, derive the equilibrium price p_i = E[x_is] + cov[ω_is, x_is] from the investor's first-order condition, and state the model's main prediction for expected returns. What happens when δ = 1?</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>FOC 一行推出；注意 E(ω)=1 的归一化性质在整理时的作用。δ=1 时 cov 项消失，回到风险中性基准。</p></div>
+            <ol class="steps">
+              <li><b>FOC</b>：\(p_i u'(c_0)=\mathbb{E}[\omega_{is}x_{is}u'(c_{1,s})]\)。</li>
+              <li><b>线性效用</b>：\(u'\) 为常数，消去后 \(p_i=\mathbb{E}[\omega_{is}x_{is}]=\mathbb{E}[\omega]\mathbb{E}[x]+\mathrm{cov}[\omega,x]\)。</li>
+              <li><b>归一化</b>：\(\mathbb{E}(\omega_{is})=1\) ⇒ \(p_i=\mathbb{E}[x_{is}]+\mathrm{cov}[\omega_{is},x_{is}]\)。</li>
+              <li><b>收益形式</b>：\(\mathbb{E}[r_{is}]=-\mathrm{cov}[\omega_{is},r_{is}]\equiv -ST_i\)——<b>上行显著（ST&gt;0）收益低，下行显著（ST&lt;0）收益高</b>。</li>
+              <li><b>δ=1</b>：无扭曲，\(\omega=1\)，cov 项为零，所有股票期望收益相同（风险中性、不贴现）——理性基准。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  FIN 4080 Behavioral Finance · Part 9 显著性理论 · 内容依据 Lecture 8（Salience Theory）课件整理
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

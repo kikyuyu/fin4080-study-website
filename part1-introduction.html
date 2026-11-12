@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta property="og:title" content="FIN4080 行为金融学学习站"><meta property="og:description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta name="description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta property="og:image" content="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg"><link rel="icon" href="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+<title>FIN4080 行为金融学学习站</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="assets/tex-mml-svg.js" id="MathJax-script" async></script>
+<script>
+/* Fallback: 若本地 MathJax 包不可用，从 jsDelivr 兜底加载。 */
+(function () {
+  function loadCdn() {
+    if (window.MathJax && window.MathJax.startup) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-svg.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function () { setTimeout(loadCdn, 400); });
+})();
+</script>
+    <script src="assets/figures.js"></script>
+    <script src="assets/mindmap.js"></script>
+    <script src="assets/marks.js?v=20261017a"></script>
+</head>
+<body data-page="part1" data-root="">
+
+<header id="site-topbar"></header>
+
+<div class="layout">
+  <aside class="toc" id="site-toc"></aside>
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Part 1 · Lecture 1–2</div>
+      <h1>导论：行为金融从哪里冒出来</h1>
+      <p>本 Part 先把「被挑战的对象」讲清楚——<strong>有效市场假说（Efficient Market Hypothesis, EMH）</strong>到底在说什么、它依赖哪两条隐含假设、以及检验它时绕不开的<strong>联合假设问题</strong>。然后看 EMH 最刺眼的反例：<strong>泡沫（Bubbles）</strong>，以及 Fama 与 Shleifer 之间那场关于「能不能事前识别泡沫」的经典争论。最后交代行为金融的两种定义、三个范式与理性基准下的资产配置框架。</p>
+      <div class="tags">
+        <span>Efficient Market Hypothesis</span><span>Random Walk</span><span>Joint Hypothesis</span><span>Bubbles</span><span>Acceleration</span><span>Behavioral Finance</span><span>Capital Allocation Line</span>
+      </div>
+    </div>
+
+    <div id="mindmap-host"></div>
+
+    <!-- ============ S1 ============ -->
+    <section id="emh">
+      <h2 class="sec">有效市场假说：被挑战的对象 <span class="badge">EMH</span></h2>
+
+      <div class="box note">
+        <div class="box-title">▸ 本讲 Learning Objectives</div>
+        <ul>
+          <li>能复述 EMH 的三种形式，并说明它们分别是针对哪一类信息。</li>
+          <li>能写出「收益率可预测 ⇒ 市场无效率」的完整论证（这是全课程最重要的一段推理）。</li>
+          <li>能解释为什么检验 EMH 必然是一次<strong>联合检验</strong>，并说出替代检验的思路。</li>
+          <li>能用 Greenwood–Shleifer–You (2017) 的框架解释泡沫之争的折中结论。</li>
+          <li>能解风险资产 + 无风险资产的最优配置问题，并指出它隐含了哪些假设。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">什么是「有效」</h3>
+      <div class="box def">
+        <div class="box-title">▸ Definition: Efficient Market Hypothesis (EMH)</div>
+        <p><strong>有效市场假说（EMH）</strong>：<em>The prices of all financial assets are "right" — they properly reflect all available (public) information and equal the asset's fundamental value.</em> 即所有金融资产的价格都是「正确」的：它们恰当地反映了全部可得信息，并等于资产的<strong>内在价值（fundamental value）</strong>。</p>
+      </div>
+
+      <p>在有效市场里，有三条可以直接推出的推论，它们是全课程的对照组：</p>
+      <ul>
+        <li>新信息会被<strong>立刻</strong>纳入价格（<em>new information is immediately impounded into prices</em>）；</li>
+        <li>平均而言没有任何投资策略能「<strong>beat the market</strong>」，超额收益只能来自承担更高风险；</li>
+        <li><strong>不存在泡沫</strong>（no bubbles）——价格不会离开基本面。</li>
+      </ul>
+
+      <h3 class="sub">三种形式：宽分子宇由「信息」定义决定</h3>
+      <p>按「可得信息」的范围不同，效率被切成三种：</p>
+      <div class="fig" data-fig="emh_forms" data-cap="EMH 的三种形式，外层包含内层。越往外层，要找到反例越困难。"></div>
+
+      <div class="box note">
+        <div class="box-title">▸ 记忆技巧：三个形式的层次是「信息集合的扩充」</div>
+        <p>Weak-form ⊃ 历史价量（已经公开的<i>关于价格本身</i>的信息）；Semi-strong ⊃ 财务会计信息；Strong-form ⊃ 内幕信息。做选择题时，只要看到「<b>仅用过去价格就能赚钱</b>」，答案是<b>弱式无效</b>（技术分析的场合）；只要看到「<b>财报公布后还能赚钱</b>」，是半强式无效（PEAD 的场合）。</p>
+      </div>
+
+      <div class="box def">
+        <div class="box-title">▸ Definition: Random Walk（随机游走）</div>
+        <p>Kendall (1953) 发现股票价格<strong>不可预测</strong>，这种不可预测的运动被称为<strong>随机游走（random walk）</strong>。注意一个有趣的历史反转：最初金融经济学家把 Kendall 的结果解释成「市场情绪多变、动物精神（animal spirits）」，后来人们把解释完全<u>反过来</u>——不可预测恰恰是<b>市场有效</b>的证据。</p>
+      </div>
+
+      <h3 class="sub">核心论证：为什么「可预测」就等于「无效率」</h3>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 1</span> Tesla 的 RSI：一段必须能自己讲出来的推理</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">Suppose technical analysis shows that whenever Tesla's RSI drops below 30, the stock always gains 20% next week. Current price is $200 and RSI = 28. Does this violate EMH? Explain the mechanism in detail.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li><strong>先写下结论</strong>：是的，这直接违反了 EMH——因为存在一个<b>仅用公开信息</b>（一段历史价格算出来的 RSI）就能赚取名显超额收益的策略。</li>
+              <li><strong>第一步反应</strong>：成千上万的交易者会立刻买入特斯拉。</li>
+              <li><strong>第二步</strong>：巨大的买盘压力会把价格<b>瞬间</b>推上去。</li>
+              <li><strong>第三步</strong>：这说明原来的 $200 是「错的」——它没有反映这个可预测的模式。</li>
+              <li><strong>结论</strong>：市场未能把所有可得信息纳入价格 ⇒ <b>市场无效</b>。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> Yes. The pattern is based on public information, so under weak-form efficiency it should already be in the price. Traders would front-run it, pushing the price up immediately; if $200 still contained a predictable 20% gain, the price had failed to reflect available information.<br><strong>中文：</strong>违反。该规律来自公开的历史价格，弱式有效下早已该被交易掉；一旦有人抢跑，$200 就不再是均衡价。因此「可预测 ⇒ 无效率」。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">▸ 易错点：可预测 ≠ 无条件地「一定赚钱」</div>
+        <p>EMH 说的是<b>平均意义上</b>（on average）没有任何策略能战胜市场。这里的关键在于<b>交易规模本身会消除盈利机会</b>：任何被发现的规律都会被自己的使用消灭。所以在答题时务必写明「抢跑（front-running）→ 价格调整 → 规律消失」这条链，只写「因为能预测」而不写机制会丢分。</p>
+      </div>
+    </section>
+
+    <!-- ============ S2 ============ -->
+    <section id="assumptions">
+      <h2 class="sec">EMH 的两条隐含假设 <span class="badge">Two Implicit Assumptions</span></h2>
+
+      <p>为什么我们能指望价格反映「所有可得信息」？课件给出的论证是一条<strong>信息军备竞赛（information arms race）</strong>的逻辑：</p>
+      <ul>
+        <li>要获得超额收益，你必须有<strong>信息优势</strong>（information advantage）；</li>
+        <li>于是投资者彼此竞争，去获取更多、更好的信息；</li>
+        <li>这种<strong>集体交易行为</strong>最终使价格反映全部可得数据。</li>
+      </ul>
+
+      <p>这个论证要成立，必须依赖两条<strong>隐含假设</strong>：</p>
+
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ 假设一：投资者是「理性的」</div>
+          <p>投资者收到信息会按 Bayes' rule 更新信念，并按 EU / SEU 做决策。<b>放松它 → 行为金融</b>。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ 假设二：套利机制运转良好</div>
+          <p>价格一旦偏离，理性的钱会立刻把它拉回来且没有摩擦。<b>放松它 → 摩擦金融</b>。</p>
+        </div>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 这是全课程最重要的一次「分支」</div>
+        <p>后面所有的 Part 都可以看成是在做「放松假设」的练习：<strong>Part 2 放松假设二</strong>（有摩擦 ⇒ 套利受限），<strong>Part 3 放松假设一</strong>（投资者并非完全理性）。两者可以同时放松。答题时先判断题目在哪个分支上，几乎是万能的开局。</p>
+      </div>
+    </section>
+
+    <!-- ============ S3 ============ -->
+    <section id="joint">
+      <h2 class="sec">联合假设问题：为什么 EMH 这么难检验 <span class="badge">Joint Hypothesis</span></h2>
+
+      <p>「价格反映了所有可得信息」——可是我们凭什么说某个价格是对还是错？<strong>我们必须先知道正常收益应该是多少</strong>：</p>
+      <ul>
+        <li>拿着同一批信息，<strong>不同的资产定价模型</strong>会给出不同的价格；</li>
+        <li>因此我们需要一个 <em>asset-pricing model</em> 来提供「经济基本面 → 价格」的映射；</li>
+        <li>于是检验 EMH 本质上是在做一次<strong>联合检验</strong>：市场有效性 + 某个特定的资产定价模型。</li>
+      </ul>
+
+      <div class="fig" data-fig="joint_test" data-cap="联合假设问题：市场有效与资产定价模型必须同时给定，才能得到可检验的 α = 0。"></div>
+
+      <div class="box key">
+        <div class="box-title">▸ 推论（考试高频）</div>
+        <p>当我们拒绝了联合假设，<b>无法判断</b>是「市场无效」还是「模型有缺陷」：<em>When the joint hypothesis is rejected, it is possible that it is a consequence of deficiencies of a particular asset pricing model, rather than of the EMH itself.</em> 这也是为什么「价值型股票超额收益高」至今仍有争议——它可能只是 CAPM 没刻画好的风险。</p>
+      </div>
+
+      <h3 class="sub">替代检验：不看价格，看人</h3>
+      <p>与其纠缠模型，不如直接问一个更朴素的问题：<strong>有没有投资者能持续赚到异常收益（abnormal returns）</strong>？于是文献转向基金经理/对冲基金经理的业绩。结论是一片复杂的混合：</p>
+
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>证据</th><th>发现</th><th>解读</th></tr></thead>
+        <tbody>
+          <tr><td>美国证据</td><td>基金经理相对市场似乎有 α，但扣除交易成本后 α <strong>消失</strong></td><td>弱支持 EMH；但也说明扣除成本前确实有 α</td></tr>
+          <tr><td>中国证据 Chi (2013)</td><td>共同基金业绩产生显著 α，归因于<b>选股能力</b></td><td>对 EMH 更强的挑战</td></tr>
+          <tr><td>投资者结构</td><td>机构投资者显著跑赢散户</td><td>说明「谁在交易」很重要</td></tr>
+          <tr><td>α 的来源</td><td>相当一部分 α 来自<strong>内幕信息</strong></td><td>指向强式无效，而非弱式</td></tr>
+          <tr><td>机构持股增加</td><td>投资者越难获得异常收益</td><td>竞争会消除机会 —— 回到 EMH 的逻辑</td></tr>
+          <tr><td>散户业绩</td><td>显著<strong>负</strong>收益（Sui &amp; Wang 2025 JFE；Frydman &amp; Wang 2020 JF）</td><td>行为金融最直接的土壤</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 2</span> 联合假设：算一遍 α</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">A mutual fund returned 14.0% last year. Over the same year the market returned 9.0% and the risk-free rate was 2.0%. The fund's CAPM beta is 1.25. (a) Compute the fund's CAPM alpha. (b) Someone argues this alpha proves the market is inefficient. Explain why this inference is not valid.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>CAPM 要求的收益：\(E(r)=r_f+\beta(E(r_m)-r_f)=2\%+1.25\times(9\%-2\%)=2\%+8.75\%=10.75\%\)。</li>
+              <li>\(\alpha = r^\text{observed}-E(r)=14.0\%-10.75\%=+3.25\%\)。</li>
+              <li>为什么不能推出市场无效：要得到 α，我们<b>已经使用了 CAPM</b> 这个特定的资产定价模型。联合假设里，若 CAPM 本身漏掉了某些风险因子（例如规模、价值），这部分「α」可能是被遗漏的风险补偿。</li>
+              <li>此外还要考虑<b>运气</b>（单一年份样本）与<b>交易成本</b>；美国证据显示 α 在扣费后往往消失。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> (a) Expected return = 2% + 1.25(9% − 2%) = 10.75%, so α = 14.0% − 10.75% = +3.25%. (b) Because testing market efficiency requires assuming a benchmark model. Since α was computed relative to the CAPM, the rejection is of the joint hypothesis "efficiency + CAPM", not of efficiency alone. Moreover, a single year may reflect luck, and transaction costs typically erode alphas.<br><strong>中文：</strong>(a) α = +3.25%。(b) 因为该 α 是相对 CAPM 计算的，拒绝的其实是「有效性 + CAPM」的联合假设；再加上单年样本与交易成本的问题，不能直接说市场无效。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ S4 ============ -->
+    <section id="bubbles">
+      <h2 class="sec">泡沫：EMH 最刺眼的反例 <span class="badge">Bubbles</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ Definition: Bubble（泡沫）</div>
+        <p>非正式定义：<em>Asset prices far exceed fundamental value, sustained by speculative demand rather than cash flows, ending with an abrupt collapse.</em> 即资产价格<b>大幅超过内在价值</b>、由投机需求而非现金流支撑，并最终以<b>急剧崩塌</b>收场。</p>
+      </div>
+
+      <h3 class="sub">三次「非理性繁荣」的对照</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>泡沫</th><th>核心事实</th><th>与 EMH 的冲突点</th></tr></thead>
+        <tbody>
+          <tr><td><strong>郁金香狂热</strong> Tulip Mania, 1637（荷兰）</td><td>一个郁金香球茎换一栋豪宅：稀有品种 <em>Semper Augustus</em> 达 4600 弗罗林，而一头公牛仅 120 弗罗林</td><td>价格与价值脱钩达<b>万倍</b>（10,000% premium）</td></tr>
+          <tr><td><strong>互联网泡沫</strong> Dot-com, 1995–2000（美国）</td><td>毫无营收的公司市值数十亿；市盈率冲到三位数</td><td>NASDAQ 从峰值跌 <b>78%</b>；价格显然没有反映基本面</td></tr>
+          <tr><td><strong>A 股泡沫</strong> China, 2014–2015</td><td>上证综指一年涨 150%；平均市盈率超 60（历史上约 15）</td><td>由<b>融资融券</b>推动的投机；几个月后跌 40%</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="fig" data-fig="bubble_path" data-cap="典型的泡沫路径：价格先远离平滑的基本面线，然后加速，最后突然崩塌。"></div>
+
+      <h3 class="sub">为什么这些事例违反了 EMH</h3>
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ 不是信息驱动</div>
+          <p>价格由<b>动量与叙事</b>（momentum and narratives）驱动，不是由基本面消息驱动。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ 存在可识别的模式</div>
+          <p>繁荣与崩塌循环是<b>可观察、甚至某种程度上可预测</b>的，而 EMH 不允许这种预测性。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ 系统性错误定价</div>
+          <p>被错误定价的是<b>整个市场</b>，而不是个别股票。</p>
+        </div>
+        <div class="box note">
+          <div class="box-title">▸ 行为层面的解释清单</div>
+          <p>「<b>这次不一样</b>」（This time is different）·<b>过度自信</b>（overconfidence）·<b>外推信念</b>（extrapolative beliefs）·<b>羊群行为与社会传染</b>（herd behavior &amp; social contagion）。</p>
+        </div>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 场景化记忆：三段横极·的狂热名句</div>
+        <ul>
+          <li><strong>1637 郁金香</strong>："A fool and his money are soon parted, but a tulip and its bulb may never."</li>
+          <li><strong>2000 互联网</strong>："We are witnessing the dawn of a new economy. Old valuation metrics no longer apply."</li>
+          <li><strong>2015 A 股</strong>："政府绝不会让市场跌，这是稳赚的。"</li>
+        </ul>
+        <p>共同点是一句「旧的估值标尺不再适用」的<b>叙事</b>。答题时把这句叙事点出来，很容易拿到场景分。</p>
+      </div>
+    </section>
+
+    <!-- ============ S5 ============ -->
+    <section id="fama-shleifer">
+      <h2 class="sec">Fama vs. Shleifer：泡沫到底能不能被事前识别 <span class="badge">Bubbles for Fama</span></h2>
+
+      <h3 class="sub">Fama 的挑战：识别问题</h3>
+      <p>Fama 的核心反驳非常锋利：<strong>所谓泡沫要在事前（ex-ante）就分得开</strong>——理性上涨 vs. 心理驱动的投机；<strong>难题在于：并不是所有大涨之后都会崩盘</strong>。</p>
+      <ul>
+        <li><strong>互联网泡沫 1995–2000</strong>：NASDAQ 涨超 400%，到 2002 年跌 78%，事后看毫无盈利支撑；</li>
+        <li><strong>医疗保健板块 1976–78</strong>：价格上涨 100%+，随后仍以年化 65% 继续上涨，驱动来自<b>真实的盈利增长</b>。</li>
+      </ul>
+      <p>Fama (2014) 因此写道：<em>"The absence of crashes after some large price increases is problematic for bubble theories."</em> 他又给出技术要求：<em>"Irrational price increase implies predictable decline" —— 必须展示<b>涨完之后有异常低收益</b>才算泡沫。</em> &nbsp;Fama (2016)：<em>"For bubbles, I want a systematic way of identifying them... You have to be able to predict that there is some end to it."</em></p>
+
+      <h3 class="sub">Shleifer 团队的回应：按你的标准来</h3>
+      <p>Greenwood、Shleifer &amp; You (2017) 干脆用 Fama 自己的标准来检验：研究 1926–2014 美国 <strong>40 起行业泡沫</strong> + 107 起国际案例。</p>
+
+      <div class="box def">
+        <div class="box-title">▸ 研究设计 Bubbles for Fama</div>
+        <ul>
+          <li><strong>泡沫筛选（bubble screening）</strong>：两年内总收益与超额收益均达 <b>100%+</b>；随后两年内出现 <b>40%+</b> 回撤。</li>
+          <li><strong>数据</strong>：美国 Fama–French 49 个行业（1926–2014）+ 国际 GICS 板块（1985–2014）。</li>
+          <li><strong>预测变量</strong>：传统的波动率、发行量、年龄倾斜；以及<b>新提出</b>的<strong>加速度（acceleration）</strong>，刻画价格路径的非线性。</li>
+        </ul>
+      </div>
+
+      <div class="formula">
+        \[\text{Acceleration} = R_{t\to t+24} - R_{t\to t+12}\]
+        <div class="fnote">\(R_{t\to t+24}\)：从 \(t\) 到 \(t+24\) 个月的累计收益；\(R_{t\to t+12}\)：前 12 个月的累计收益。差额捕捉「后期加速的狂热」，用来区分<b>稳健增长</b>与<b>投机泡沫</b>。</div>
+      </div>
+
+      <div class="fig" data-fig="acceleration" data-cap="同样的 100% 两年涨幅：线性路径是健康的盈利驱动，凸起的加速路径才是投机泡沫。"></div>
+
+      <h3 class="sub">折中的结论：平均收益 vs. 崩盘风险</h3>
+      <div class="grid2">
+        <div class="box tip">
+          <div class="box-title">▸ Fama 部分正确</div>
+          <p>涨完之后的<b>平均收益</b>与市场相近，许多行业继续上涨（如 1976–78 的医疗板块）。Shiller 早在 1996 年 12 月就警示美股过高，之后价格又<b>翻了一倍</b>，直到 2000 年才崩。</p>
+        </div>
+        <div class="box key">
+          <div class="box-title">▸ 关键例外</div>
+          <p>随过去收益上升，<b>崩盘概率从 20% 升到 80%</b>，且可通过板块特征预测。最高加速度分位 → 76% 崩盘概率；国际样本预测准确率 82%。</p>
+        </div>
+      </div>
+
+      <div class="fig" data-fig="crash_prob" data-cap="Greenwood–Shleifer–You (2017)：过去收益越高（尤其是加速度越大），两年内崩盘的概率越高。"></div>
+
+      <div class="box note">
+        <div class="box-title">▸ 一句话版考点</div>
+        <p><b>平均收益难预测，但崩盘概率可预测。</b>泡沫的峰值很难喊准，价格往往会再涨一阵子才崩，导致事后的收益并不差；真正可被预测的是<b>尾部风险</b>。这也否定了「常数崩盘概率」的纯理性泡沫模型。</p>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 3</span> 加速度的计算与判断</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">Industry X rose 40% over months \(t\) to \(t+12\) and 115% over months \(t\) to \(t+24\). Industry Y rose 80% over \(t\) to \(t+12\) and 120% over \(t\) to \(t+24\). Compute each industry's acceleration measure. Which industry looks more like a bubble under Greenwood, Shleifer and You (2017)? Explain intuitively.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>定义：\(\text{Acceleration}=R_{t\to t+24}-R_{t\to t+12}\)。</li>
+              <li>X：\(115\%-40\%=75\%\)。Y：\(120\%-80\%=40\%\)。</li>
+              <li>Y 的<b>总涨幅更大</b>（120% &gt; 115%），但 X 的<b>加速度更高</b>（75% &gt; 40%）。</li>
+              <li>按 GSY 的结论，<b>X 更像泡沫</b>：它的涨幅集中在后 12 个月（第二阶段贡献 75%），呈现凸的价格路径；Y 的涨幅大部分在第一年完成，路径更接近线性。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> X: 115% − 40% = 75%; Y: 120% − 80% = 40%. Although Y has the larger two-year return, X has the higher acceleration — most of its return arrives in the second year, the convex, late-stage frenzy signature that GSY associate with bubbles.<br><strong>中文：</strong>X 的加速度 75%，Y 为 40%。虽然 Y 总涨幅更大，但 X 的上涨集中在后一年，凸性更强，按 GSY 的判据更像泡沫。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ S6 ============ -->
+    <section id="definition">
+      <h2 class="sec">行为金融的定义与三个范式 <span class="badge">Definitions &amp; Paradigms</span></h2>
+
+      <h3 class="sub">两个互补的定义</h3>
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ Definition 1</div>
+          <p><em>Behavioral finance investigates whether some financial phenomena are the result of less than fully rational thinking.</em> 行为金融研究<b>某些金融现象是否源于不完全理性的思考</b>。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ Definition 2</div>
+          <p><em>Behavioral finance tries to understand financial phenomena using models that are psychologically more realistic than their predecessors.</em> 即用<b>心理上更现实</b>的模型来理解金融现象。</p>
+        </div>
+      </div>
+
+      <div class="fig" data-fig="paradigms" data-cap="三个范式：传统金融（理性 + 无摩擦）、摩擦金融（理性 + 有摩擦）、行为金融（部分行为人非完全理性）。"></div>
+
+      <h3 class="sub">「理性」到底含哪两件事</h3>
+      <div class="box key">
+        <div class="box-title">▸ Rationality = 信念更新 + 决策准则</div>
+        <ul>
+          <li><strong>信念侧</strong>：收到新信息时按 <strong>Bayes' rule</strong> 正确更新。</li>
+          <li><strong>偏好侧</strong>：给定信念后按 <strong>EU（Expected Utility）</strong> 或 <strong>SEU（Subjective Expected Utility）</strong> 做决策，效用定义在<b>财富或消费</b>之上。</li>
+        </ul>
+        <p>于是在行为金融里：<b>研究不完全理性的信念</b> ⇒ 偏离 Bayes' rule；<b>研究不完全理性的偏好</b> ⇒ 非 EU，或者把 EU 定义在与财富/消费不同的东西（例如损益）之上。</p>
+      </div>
+
+      <div class="fig" data-fig="rational_bench" data-cap="理性的两根支柱与行为金融对应的放松方向。"></div>
+
+      <h3 class="sub">兴起：为什么是 1990 年代</h3>
+      <ul>
+        <li>起点通常追溯到 <strong>Shiller (1981)</strong>：股票市场的波动幅度太大，无法与完全理性的思考相容。</li>
+        <li>1990 年代起飞的原因：<strong>与传统金融不符的实证证据不断累积</strong>，以及正式总结出的<strong>「套利限制」</strong>论证。</li>
+      </ul>
+
+      <h3 class="sub">两条经典质疑与它们的回应</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>质疑</th><th>主张 Claim</th><th>回应 Response</th></tr></thead>
+        <tbody>
+          <tr><td><strong>套利质疑</strong> Arbitrage critique</td><td>理性人会迅速对冲掉非理性人对价格的影响（<em>rational agents will quickly undo any effect irrational agents have on prices</em>）</td><td>我们现在知道<b>套利是有限的</b>：见 Part 2</td></tr>
+          <tr><td><strong>缺乏纪律质疑</strong> Lack-of-discipline critique</td><td>行为金融太随意，总能事后找到与事实相符的心理学</td><td>通过<b>检验新的预测</b>来回应（提出别人没测过的推论）</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 与外部学科的边界（常考选择题）</div>
+        <ul>
+          <li><strong>行为金融 vs. 行为经济学</strong>：前者是后者的子领域；目前<b>行为金融是行为经济学最大的一块</b>（30 年前没人预料到）。</li>
+          <li><strong>心理学 vs. 行为金融</strong>：两者都大量借用心理学研究，尤其依赖卡尼曼与特沃斯基开创的 <em>judgment and decision-making</em>（判断与决策）文献（Kahneman《Thinking, Fast and Slow》是该领域的综述）。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S7 ============ -->
+    <section id="benchmark">
+      <h2 class="sec">理性的基准：传统资产配置问题 <span class="badge">Traditional Benchmark</span></h2>
+
+      <p>要讨论「偏离」，必须先写清楚「不偏离」长什么样。课件给出的是最经典的单一风险资产 + 无风险资产的配置问题。</p>
+
+      <div class="box def">
+        <div class="box-title">▸ 设定</div>
+        <p>投资者要在风险资产 \(P\) 与无风险资产 \(f\) 之间配置。收益分别为 \(r_P\) 与 \(r_f\)。投资者<b>正确地</b>知道 \(E(r_P)\) 且<b>正确地</b>感知到波动率 \(\sigma_P\)。若把比例 \(\omega\) 投入风险资产（\(1-\omega\) 投入无风险资产），则组合收益与波动满足：</p>
+      </div>
+
+      <div class="formula">
+        \[r = \omega r_P + (1-\omega) r_f,\qquad \sigma = \omega \sigma_P,\qquad E(r) = \omega E(r_P) + (1-\omega) r_f\]
+        <div class="fnote">\(r\)：组合收益；\(\omega\)：投入风险资产的比例；\(r_P\)：风险资产收益；\(r_f\)：无风险利率；\(\sigma_P\)：风险资产标准差。注意<b>没有借贷约束</b>时 \(\sigma\) 与 \(\omega\) 是线性关系（这是后面 CAL 成为一条直线的来源）。</div>
+      </div>
+
+      <h3 class="sub">最优配置的一阶条件</h3>
+      <p>设投资者的偏好（均值–方差效用）为 \(U = E(r) - \tfrac12 A\sigma^2\)，其中 \(A\) 是<b>风险厌恶系数</b>。最优化问题为 \(\max_{\omega} E(r) - \tfrac12 A\sigma^2\)，把上面的表达式代入，取一阶条件：</p>
+
+      <div class="formula hi">
+        \[\omega^* = \frac{E(r_P) - r_f}{A\,\sigma_P^2}\]
+        <div class="fnote">\(A\)：风险厌恶系数（越大越保守）；分子是<b>风险溢价</b>。含义：风险溢价越高、\(A\) 越小、风险越小 ⇒ 配置比例越高。</div>
+      </div>
+
+      <div class="fig" data-fig="cal" data-cap="资本配置线 CAL：斜率为报酬–波动比（reward-to-volatility ratio），也就是 Sharpe ratio。"></div>
+
+      <div class="box def">
+        <div class="box-title">▸ Definition: Capital Allocation Line (CAL) &amp; Sharpe Ratio</div>
+        <p>把上式中 \(E(r)\) 与 \(\sigma\) 的关系画出来，这条<b>投资机会集</b>被称为<strong>资本配置线（Capital Allocation Line, CAL）</strong>。它的斜率称为<strong>报酬–波动比（reward-to-volatility ratio）</strong>，也就是大家熟悉的 <strong>Sharpe ratio（夏普比率）</strong>：</p>
+      </div>
+
+      <div class="formula">
+        \[\text{Sharpe ratio} = \frac{E(r_P)-r_f}{\sigma_P}\]
+        <div class="fnote">衡量「每承担一单位标准差换来多少超额收益」。Part 4 的股权溢价之谜里，我们会反复和这个比率打交道。</div>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 有借贷约束时：CAL 变成两段</div>
+        <p>课件专门提到：加入杠杆约束（一类著名的金融摩擦）后，CAL 会分成两段——借入段与贷出段的斜率不同。这一步正是从「传统金融」跨入<b>摩擦金融</b>的入口：仅仅放松「无摩擦」，最优化就会变形。</p>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ Reflection：这个模型隐含了什么？（答题建议背下来）</div>
+        <ol class="steps">
+          <li><b>理性</b>：投资者能<b>正确感知</b> \(E(r_P)\) 与 \(\sigma_P\)——否则 \(\omega^\*\) 就算对了也没意义。</li>
+          <li><b>无摩擦</b>：可以自由借贷、没有交易成本与约束。</li>
+          <li>放松「理性」 ⇒ 投资者无法正确感知期望收益与波动 ⇒ <b>行为金融</b>。依据所关注的心理偏差不同，得到不同的模型：<b>过度外推（over-extrapolation）</b>、<b>过度自信（overconfidence）</b>、<b>前景理论（prospect theory）</b>、<b>模糊厌恶（ambiguity aversion）</b>、<b>注意力不足（inattention）</b>，以及更深层的<b>记忆、强化学习、高效编码</b>等心理机制。</li>
+          <li>放松「无摩擦」 ⇒ 投资者无法自由借贷 ⇒ <b>摩擦金融</b>。</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ S8 ============ -->
+    <!-- ============ Concept cheat-sheet ============ -->
+    <section id="concepts">
+      <h2 class="sec">概念考点速查：双语解释 + 例子 <span class="badge">Concept Cheat-Sheet</span></h2>
+      <p class="lede">下列每个概念/假说都给出<b>英文解释、中文解释与佐证例子</b>，专供「解释类（explanation）」考题复习。点击展开。</p>
+
+      <details class="concept" data-concept="emh">
+        <summary class="concept-bar">
+          <span class="concept-en">Efficient Market Hypothesis (EMH)</span>
+          <span class="concept-cn">有效市场假说</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>A market is efficient if prices fully reflect all available information about fundamental value (Fama 1970, 1991). To earn higher returns you must bear more risk (mainly CAPM beta). Three forms by information set: <b>weak</b> (prices reflect past prices → technical analysis useless), <b>semi-strong</b> (all public info → fundamentals/news already priced), <b>strong</b> (all info incl. private → even insiders can't systematically beat).</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>有效市场=价格充分反映关于内在价值的全部可得信息（Fama 1970, 1991）。要更高收益只能承担更高风险（主要是 CAPM 的 β）。三种形式按信息集划分：<b>弱式</b>（价格反映历史价格→技术分析无效）、<b>半强式</b>（所有公开信息→基本面/新闻已计入）、<b>强式</b>（含私有信息→连内幕者都无法持续跑赢）。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">If EMH holds, a news announcement should move the price instantly to the new fundamental value with no predictable post-announcement drift. <b>中文：</b>若 EMH 成立，新闻公告应让价格瞬间跳到新基本面价值，之后无规律可预测的余波。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="joint-hypothesis">
+        <summary class="concept-bar">
+          <span class="concept-en">The Joint Hypothesis Problem</span>
+          <span class="concept-cn">联合假设问题</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>You can never test "the market is efficient" alone — you must simultaneously assume an asset-pricing model that defines "normal" returns. A rejection could mean either the market is inefficient <em>or</em> the model is wrong (Fama 1970, 1991). This is why EMH is hard to falsify.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>你永远无法单独检验"市场是否有效"——必须同时假定一个界定"正常收益"的定价模型。被拒绝既可能是市场无效，也可能是模型错（Fama 1970, 1991）。这正是 EMH 难以证伪的原因。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Finding that a high book-to-market portfolio earns abnormal returns could be either mispricing or just compensation for a risk factor your CAPM missed. <b>中文：</b>发现高账市比组合有异常收益，既可能是错误定价，也可能只是对你 CAPM 漏掉的风险因子的补偿。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="behavioral-finance-def">
+        <summary class="concept-bar">
+          <span class="concept-en">Behavioral Finance (definition)</span>
+          <span class="concept-cn">行为金融的定义</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Behavioral finance relaxes the "rationality" assumptions of traditional finance, using psychology to build models in which some investors are less than fully rational (in preferences or beliefs) and arbitrage is limited, so prices can deviate from fundamental value. Two complementary definitions: (a) applying psychology to finance; (b) studying departures from traditional finance's assumptions and their asset-pricing consequences.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>行为金融放宽传统金融"理性"假设，借助心理学构建模型：部分投资者并非完全理性（偏好或信念层面），且套利受限，因而价格可偏离基本面价值。两个互补定义：(a) 把心理学应用于金融；(b) 研究对传统金融假设的偏离及其资产定价后果。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Traditional theory treats a 50% gain and a 50% loss of equal size as symmetric, but prospect theory shows the loss hurts ~2× more → investors hold losers too long. <b>中文：</b>传统理论视等额涨跌对称，但前景理论显示损失痛苦约为收益的 2 倍→投资者长期持有亏损股。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="two-critiques">
+        <summary class="concept-bar">
+          <span class="concept-en">The Two Critiques of Behavioral Finance</span>
+          <span class="concept-cn">对行为金融的两大质疑</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>(1) <b>Identification / joint-hypothesis critique</b> (Fama): to claim mispricing you must specify a "normal" price; behavioral models are often just as joint-hypothetical and hard to test. Response: build explicit, psychologically-grounded models (e.g., prospect theory, DSSW) judged by the same standards. (2) <b>Ad-hoc / data-mining critique</b>: many behavioral stories are post-hoc and don't predict new facts. Response: out-of-sample tests, real investor data (Odean/Barber), parsimonious models explaining many phenomena at once.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>(1) <b>识别/联合假设质疑</b>（Fama）：要声称错误定价，必须先界定"正常"价格；行为模型同样受联合假设束缚、难以检验。回应：构建明确的、有心理学依据的模型（如前景理论、DSSW），用同样标准评判。(2) <b>事后凑数/数据挖掘质疑</b>：许多行为故事是马后炮，不能预测新事实。回应：样本外检验、用真实投资者数据（Odean/Barber）、用简洁模型一次性解释多个现象。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">The disposition effect (selling winners, holding losers) was a behavioral prediction later confirmed in real brokerage data (Odean 1998) — directly answering the data-mining critique. <b>中文：</b>处置效应（卖赢持亏）是行为模型的预测，随后在真实券商数据中得到证实（Odean 1998）——正面回应了数据挖掘质疑。</div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="exercises" data-exgroup>
+      <h2 class="sec">Part 1 练习 <span class="badge">Exercises</span></h2>
+      <p class="lede">题型按考试常见方式混合：一部分是<strong>英文原题的计算题</strong>（Sharpe ratio、α、CAPM、最优配置），一部分是<strong>偏解释的分析题</strong>（题干给英文，答案用中文框架组织）。</p>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Sharpe ratio and the equity premium</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Over the last 50 years in the US, the stock market had an expected return of 9%, volatility of 16%, and the risk-free rate averaged 1%. Compute the realized Sharpe ratio. If a researcher instead uses a model with expected return 6% and volatility 20%, how does the Sharpe ratio change? What does the difference illustrate about how we measure "abnormal" performance?</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>直接用夏普比率公式，注意分子是<b>超额</b>收益；第二问旨在说明同一段历史会因模型假设不同得到不同「异常」程度。</p></div>
+            <ol class="steps">
+              <li>情形一：\(\dfrac{9\%-1\%}{16\%}=\dfrac{8\%}{16\%}=0.50\)。</li>
+              <li>情形二：\(\dfrac{6\%-1\%}{20\%}=\dfrac{5\%}{20\%}=0.25\)。</li>
+              <li>差额原因：<b>分子（预期超额收益）</b>与<b>分母（波动率）</b>都取决于我们用什么样的模型/样本来刻画「正常」。这正是<b>联合假设问题</b>在最基本层面的体现。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> Sharpe = (9% − 1%)/16% = 0.50. Second case: (6% − 1%)/20% = 0.25. The change shows that "abnormal performance" is always measured relative to an assumed benchmark/model, not absolutely.<br><strong>中文：</strong>0.50 vs 0.25。差异说明「异常」必然是相对某个基准度量的。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Optimal capital allocation</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Your optimal risky portfolio has \(E(r_P)=12\%\) and \(\sigma_P=22\%\). The risk-free rate is 3%. Your utility is \(U=E(r)-\tfrac12 A\sigma^2\) with \(A=4\). Find the optimal weight in the risky portfolio, the expected return and volatility of the complete portfolio.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>直接用一阶条件 \(\omega^\*=(E(r_P)-r_f)/(A\sigma_P^2)\)，再代回组合的期望与波动。</p></div>
+            <ol class="steps">
+              <li>\(\sigma_P^2=0.22^2=0.0484\)。</li>
+              <li>\(\omega^\*=\dfrac{0.12-0.03}{4\times0.0484}=\dfrac{0.09}{0.1936}=0.4649\approx46.5\%\)。</li>
+              <li>\(E(r_C)=3\%+0.4649\times(12\%-3\%)=3\%+4.18\%=7.18\%\)。</li>
+              <li>\(\sigma_C=0.4649\times22\%=10.23\%\)。</li>
+              <li><b>反思</b>（开放题加分项）：答案同时依赖「\(E(r_P)\) 与 \(\sigma_P\) 被正确感知」；若投资者因<b>过度自信</b>把 \(\sigma_P\) 看成 15%，算出 \(\omega^\*=1.0\) 以上 ⇒ 这就是行为金融版本的配置。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> ω* ≈ 46.5% in the risky portfolio; E(r_C) ≈ 7.18%; σ_C ≈ 10.23%. The result relies on the perceived (not necessarily true) moments — biased perception of volatility directly changes the allocation.<br><strong>中文：</strong>约 46.5% 配风险组合；组合期望收益 7.18%，波动 10.23%。关键在于这些输入必须是<b>被感知</b>的量。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Which form of efficiency? <span class="kbd">概念</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">For each pattern below, identify which form of market efficiency is violated, and briefly explain why: (a) a trading rule based only on past prices earns abnormal returns; (b) prices keep drifting in the same direction for several months after an earnings announcement; (c) corporate insiders earn abnormal returns.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>判断标准是「用来预测的信息属于哪一层」。价格历史是最内层；公开财报是第二层；内幕是最外层。</p></div>
+            <ol class="steps">
+              <li>(a) 只用过去价格 ⇒ 违反<b>弱式有效</b>（Weak-form），因为连历史价量都没有被完全吸收。</li>
+              <li>(b) 盈利公告是<b>公开</b>信息，价格却持续漂移（PEAD） ⇒ 违反<b>半强式有效</b>（Semi-strong）。</li>
+              <li>(c) 内幕信息仍能获利 ⇒ 违反<b>强式有效</b>（Strong-form）。</li>
+              <li>注意答题规范：每一条都必须先说清楚「这条信息属于哪一类」，再说结论。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Weak-form: past prices should already be impounded. (b) Semi-strong-form: earnings announcements are public, so post-announcement drift (PEAD) violates semi-strong efficiency. (c) Strong-form: private information should already be reflected under strong-form efficiency.<br><strong>中文：</strong>(a) 弱式；(b) 半强式；(c) 强式。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Predictability implies inefficiency <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">A quantitative analyst claims that stocks whose RSI is below 30 subsequently gain 20% per week. He says: "If true, this is a great discovery — anyone can profit." A critic replies: "If it were true and widely known, nobody could profit." Explain both statements and reconcile them.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这段对话是 EMH 的核心逻辑题。核心是「盈利机会的存在会自我消灭」。</p></div>
+            <ol class="steps">
+              <li><b>第一句话</b>：若该规律<b>尚未被他人发现/利用</b>，那么先发现者确实能靠它获利——这不是撒谎。</li>
+              <li><b>第二句话</b>：一旦这个规律<b>广为人知</b>，所有知情交易者会<b>同时买入</b>符合条件的股票。</li>
+              <li>买盘压力会把价格<b>瞬间</b>推到均衡水平，利润机会随之消失。</li>
+              <li>两者调和：<b>利润只存在于信息尚未扩散的窗口期</b>。这也解释了为什么异象在<b>公开发表后</b>会衰减（McLean &amp; Pontiff, 2016）。</li>
+              <li>推论：一个长期不被交易掉的「规律」，本身就是对 EMH 的<b>反驳</b>；而这又必须结合<b>套利限制</b>来解释（Part 2）。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> Both are right — the two statements differ in information diffusion. Before anyone else knows the pattern, the discoverer profits; once it is public, traders front-run it and the price adjusts immediately, eliminating the opportunity. Persistent profitability would therefore violate efficiency and must be explained by limits to arbitrage.<br><strong>中文：</strong>差别在信息是否已扩散。公开之后抢跑会使价格立刻调整，利润消失；若利润长期存在则必须用套利限制来解释。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Bubbles for Fama <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Fama argues that a bubble requires ex-ante identification: "irrational price increase implies predictable decline." Greenwood, Shleifer and You (2017) respond by studying industry-level bubbles. Discuss: (a) why "average post-run-up returns are normal" is not decisive evidence against bubbles; (b) what the acceleration measure contributes.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>典型的概念/开放题。按「Claim → Mechanism → Implication → Caveat」四步展开。</p></div>
+            <ol class="steps">
+              <li><b>(a) 平均收益不是决定性证据</b>：收益分布可能是<b>高度偏斜</b>的——大量样本继续上涨（如 1976–78 医疗板块），少数样本崩 78%。平均下来看似「正常」，但<b>尾部风险</b>发生了系统性变化。只看均值等于把<b>方差与偏度</b>丢掉了。</li>
+              <li>此外，<b>峰值难以择时</b>：Shiller 1996 年 12 月警示后美股又翻了一倍，直到 2000 年才崩，做空者会在中途被迫平仓 ⇒ 这正是<b>噪声交易者风险</b>（Part 2）。</li>
+              <li><b>(b) 加速度的贡献</b>：它提供一个<b>系统性、可事前计算</b>的特征：\(\text{Accel}=R_{t\to t+24}-R_{t\to t+12}\)。最高分位行业两年内崩盘概率约 76%（国际样本预测准确率 82%），相对 20% 基准提升四倍。</li>
+              <li><b>模型含义</b>：常数崩盘概率的纯理性泡沫模型被否定了；崩盘概率是<b>价格路径形状</b>的函数。</li>
+              <li><b>Caveat</b>：样本是行业指数而非个股；且<b>平均收益仍难预测</b>，Fama 在这一点是对的。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Normal average returns can coexist with bubbles because the return distribution is skewed: many "bubbles" keep rising while a few crash hard; peaks are also hard to time, so arbitrageurs are driven out first. (b) Acceleration provides an ex-ante, systematic predictor — top-quintile industries crash ~76% vs a 20% baseline (82% accuracy internationally) — which is inconsistent with models of constant crash probability.<br><strong>中文：</strong>(a) 收益分布高度偏斜 + 峰值难择时，所以均值正常不能否定泡沫；(b) 加速度提供事前可算的崩盘预测器。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Relaxing rationality vs. relaxing frictions <span class="kbd">拓展</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Consider the standard allocation problem with \(\omega^\*=(E(r_P)-r_f)/(A\sigma_P^2)\). An analyst makes three separate claims: (i) investors systematically overestimate \(E(r_P)\) after good years; (ii) investors cannot borrow at the risk-free rate; (iii) investors use a loss-averse utility defined over gains and losses rather than wealth. For each, say whether it belongs to frictional finance, behavioral finance, or neither.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>分类题：判断放开了哪条假设。放手那种「理性」vs「无摩擦」的二分。</p></div>
+            <ol class="steps">
+              <li>(i) 系统性高估预期收益（过度外推/extrapolation） ⇒ 属于<b>行为金融</b>（信念侧偏离）。</li>
+              <li>(ii) 无法按无风险利率借入 ⇒ 属于<b>摩擦金融</b>（Frictional finance）：agents rational but there are frictions。这会改变 CAL（分成两段）。</li>
+              <li>(iii) 损失厌恶的效用函数、定义在损益而非财富上 ⇒ 属于<b>行为金融</b>（偏好侧偏离，前景理论的核心）。</li>
+              <li>三者都不属于「传统金融」，因为传统金融要求<b>理性 + 无摩擦</b>同时成立。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (i) Behavioral finance (beliefs, over-extrapolation); (ii) Frictional finance (borrowing constraint); (iii) Behavioral finance (preferences, prospect-theory value over gains/losses). None belongs to traditional finance.<br><strong>中文：</strong>(i) 行为金融（信念）；(ii) 摩擦金融（约束）；(iii) 行为金融（偏好）。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Scenario: the 2015 A-share episode <span class="kbd">拓展</span> <span class="kbd">场景</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">In 2014–2015 the Shanghai Composite rose about 150% in a year; the average P/E ratio exceeded 60 versus a historical average near 15, and margin financing (融资融券) expanded rapidly. The index then fell about 40% within months. Using behavioural concepts, explain: (a) how the price path could depart from fundamentals; (b) why rational investors could not simply arbitrage it away; (c) a testable implication beyond the return pattern itself.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>场景题的标准答法：机制链 + 套利限制 + 可检验推论。</p></div>
+            <ol class="steps">
+              <li><b>(a) 机制链</b>：外推信念（investors extrapolate the recent trend）+ 叙事「这次不一样 / 政策托底」；<b>过度自信</b>的散户通过融资交易加杠杆；<b>羊群行为与社会传染</b>推动参与度激增 ⇒ 需求曲线外移 ⇒ 价格脱离贴现现金流的轨道。</li>
+              <li><b>(b) 为什么不能被套利掉</b>：①<b>卖空受限</b>——A 股当时可融券标的稀缺、券源不足、成本高；②<b>噪声交易者风险</b>——一个坚定的趋势可以在平仓者被迫止损之前继续运行数月；③<b>期限风险</b>与<b>模型风险</b>（P/E 60 也可能被解读为新经济溢价）；④海外投资者受<b>额度与准入</b>限制 ⇒ 理性的钱根本进不来。</li>
+              <li><b>(c) 可检验推论</b>：①<b>换手率与成交量应同步放大</b>（Hong &amp; Stein, 2007 指出泡沫伴随高成交量）；②<b>新增开户数</b>与边际融资余额应先行；③之后连都该观察到散户账户的<b>大幅亏损</b>与财富转移。</li>
+              <li><b>Caveat</b>：该 episodes 同时具备<b>制度摩擦</b>（融资管制、新股供给），所以不能把全部涨幅归因于心理。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Extrapolative beliefs, overconfidence amplified by margin trading, herd behaviour and narratives pushed demand beyond fundamentals. (b) Short-sale constraints, noise-trader risk if the trend keeps running, horizon and model risk, and restricted foreign/arbitrage capital meant rational investors could not take the other side. (c) Volume and turnover should surge, new-account openings and margin balances should lead the peak, and retail accounts should subsequently show large losses.<br><strong>中文：</strong>(a) 外推 + 过度自信加杠杆 + 羊群；(b) 卖空受限、噪声交易者风险、境外资金准入限制；(c) 换手率与新增开户数应先行。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Homework 1 · Which statement about behavioral finance is NOT true? <span class="kbd">HW1</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Which of the following statement(s) is (are) <b>NOT</b> true about behavioral finance?
+          <br>(a) Behavioral finance combines psychology and finance to study how psychological factors affect financial decisions and outcomes.
+          <br>(b) Many anomalies in financial markets can potentially be explained by behavioral finance.
+          <br>(c) Behavioral finance assumes that people are <i>always</i> irrational and never learn from experience.
+          <br>(d) Several Nobel laureates have been recognized for contributions related to behavioral finance.
+          <br>(e) None of the above.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这是一道「找错误陈述」的选择题，逐项判断正误即可。</p></div>
+            <ol class="steps">
+              <li>(a) 正确：行为金融正是心理学与金融学的交叉，研究心理因素如何影响决策与结果。</li>
+              <li>(b) 正确：股权溢价之谜、长期反转、动量、处置效应等大量异象都可从行为视角解释。</li>
+              <li>(c) <b>错误</b>：行为金融并不假设人「永远非理性、永不学习」。它研究的是<b>系统性、可预测</b>的偏差（bias），并不意味着人完全不理性，也不否认学习与套利的存在。</li>
+              <li>(d) 正确：Kahneman (2002)、Thaler (2017) 等均因行为相关贡献获诺贝尔奖，Simon 的早期有限理性工作也是奠基。</li>
+              <li>(e) "None of the above" 意为以上全对 ⇒ 但 (c) 是错的，所以 (e) 本身也不是答案。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> The statement that is NOT true is (c). Behavioral finance does <i>not</i> assume people are always irrational; it studies systematic, predictable biases and allows for learning.<br><strong>中文：</strong>不正确的是 (c)。行为金融不假设人永远非理性，它研究的是系统性、可预测的心理偏差，并不否认人能学习。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Homework 1 · The two critiques of behavioral finance <span class="kbd">HW1</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Describe the two critiques that behavioral finance faced. Also describe the strategy of addressing each critique.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>对应本 Part 的「两条经典质疑与它们的回应」以及「Fama 的挑战：识别问题 / Shleifer 团队的回应」。</p></div>
+            <ol class="steps">
+              <li><b>质疑一：识别问题（joint hypothesis problem）。</b>Fama 指出，你无法区分「价格错了（误定价）」还是「你的定价模型错了（贴现率设定有误）」。一个看似异象的现象，可能只是 CAPM 等模型对风险的调整不对，而非市场无效。这是 EMH 一方最常用的反击。</li>
+              <li><b>应对一：按对方的标准来（Shleifer 团队的回应）。</b>行为金融不再只罗列异象，而是建立<b>显式、可度量、心理学有根基</b>的模型（如前景理论、DSSW 噪声交易者模型），并证明它们在<b>对方也认可的同样标准</b>下能复现数据——把"有没有误定价"的争论变成"哪个模型更好"的建模竞赛。</li>
+              <li><b>质疑二：故事集 / 数据挖掘（ad-hoc &amp; data mining）。</b>批评者认为行为金融是"一个异象配一个故事"，缺乏统一理论；且很多异象在样本内显著、样本外消失，是 p-hacking 与发表偏误的产物。</li>
+              <li><b>应对二：更严格的检验 + 直连投资者行为。</b>用样本外检验、更好的风险调整，并直接观察<b>真实投资者的行为</b>（Odean / Barber 的账户级交易数据）证明偏差真实存在且持续；同时发展能一次性产生动量 + 反转等多现象的简约模型（Part 6），减少"一事一议"。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> Critique 1 is the identification / joint-hypothesis problem (Fama): we can't tell mispricing from a misspecified discount-rate model. The response is to hold behavioral finance to the same bar—build explicit, psychologically-grounded models (prospect theory, DSSW) that reproduce the data under the critics' own criteria. Critique 2 is that behavioral finance is a bag of ad-hoc stories and data-mined anomalies. The response is stricter out-of-sample testing, better risk adjustment, and direct evidence from real investor behavior (Odean, Barber), plus parsimonious models that generate many phenomena at once.<br><strong>中文：</strong>质疑一为识别/联合假设问题（Fama），应对是建立显式、有心理学根基的模型并在对方标准下检验；质疑二为"故事集 + 数据挖掘"，应对是更严格的样本外检验、更好的风险调整，以及直连真实投资者行为证据。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 本 Part 一句话总结</div>
+        <p>EMH 说「价格 = 内在价值」，而它的背书是<b>信息军备竞赛</b>。要打破它，你必须同时回答两个问题：<b>投资者哪里不理性</b>（Part 3）+ <b>理性的钱为什么不敢来</b>（Part 2）。泡沫之争的折中答案是：<b>平均收益难预测，但崩盘概率可预测</b>。</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  FIN 4080 Behavioral Finance · Part 1 导论 · 内容依据 Lecture 1–2 课件整理
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

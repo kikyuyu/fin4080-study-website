@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta property="og:title" content="FIN4080 行为金融学学习站"><meta property="og:description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta name="description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta property="og:image" content="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg"><link rel="icon" href="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+<title>FIN4080 行为金融学学习站</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="assets/tex-mml-svg.js" id="MathJax-script" async></script>
+<script>
+/* Fallback: 若本地 MathJax 包不可用（例如部署副本缺少该资源），从 jsDelivr 兜底加载。 */
+(function () {
+  function loadCdn() {
+    if (window.MathJax && window.MathJax.startup) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-svg.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function () { setTimeout(loadCdn, 400); });
+})();
+</script>
+    <script src="assets/figures.js"></script>
+    <script src="assets/mindmap.js"></script>
+    <script src="assets/marks.js?v=20261017a"></script>
+</head>
+<body data-page="index" data-root="">
+
+<header id="site-topbar"></header>
+
+<div class="layout">
+  <aside class="toc" id="site-toc"></aside>
+  <main>
+
+    <div class="hero">
+      <div class="kicker">CUHK-Shenzhen · School of Management and Economics</div>
+      <h1>FIN 4080 行为金融 · 完整学习站</h1>
+      <p>本站按课程大纲顺序整理 Lecture 1–13 的全部内容：<strong>讲解以中文为主</strong>，专业术语与 Definition 保留英文原文，公式逐一列出并解释符号；每个理论都配一张概念示意图，并同时提供<strong>英文原题的计算题</strong>（概率/效用/折现/夏普比率/估值）与<strong>偏解释性的分析题</strong>（英文题干 + 中文分析框架 + 中英文答案）。</p>
+      <div class="tags">
+        <span>有效市场 vs. 行为金融</span><span>套利限制</span><span>前景理论</span><span>资产价格的事实</span><span>投资者行为</span><span>行为定价模型</span><span>规范性行为金融</span>
+      </div>
+    </div>
+
+    <div id="mindmap-host"></div>
+
+    <section id="how">
+      <h2 class="sec">如何使用本站 <span class="badge">How to use</span></h2>
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ 从右上角选择主题</div>
+          <p>点击右上角「<strong>主题选择</strong>」下拉菜单，或使用顶部导航栏与<strong>左侧「课程导航」</strong>，按课程 <em>Part</em> 顺序进入各个子页面——左侧会<strong>自动高亮你当前所在的 Part</strong>。每个子页面左侧的「<strong>本页目录</strong>」会随页面滚动自动高亮当前小节；每页顶部都有一张「<strong>知识地图</strong>」，主干永远展开、细节默认折叠，点 <span class="kbd">＋</span> 即可展开。</p>
+        </div>
+        <div class="box tip">
+          <div class="box-title">▸ 练习答案默认折叠</div>
+          <p>每道题的完整解答放在「<strong>查看解答 / Answer</strong>」折叠区里。建议先自己动手写一遍，再展开对照——尤其是标有 <span class="kbd">拓展</span> 的题目，那是为巩固知识点额外准备的。</p>
+        </div>
+      </div>
+      <div class="box note">
+        <div class="box-title">▸ 阅读约定</div>
+        <ul>
+          <li><strong>英文加粗</strong>的是 Finance 专业术语，第一次出现时给出英文 Definition。</li>
+          <li><span style="color:var(--blue);font-weight:600;">蓝色框</span>= Definition / 核心概念；<span style="color:var(--amber);font-weight:600;">橙色框</span>= 分析思路与易错点；<span style="color:var(--green);font-weight:600;">绿色框</span>= 直觉理解与记忆技巧；<span style="color:var(--purple);font-weight:600;">紫色框</span>= 场景/案例。</li>
+          <li>所有公式用 LaTeX 渲染，符号含义在公式下方解释。</li>
+          <li>关键操作：<strong>选中文字</strong>可划重点 + 打标签；在正文任意一行<strong>右键</strong>可插入行内笔记（支持文字与图片）；右下角 <strong>FAB（快捷键 M）</strong>打开「我的标记」面板。</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="why">
+      <h2 class="sec">这门课到底在问什么 <span class="badge">Three Big Questions</span></h2>
+      <p class="lede">行为金融不是「传统金融的对立面」，而是把「价格=内在价值」这个等式拆开，追问三件事。课程里所有的 Fact 与 Model，本质上都是对下面三问的回答。</p>
+
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ 疑问一：投资者真的理性吗？</div>
+          <p>传统金融把投资者当作按 <strong>Bayes' rule</strong> 更新信念、按 <strong>Expected Utility</strong> 做决策的人。心理学告诉我们：<strong>信念</strong>会偏离 Bayes（过度自信、代表性、保守性、锚定），<strong>偏好</strong>会偏离 EU（损失厌恶、参考点依赖、概率权重、模糊厌恶、双曲折现）。→ Part 3</p>
+        </div>
+        <div class="box key">
+          <div class="box-title">▸ 疑问二：就算有人不理性，价格为什么没被修正？</div>
+          <p>这是著名的 <strong>Arbitrage Critique</strong>：理性的钱会立刻把价格拉回基本面。行为金融的回答是「<strong>Limits to Arbitrage</strong>」——基本面风险、噪声交易者风险、期限风险、模型风险与实施成本，让理性人也只敢有限套利。→ Part 2</p>
+        </div>
+        <div class="box note">
+          <div class="box-title">▸ 疑问三：非理性到底长什么样？</div>
+          <p>为了不沦为「事后挑选心理学」的空洞解释，必须先把市场的<strong>事实 Facts</strong>摆出来：总量三大谜（股权溢价、过度波动、可预测性）、横截面一长串异象、以及泡沫；然后要求模型把它们全部<code>同时</code>解释掉。→ Part 4 / Part 5 / Part 6</p>
+        </div>
+        <div class="box tip">
+          <div class="box-title">▸ 最后一个有用的问题：知道了又怎样？</div>
+          <p><strong>行为公司金融</strong>把非理性放进企业决策（融资时机、迎合、管理者过度自信）；<strong>规范性行为金融（Prescriptive BF）</strong>反过来用它改善真实世界的制度设计——助推、默认选项、Save More Tomorrow。→ Part 7</p>
+        </div>
+      </div>
+
+      <div class="fig" data-fig="paradigms" data-cap="传统金融放松「理性」得到行为金融，放松「无摩擦」得到摩擦金融；两者可以同时放松。"></div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 过来人提醒：行为金融最容易踩的两个坑</div>
+        <ul>
+          <li><strong>不要「看到什么都套一个偏差」</strong>。这正是对行为金融最致命的批评——<em>lack-of-discipline critique</em>。规范做法是：提出偏差 → 推出<b>新的、可检验的预测</b> → 用数据验证，而不是给已知事实找解释。</li>
+          <li><strong>每次声称「非理性投资者影响了价格」，都要先问一句：这里的套利真的受限制吗？</strong>如果一笔钱几乎无风险、无成本、期限又短，那它就不该留给我们称作错价。</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="parts">
+      <h2 class="sec">课程地图 <span class="badge">Course Roadmap</span></h2>
+      <p class="lede">按 Barberis &amp; Thaler 的经典结构展开：<strong>导论 → 两块基石（套利限制、心理学）→ 事实 → 模型 → 重访事实 → 规范性</strong>。本站把「事实」拆成资产价格与投资者行为两个 Part，并补上了课件之外但考试中常见的 <em>Models</em> 与 <em>Behavioral Corporate Finance</em>。</p>
+
+      <div class="cards">
+        <a class="card" href="part1-introduction.html">
+          <div class="n">PART 1 · LECTURE 1–2</div>
+          <h3>导论：什么是行为金融</h3>
+          <p>有效市场假说 EMH 的三种形式与两条隐含假设，为什么「可预测 ⇒ 无效率」，联合假设问题，三大范式，以及 Fama vs. Shiller 的泡沫之争与 Greenwood–Shleifer–You 的加速度。</p>
+          <div class="meta">EMH · Random Walk · Joint Hypothesis · Bubbles · Acceleration</div>
+        </a>
+        <a class="card" href="part2-limits-to-arbitrage.html">
+          <div class="n">PART 2 · LECTURE 7–8</div>
+          <h3>套利限制 Limits to Arbitrage</h3>
+          <p>四类风险（基本面 / 噪声交易者 / 期限 / 模型）与实施成本，DSSW (1990) 与 Shleifer–Vishny (1997)，以及三个经典实证：孪生股、股权分拆 carve-outs、指数纳入。</p>
+          <div class="meta">Noise Trader Risk · Horizon Risk · Twin Shares · Index Inclusion</div>
+        </a>
+        <a class="card" href="part3-psychology.html">
+          <div class="n">PART 3 · LECTURE 3–4</div>
+          <h3>心理学基础 Psychology</h3>
+          <p>前景理论四大要素、Tversky–Kahneman (1992) 参数化与 CPT，禀赋效应，窄框架，Ellsberg 模糊厌恶与能力假说，双曲折现，以及信念侧偏差与社会心理学。</p>
+          <div class="meta">Prospect Theory · Narrow Framing · Ambiguity · Hyperbolic Discounting</div>
+        </a>
+        <a class="card" href="part4-asset-prices.html">
+          <div class="n">PART 4 · LECTURE 5–6</div>
+          <h3>资产价格的事实 Asset Prices</h3>
+          <p>总量三大谜题（股权溢价、过度波动、可预测性）与各自的理性解法；横截面异象全图景——反转、动量、规模、价值、盈利惊喜、发行、应计、波动。</p>
+          <div class="meta">Equity Premium · Excess Volatility · Momentum · Value · Anomalies</div>
+        </a>
+        <a class="card" href="part5-investor-behavior.html">
+          <div class="n">PART 5 · LECTURE 9–10</div>
+          <h3>投资者行为的事实 Investor Behavior</h3>
+          <p>家庭金融：储蓄不足、不参与、买高卖低、四类分散化不足、处置效应与 V 型卖出倾向；以及「复数」层面揭露欠年金化、负债侧与机构投资者业绩。</p>
+          <div class="meta">Disposition Effect · Home Bias · Participation · Under-diversification</div>
+        </a>
+        <a class="card" href="part6-behavioral-models.html">
+          <div class="n">PART 6 · 课件外补充</div>
+          <h3>行为资产定价模型 Models</h3>
+          <p>DSSW (1990)、BSV (1998)、DHS (1998)、HS (1999) 与 BHS (2001)：如何用同一个模型同时解释动量、长期反转、过度波动与高股权溢价。</p>
+          <div class="meta">Conservatism · Representativeness · Overconfidence · Bounded Rationality</div>
+        </a>
+        <a class="card" href="part7-corporate-prescriptive.html">
+          <div class="n">PART 7 · LECTURE 11–13</div>
+          <h3>行为公司金融 &amp; 规范性行为金融</h3>
+          <p>投资者非理性时的市场择时与迎合理论；管理者非理性时的过度投资与并购狂妄；以及用助推、默认选项与 SMarT 改善真实决策的规范性方案。</p>
+          <div class="meta">Market Timing · Catering · CEO Hubris · Nudge · Save More Tomorrow</div>
+        </a>
+        <a class="card" href="part8-pt-applications.html">
+          <div class="n">PART 8 · LECTURE 4（MODELS）</div>
+          <h3>前景理论的应用 PT Applications</h3>
+          <p>把 PT 偏好接入定价与交易：横截面偏度定价（BMV / CDG / BCW）、短视损失厌恶与股权溢价（Benartzi–Thaler、BHS）、实现效用与处置效应（Frydman et al. 2014 神经证据）。</p>
+          <div class="meta">Skewness Pricing · Myopic Loss Aversion · TK Value · Realization Utility</div>
+        </a>
+        <a class="card" href="part9-salience.html">
+          <div class="n">PART 9 · LECTURE 8（SALIENCE）</div>
+          <h3>显著性理论 Salience Theory</h3>
+          <p>Allais 悖论与情境依赖偏好；显著性函数 σ 与扭曲权重 π̃；BGS (2013) 定价模型 E[r] = −cov[ω, r]；以及 ST 因子的构造与实证（Cosemans &amp; Frehen 2021）。</p>
+          <div class="meta">Allais Paradox · BGS 2013 · Decision Weights · ST Factor</div>
+        </a>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="exam">
+      <h2 class="sec">解释题的通用答题框架 <span class="badge">Essay Answer Template</span></h2>
+      <p class="lede">这门课的考核里，<strong>概念题与开放题占比很高</strong>。这类题目不是「背了就能写」，而是要求你把一个现象拆成可检验的机制。下面四步适用于几乎所有「请用行为金融解释 X」的题目。</p>
+
+      <div class="box key">
+        <div class="box-title">▸ 四步法 Claim → Mechanism → Testable Implication → Caveat</div>
+        <ol class="steps">
+          <li><strong>Step 1 · 定位（Claim）</strong>：先明确目标现象是<b>信念侧</b>问题（偏离 Bayes' rule）还是<b>偏好侧</b>问题（偏离 EU）。一句话说清「谁、在什么情境下、做出了什么偏离」。</li>
+          <li><strong>Step 2 · 机制（Mechanism）</strong>：给出具体的心理学/<em>behavioral</em> 模型名称与关键参数，并把因果链写完整：外部冲击 → 投资者信念/偏好 → 交易行为 → 价格/交易量。</li>
+          <li><strong>Step 3 · 套利为什么失效（Limits to Arbitrage）</strong>：<b>这一步最常被漏掉，却最加分</b>。必须回答「理性的钱为什么没把这个赚钱机会吃掉」，挑出主导的那一个（通常是噪声交易者风险 + 卖空成本）。</li>
+          <li><strong>Step 4 · 推论与边界（Testable Implication &amp; Caveat）</strong>：给出至少一个<b>其他方面可检验</b>的预测（如「换手率应该同步放大」「该异象发表后应衰减」），并说明它什么时候不成立。</li>
+        </ol>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 示例：为什么 Fama 说「泡沫这个词没法用」？</div>
+        <ul>
+          <li><strong>Claim</strong>：泡沫在行为金融里的定义是「价格大幅高于内在价值并持续一段时间」，但这需要<b>事前</b>识别，而不是事后看崩盘了再说。</li>
+          <li><strong>Mechanism</strong>：纯粹的上涨之后不一定马上有低收益（如 1976–78 医疗保健板块的真实赢余增长），因此「价格涨得多」本身不是错价的证据。</li>
+          <li><strong>Implication</strong>：Greenwood、Shleifer &amp; You (2017) 转而用<b>凸性（加速度）</b>作为特征——最高加速度分位的行业，两年内崩盘概率从基准 20% 升到 76–80%。</li>
+          <li><strong>Caveat</strong>：平均事后收益与市场差不多（Fama 部分正确），只是<b>崩盘概率</b>可预测；样本只覆盖行业指数，不能外推到个股。</li>
+        </ul>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 常见失分点</div>
+        <ul>
+          <li>只说「因为投资者过度自信」就结束——<strong>没有写出从信念到价格的传导链条</strong>，这是最典型的零分答案。</li>
+          <li>把 EMH 与行为金融写成「谁对谁错」——正确的写法是<strong>条件性结论</strong>：在什么摩擦/参与结构下，非理性才会映射到价格上。</li>
+          <li>混淆<strong>等价</strong>概念：把「物件定价模型不成立」与「市场无效」当成同一件事，忽略了<b>联合假设问题</b>。</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="glossary">
+      <h2 class="sec">高频术语中英对照速查 <span class="badge">Glossary</span></h2>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>English term</th><th>核心 Definition</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>Efficient Market Hypothesis (EMH)</td><td>Prices of all financial assets properly reflect all available information and equal fundamental value.</td><td>有效市场假说</td></tr>
+          <tr><td>Limits to arbitrage</td><td>Risks and costs preventing rational investors from fully correcting a mispricing.</td><td>套利限制</td></tr>
+          <tr><td>Noise trader</td><td>A less-than-fully-rational trader whose demand moves prices away from fundamentals.</td><td>噪声交易者</td></tr>
+          <tr><td>Fundamental value</td><td>Price in an economy with rational investors and no frictions.</td><td>内在价值 / 基本面价值</td></tr>
+          <tr><td>Reference dependence</td><td>Utility derives from gains and losses relative to a reference point, not final wealth.</td><td>参考点依赖</td></tr>
+          <tr><td>Loss aversion</td><td>People are much more sensitive to losses than to gains of equal magnitude.</td><td>损失厌恶</td></tr>
+          <tr><td>Narrow framing</td><td>Evaluating a new risk in isolation rather than combining it with existing risks.</td><td>窄框架</td></tr>
+          <tr><td>Ambiguity aversion</td><td>Dislike of situations where the probability distribution itself is unknown.</td><td>模糊厌恶</td></tr>
+          <tr><td>Disposition effect</td><td>Greater propensity to sell winners than losers, PGR &gt; PLR.</td><td>处置效应</td></tr>
+          <tr><td>Equity premium puzzle</td><td>Historical excess stock return too large for basic rational models with plausible risk aversion.</td><td>股权溢价之谜</td></tr>
+          <tr><td>Momentum / Reversal</td><td>Medium-term continuation vs. long-term reversal in past-return predictability.</td><td>动量 / 反转</td></tr>
+          <tr><td>Prescriptive behavioral finance</td><td>Using knowledge of biases to improve decisions through choice architecture.</td><td>规范性行为金融</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 考前提点</div>
+        <p>本课程的作业与考试<strong>主观/开放题占相当比重</strong>（课件明确写着 homework 是 "conceptual or open questions"）。复习重点应放在「<b>能完整地写出一个机制</b>」上：认出一句话描述的现象属于哪个 Part 的工具箱，然后套用上面四步法。计算部分则集中在 Part 3（前景理论效用、双曲折现）与 Part 4（夏普比率上界、可预测性回归）两条线上。</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  FIN 4080 Behavioral Finance · 学习站 · 内容依据课程 Lecture 1–13 课件整理，术语与 Definition 保留英文原文；Part 6–7 为课件之外的标准补充内容。
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

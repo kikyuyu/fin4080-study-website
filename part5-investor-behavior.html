@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta property="og:title" content="FIN4080 行为金融学学习站"><meta property="og:description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta name="description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta property="og:image" content="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg"><link rel="icon" href="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+<title>FIN4080 行为金融学学习站</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="assets/tex-mml-svg.js" id="MathJax-script" async></script>
+<script>
+/* Fallback: 若本地 MathJax 包不可用，从 jsDelivr 兜底加载。 */
+(function () {
+  function loadCdn() {
+    if (window.MathJax && window.MathJax.startup) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-svg.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function () { setTimeout(loadCdn, 400); });
+})();
+</script>
+    <script src="assets/figures.js"></script>
+    <script src="assets/mindmap.js"></script>
+    <script src="assets/marks.js?v=20261017a"></script>
+</head>
+<body data-page="part5" data-root="">
+
+<header id="site-topbar"></header>
+
+<div class="layout">
+  <aside class="toc" id="site-toc"></aside>
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Part 5 · Lecture 9–10</div>
+      <h1>投资者行为的事实：家庭金融与机构业绩</h1>
+      <p>本 Part 把「价格」换成「人」来观察：投资者<b>真的</b>怎么交易？本节主要以<b>个人投资者</b>为主（更容易拿到数据，而且行为金融对个人更相关），梳理<strong>不参与、买高卖低、分散化不足、处置效应、买入与卖出行为、选股业绩</strong>等一整串事实，最后补上退休后与负债侧，以及<b>机构投资者</b>的平均业绩。</p>
+      <div class="tags">
+        <span>Household Finance</span><span>Non-participation</span><span>Under-diversification</span><span>Disposition Effect</span><span>Buy High Sell Low</span><span>Under-annuitization</span><span>Fund Performance</span>
+      </div>
+    </div>
+
+    <div id="mindmap-host"></div>
+
+    <!-- ============ S1 ============ -->
+    <section id="overview">
+      <h2 class="sec">为什么现在是黄金期：数据 <span class="badge">Data Sources</span></h2>
+
+      <div class="box note">
+        <div class="box-title">▸ 本讲 Learning Objectives</div>
+        <ul>
+          <li>能列出推动个人投资者研究爆发的五类<b>大型微观数据集</b>。</li>
+          <li>能解释<b>储蓄不足</b>与<b>不参与</b>两条事实，并各给出一个理性解释。</li>
+          <li>能区分<b>四种</b>不同类型的分散化不足，并各自记得一个数字。</li>
+          <li>能<b>定义</b>处置效应（PGR vs PLR），并说明它不能用信息/流动性/税收/再平衡解释。</li>
+          <li>能算出<b>资金加权收益</b>与<b>时间加权收益</b>的差别，并解释「买高卖低」。</li>
+          <li>能解释机构投资者<b>毛 α 与净 α</b>的差异所蕴含的含义。</li>
+        </ul>
+      </div>
+
+      <p>投资者行为 / 资产组合选择的研究，在近几年急剧成长，被称为<strong>家庭金融（household finance）</strong>。它的崛起主要由<b>大型、细致的数据集</b>的出现所推动：</p>
+
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>数据</th><th>English</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td>消费金融调查</td><td>Survey of Consumer Finances (SCF)</td><td>家庭资产与负债的代表性横截面</td></tr>
+          <tr><td>券商数据</td><td>Brokerage data（如 Odean）</td><td>逐笔交易与账户持仓 ⇒ 交易行为</td></tr>
+          <tr><td>「芬兰」数据</td><td>Grinblatt &amp; Keloharju (2001)</td><td>全国范围的持股与交易</td></tr>
+          <tr><td>「瑞典」数据</td><td>Calvet, Campbell &amp; Sodini (2007)</td><td>全国范围，可评估整体分散化程度</td></tr>
+          <tr><td>401(k) 数据</td><td>Choi et al. (2004)；Huberman &amp; Jiang (2006)</td><td>退休账户的默认选项与惰性</td></tr>
+          <tr><td>TAQ 数据</td><td>Trades and Quotes</td><td>高频层面识别散户 vs 机构</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">路线图</h3>
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ Individual investors（个人投资者）</div>
+          <ul>
+            <li><b>资产（退休前）</b>：储蓄不足、不参与、买高卖低、分散化不足、选股业绩、卖出行为、买入行为</li>
+            <li><b>资产（退休后）</b>：年金化不足（under-annuitization）</li>
+            <li><b>负债</b>：按揭选择、再融资、违约</li>
+          </ul>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ Institutional investors（机构投资者）</div>
+          <p><b>平均业绩 Average performance</b>：毛 α 是否大于零？净 α 呢？这两者的差别蕴含了什么？</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ S2 ============ -->
+    <section id="pre-retirement">
+      <h2 class="sec">退休前：五条看得见的行为事实 <span class="badge">Pre-retirement</span></h2>
+
+      <h3 class="sub">事实一：储蓄不足 Under-saving</h3>
+      <div class="box def">
+        <div class="box-title">▸ Fact</div>
+        <p>调查证据表明，很多美国人并没有为退休储蓄足够的钱。课件给的例子：在一项针对某大型美国公司<b>数百名员工</b>的调查里——</p>
+        <ul>
+          <li><strong>三分之二</strong>的人说他们的储蓄率<b>低于理想水平</b>；</li>
+          <li><strong>三分之一</strong>说<b>差不多合适</b>；</li>
+          <li><strong>没有一个人</strong>说自己存得太多。</li>
+          <li>而在那些认为储蓄率太低的人里，<strong>35% 计划在未来提高</strong>——然而<b>几乎没有人真的做到</b>。</li>
+        </ul>
+      </div>
+      <div class="box note">
+        <div class="box-title">▸ 机制连接（Part 3）</div>
+        <p>「计划提高但做不到」是 <strong>(β, δ) 双曲折现</strong>加<b>拖延</b>的现实表现；「提高缴费会痛」则是<b>损失厌恶</b>的表现。这一点直接导向 Part 7 的 <b>Save More Tomorrow</b> 设计——把提缴绑在<b>加薪</b>上，从而绕开「当期到手收入下降」的痛感。</p>
+      </div>
+
+      <h3 class="sub">事实二：不参与 Non-participation</h3>
+      <div class="box key">
+        <div class="box-title">▸ Fact</div>
+        <p><b>不存在摩擦</b>的基础理性模型预测：人们会参与风险资产。但<b>相当大比例</b>的人口（甚至包括富人）<b>根本不持有股票</b>：</p>
+        <ul>
+          <li>2001 年 SCF 数据显示仍有大量家庭零股票（Campbell, 2006）；</li>
+          <li>1984 年，只有 <b>28%</b> 的家庭持有任何股票（Mankiw &amp; Zeldes, 1991）；</li>
+          <li>即使在<b>流动资产超过 10 万美元</b>的家庭中，也只有 <b>48%</b> 持有任何股票。</li>
+        </ul>
+      </div>
+      <ul>
+        <li>参与率与<strong>教育、收入、财富正相关</strong>；</li>
+        <li>在参与者之中，金融资产投入<b>公开股票</b>的比例随财富<b>上升</b>；</li>
+        <li>挑战不只是解释「不参与」，还要解释<b>参与率随时间的上升</b>与<b>跨国差异</b>。</li>
+      </ul>
+
+      <div class="fig" data-fig="participation" data-cap="不参与之谜：大量家庭（甚至包括相当富有的家庭）完全不持有股票。"></div>
+
+      <div class="box def">
+        <div class="box-title">▸ 理性解释：交易成本 / 参与成本</div>
+        <p><em>Transaction costs: a one-time cost of participation, or ongoing costs of participation</em>（Vissing-Jorgensen, 2003）。关键在于：<b>固定成本</b>在组合规模上被摊薄 ⇒ 越富有的人参与成本占资产的比重越低 ⇒ 这同时解释了「参与率与财富正相关」。</p>
+      </div>
+
+      <h3 class="sub">事实三：买高卖低 Buy high, sell low</h3>
+      <div class="box warn">
+        <div class="box-title">▸ Fact</div>
+        <p>有证据显示，某些投资者群体会「<b>高买低卖</b>」——<em>increase exposure to a risky asset class in advance of low returns, and reduce exposure in advance of high returns</em>。</p>
+        <p>经典数字：<strong>共同基金的资金加权平均收益，比时间加权平均收益每年低 1.6%</strong>（Friesen &amp; Sapp, 2007）。这就是「择时能力为负」的直接代价。</p>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 1</span> 为什么「资金加权」会低于「时间加权」</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">A fund earns +50% in year 1 and −50% in year 2. An investor puts in $100 at the start and adds $1,000 at the start of year 2. Compute (a) the annualized time-weighted return (TWR) and (b) the investor's money-weighted return (IRR). Explain why the gap arises.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li><b>TWR</b>（只看组合收益，与资金流无关）：两年总收益 \(1.50\times0.50=0.75\)，即 <b>−25%</b> 累计；年化 \(=\sqrt{0.75}-1\approx-13.4\%\)。</li>
+              <li><b>账户现金流</b>：t=0 投入 100；第一年末这 100 变成 <b>150</b>；此时<b>追加</b> 1,000 ⇒ 第二年初的本金为 <b>1,150</b>。</li>
+              <li>第二年 −50% ⇒ 期末价值 \(1150\times0.50=575\)。</li>
+              <li><b>IRR</b>：解 \(100(1+r)^2+1000(1+r)=575\)。令 \(x=1+r\)：\(100x^2+1000x-575=0\) ⇒ \(x=(-1000+\sqrt{1{,}000{,}000+230{,}000})/200=(-1000+1109.05)/200=0.5453\)。</li>
+              <li>\(r=0.5453-1=-45.5\%\)。<b>资金加权收益 −45.5%</b>，远差于 TWR 的 −13.4%。</li>
+              <li><b>原因</b>：投资者在<b>涨完之后</b>（第一年 +50% 后）才大举加仓，第二年的下跌便作用在<b>更大的本金</b>上。这就是教科书式的高买。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> (a) TWR: (1.50 × 0.50)^0.5 − 1 = −13.4% per year. (b) IRR ≈ −45.5% per year. The gap arises because the investor adds capital right after a 50% gain, so the subsequent −50% applies to a much larger base — a classic buy-high effect.<br><strong>中文：</strong>(a) 时间加权年化 −13.4%；(b) 资金加权 −45.5%。差额来自「涨完才加仓」导致下跌作用在更大本金上。</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub">事实四：分散化不足 Under-diversification</h3>
+      <p>无摩擦的基础理性模型预测人们会持有<b>分散化的组合</b>；但实证上许多家庭明显<b>分散化不足</b>。课件列出<strong>四种类型</strong>：</p>
+
+      <div class="fig" data-fig="under_diversification" data-cap="分散化不足的四种类型，各有一个代表性数字。"></div>
+
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>类型</th><th>English</th><th>事实</th></tr></thead>
+        <tbody>
+          <tr><td><b>本土偏好</b></td><td>Home bias</td><td>1989 年美国、英国、日本的本国股票占股权比例分别为 <b>94%、82%、98%</b>（French &amp; Poterba, 1991）</td></tr>
+          <tr><td><b>本地偏好</b></td><td>Local bias</td><td>Ivković &amp; Weisbenner (2005)：典型投资者的组合里 <b>31%</b> 的公司在 250 英里以内（全市场只有 12%）；组合的「平均距离」为 917 英里，而全部股票的平均距离为 1225 英里（另见 Grinblatt &amp; Keloharju, 2001）</td></tr>
+          <tr><td><b>集中持股</b></td><td>Concentrated holdings</td><td>Curcuru, Heaton, Lucas &amp; Moore (2004) 把「持有少于 10 只股票且占股权敞口 50% 以上」定义为未分散 ⇒ 1989 年约 <b>30%</b>，2001 年降至 <b>14%</b></td></tr>
+          <tr><td><b>本公司重仓</b></td><td>Own-company stock</td><td>Benartzi (2001) 研究了 S&amp;P500 中数据充分的 154 家公司：90 家「现金匹配」、64 家「股票匹配」；全部计划中人们把自主缴费的 <b>23%</b> 投入本公司股票——现金匹配计划 <b>18%</b>，股票匹配计划 <b>29%</b></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 这不是一个小问题吗？Calvet, Campbell &amp; Sodini (2007)</div>
+        <p>他们用<b>瑞典</b>的详尽数据考察<b>整体人口</b>：把每个家庭的组合画在<b>均值–方差图</b>上，看离有效前沿有多远（期望收益用<b>全球 CAPM</b>，方差协方差用历史数据）。结论：<b>大多数家庭分散化程度尚可，但至少有 10% 的人口处于危险的分散化不足状态</b>。</p>
+      </div>
+
+      <h3 class="sub">事实五：选股业绩 Stock-picking performance</h3>
+      <div class="box def">
+        <div class="box-title">▸ Barber &amp; Odean (2000)</div>
+        <p>研究 1991–1996 年间通过一家大型折扣券商交易的 <strong>66,000 个家庭</strong>。发现典型家庭的<b>净（扣除交易成本后）收益</b>低于一系列基准：家庭年初组合、市值加权市场收益、CAPM 基准、三因子基准。这属于 Barber/Odean 的一个<b>总主题：个人投资者是不成熟的投资者（unsophisticated investors）</b>。</p>
+      </div>
+      <ul>
+        <li>在该数据中，跑输主要来自<b>交易成本</b>；</li>
+        <li>但其他研究表明，即使在<b>扣除成本之前</b>，个人也因<b>糟糕的选股</b>而跑输（Odean, 1999；Barber et al., 2009）；</li>
+        <li>选股业绩存在<b>显著的横截面差异</b>：<b>认知能力越高者表现越好</b>（Korniotis &amp; Kumar, 2013）——尽管<b>即便是他们也仅仅刚刚覆盖成本</b>。</li>
+      </ul>
+    </section>
+
+    <!-- ============ S3 ============ -->
+    <section id="selling">
+      <h2 class="sec">卖出行为与处置效应 <span class="badge">Disposition Effect</span></h2>
+
+      <h3 class="sub">Odean (1998) 的识别策略</h3>
+      <p>要看什么决定了投资者卖出风险资产的倾向，做法是：在<b>任何一个投资者卖出组合中某只股票的当天</b>，把他组合里的每只股票分进四个桶：</p>
+
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>桶</th><th>English</th><th>含义</th></tr></thead>
+        <tbody>
+          <tr><td>已实现盈利</td><td>Realized gain</td><td>被卖出且卖价高于买入价</td></tr>
+          <tr><td>账面盈利</td><td>Paper gain</td><td>未卖出但浮盈</td></tr>
+          <tr><td>已实现亏损</td><td>Realized loss</td><td>被卖出且卖价低于买入价</td></tr>
+          <tr><td>账面亏损</td><td>Paper loss</td><td>未卖出但浮亏</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="formula hi">
+        \[\text{PGR}=\frac{\text{Realized gains}}{\text{Realized gains}+\text{Paper gains}},\qquad
+        \text{PLR}=\frac{\text{Realized losses}}{\text{Realized losses}+\text{Paper losses}}\]
+        <div class="fnote">PGR：<b>已实现盈利比例</b>（proportion of gains realized）；PLR：<b>已实现亏损比例</b>（proportion of losses realized）。做法是<b>把所有投资者、全样本</b>的桶计数加总，再算这两个比例。</div>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">▸ Definition: Disposition Effect（处置效应）</div>
+        <p>投资者卖出<b>盈利股</b>的倾向显著大于卖出<b>亏损股</b>的倾向，其操作化定义就是：<strong>PGR &gt; PLR</strong>。</p>
+      </div>
+
+      <div class="fig" data-fig="disposition" data-cap="处置效应：盈利被实现的比例显著高于亏损被实现的比例。"></div>
+
+      <div class="box note">
+        <div class="box-title">▸ 哪些解释被排除了</div>
+        <p>可能的竞争性解释包括：<b>信息、流动性、税收、再平衡</b>——Odean 的证据表明这些都不足以解释该效应。此外：</p>
+        <ul>
+          <li>处置效应<b>存在于所有主要的个人投资者交易数据集</b>中；</li>
+          <li>它对<b>较不成熟的投资者</b>更强：更成熟的个人表现得更弱（Dhar &amp; Zhu, 2006）；共同基金经理也有此效应，但<b>弱于个人</b>（Frazzini, 2006）；</li>
+          <li>家庭在<b>房地产</b>市场同样表现出处置效应（Genesove &amp; Mayer, 2001）。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">近年研究给出的更丰富图景</h3>
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ V 型关系</div>
+          <p>卖出倾向与「买入以来的收益」之间呈 <b>V 字形</b>关系（Ben-David &amp; Hirshleifer, 2012；An &amp; Argyle, 2014）——<b>大幅盈利</b>与<b>大幅亏损</b>都更容易被卖出。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ 排名效应 Rank effect</div>
+          <p>卖出倾向还取决于该股票在投资者组合中的<b>排名</b>（Hartzmark, 2015）——组合中<b>表现最好与最差</b>的那几只更容易被卖出。</p>
+        </div>
+      </div>
+
+      <h3 class="sub">买入行为 Buying behavior</h3>
+      <div class="box def">
+        <div class="box-title">▸ Barber &amp; Odean (2009)</div>
+        <p>个人的<b>买入倾向</b>是过去收益的<b>正函数</b>——即<b>追涨</b>。也就是说：个人的<b>买入</b>与<b>卖出</b>倾向<b>都正向</b>依赖于过去的收益。<b>注意这与 Part 3 的外推信念 (representativeness / extrapolation) 直接对应</b>，也是 Part 6 模型的输入。</p>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 2</span> 算一遍 PGR 与 PLR</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">On days when investors sell something, a sample shows: realized gains 420, paper gains 2,180, realized losses 190, paper losses 1,610. Compute PGR and PLR and state whether the disposition effect is present.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>\(\text{PGR}=\dfrac{420}{420+2180}=\dfrac{420}{2600}=0.1615\approx16.2\%\)。</li>
+              <li>\(\text{PLR}=\dfrac{190}{190+1610}=\dfrac{190}{1800}=0.1056\approx10.6\%\)。</li>
+              <li>因为 PGR (16.2%) <b>&gt;</b> PLR (10.6%) ⇒ <b>存在处置效应</b>。</li>
+              <li>差值为 5.6 个百分点，与该文献的典型规模相当（Odean 1998 报告的差距更大，但同数量级）。</li>
+              <li>注意 S<b>不要</b>把 PGR 读成「16% 的盈利被卖出」以外的东西；它是<b>条件比例</b>——只在投资者确有卖出行为的日子里才计数。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> PGR = 420/2,600 ≈ 16.2%; PLR = 190/1,800 ≈ 10.6%. Since PGR &gt; PLR, the disposition effect is present.<br><strong>中文：</strong>PGR ≈ 16.2%，PLR ≈ 10.6%，PGR &gt; PLR ⇒ 存在处置效应。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ S3.5 Rank Effect (supplementary) ============ -->
+    <section id="rank-effect">
+      <h2 class="sec">组合排序效应（Rank Effect）：既卖最好，也卖最差 <span class="badge">Hartzmark 2017 · 补充材料</span></h2>
+      <p class="lede">补充阅读 <em>Hartzmark (2017), “The Worst, the Best, Ignoring All the Rest: The Rank Effect and Trading Behavior”</em>。它把行为金融对交易行为的研究从「逐只股票」提升到「组合层面」，并直接挑战「投资者逐只独立评估」的窄框架假设。</p>
+
+      <h3 class="sub">一、什么是 Rank Effect（定义）</h3>
+      <div class="box def">
+        <div class="box-title">▸ Stylized Fact</div>
+        <p>投资者更可能<strong>卖出</strong>自己组合里<strong>排名极端</strong>的持仓（按<strong>自买入以来的收益率</strong>排序）——无论是<strong>最好（Best，收益率最高）</strong>还是<strong>最差（Worst，收益率最低）</strong>；<strong>中间排名</strong>的持仓最不容易被卖出。卖出概率随排名呈 <strong>U 形</strong>。</p>
+      </div>
+      <div class="box note">
+        <div class="box-title">▸ 与处置效应的关键区别</div>
+        <p>处置效应 = 卖盈 &gt; 卖亏（realize winners, hold losers）。Rank Effect <strong>还包含卖出极端亏损</strong>，方向与处置效应相反。在控制处置效应后，<strong>绝对收益的影响消失，排名才是真正的驱动</strong>。样本中 Rank Effect 影响 2.2–3.7% 的组合卖出，比处置效应（约 1.7%）更强。</p>
+      </div>
+
+      <h3 class="sub">二、实证证据（Univariate Results）</h3>
+      <div class="box key">
+        <div class="box-title">▸ 数据来源</div>
+        <ul>
+          <li><strong>个人投资者</strong>：美国大型折扣券商 1991–1996，<strong>10,619</strong> 个账户，平均每个组合 <strong>11.1</strong> 只股票（零售交易最权威的数据源）；</li>
+          <li><strong>共同基金</strong>：Thomson-Reuters 持仓 + CRSP 1990–2010，<strong>4,730</strong> 只基金，平均 <strong>120</strong> 只股票（SEC 公开数据）。</li>
+        </ul>
+      </div>
+      <div class="tablewrap">
+        <table class="data">
+          <thead><tr><th>组合内排名 Rank</th><th class="num">个人投资者 卖出概率</th><th class="num">共同基金 卖出概率</th></tr></thead>
+          <tbody>
+            <tr><td>Best（最好）</td><td class="num">24.7%</td><td class="num">50.3%</td></tr>
+            <tr><td>Middle（中间）</td><td class="num">8.4%</td><td class="num">38.4%</td></tr>
+            <tr><td>Worst（最差）</td><td class="num">16.9%</td><td class="num">57.6%</td></tr>
+            <tr class="total"><td>Best − Middle</td><td class="num">+16.3% (t=28.36)</td><td class="num">+11.9% (t=15.36)</td></tr>
+            <tr class="total"><td>Worst − Middle</td><td class="num">+8.5% (t=15.20)</td><td class="num">+19.1% (t=20.97)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub">三、稳健性：排除其他解释</h3>
+      <ul>
+        <li><strong>排除公司层面信息</strong>：同一只股票、同一天——在 A 的组合里排极端、在 B 的组合里排中间 → 极端组仍被卖得更多（个人 +10.2%/+6.3%，基金 +7.4%/+12.6%）。说明不是公司特定消息驱动。</li>
+        <li><strong>控制处置效应</strong>（加盈亏幅度、持有期、波动率控制）→ Rank Effect 反而<strong>增强</strong>（个人 Best +20.5%、Worst +14.7%），绝对收益效应消失。</li>
+        <li><strong>无税收偏差</strong>：免税账户（IRA/Keogh）与应税账户几乎一样（Best 19.4% vs 20.5%），且逐月都存在 → 不是年末避税性卖出（tax-loss selling）。</li>
+      </ul>
+
+      <h3 class="sub">四、机制：显著性（Salience）与考虑集（Consideration Set）</h3>
+      <div class="box def">
+        <div class="box-title">▸ Core Mechanism</div>
+        <p>当投资者<strong>联合评估</strong>组合（看对账单、看账户面板）时，<strong>极端排名的持仓更抓注意力（salient）</strong>——源于联合评估让人聚焦极端差异（Bazerman et al., 1992；Kahneman, 2003）与排名依赖效用（rank-dependent utility, Tversky &amp; Kahneman, 1992）。投资者先用<strong>考虑集（consideration set）</strong>启发式把候选缩小，<strong>极端排名的持仓更可能进入考虑集</strong>，于是卖出概率更高。</p>
+      </div>
+      <div class="box note">
+        <div class="box-title">▾ 字母顺序的“干净检验”</div>
+        <p>投资组合常按字母顺序排列，而字母顺序与经济基本面<strong>正交</strong>。同一只股票、同一天：在某人组合里排字母<strong>首位或末位</strong> → 卖出概率<strong>+6.1%</strong>（两端都高）。这说明<strong>排序本身（不光是收益排名）制造显著性</strong>，支持心理机制而非基本面解释。</p>
+      </div>
+
+      <h3 class="sub">五、对资产定价与市场的含义</h3>
+      <div class="box warn">
+        <div class="box-title">▸ 挑战窄框架</div>
+        <p>传统模型假设投资者<strong>逐只独立</strong>评估股票（如 realization utility, Barberis &amp; Xiong, 2012）。Rank Effect 表明：<strong>参考点取决于组合内的相对表现，而非绝对盈亏</strong>。例：即使组合里<strong>所有持仓都在亏损</strong>，投资者仍会卖出排名最好的那只（+4.5% vs 中间）。</p>
+      </div>
+      <ul>
+        <li><strong>解释交易量之谜</strong>：Milgrom &amp; Stokey (1982) 质疑——理性投资者不该基于公共信息交易，为何成交量这么高？Rank Effect 给出微观基础：同一只股票、同一信息，因组合排名不同而交易行为不同。</li>
+        <li><strong>价格影响</strong>：极端排名股票被过度交易，可能产生短期价格偏离——卖出最好（动量）会降低后续收益，卖出最差（反转）会提高后续收益。</li>
+        <li><strong>对基金</strong>：既有显著性偏差，也有<strong>橱窗装饰（window dressing）</strong>——基金卖出最差排名以掩盖差业绩（最差清仓率是中间的 <strong>2 倍</strong>）。越不老练的投资者越偏向卖最好；越老练的呈<strong>对称 Rank Effect</strong>（卖好也卖差，像基金）。</li>
+      </ul>
+      <div class="box tip">
+        <div class="box-title">▸ 本节要点</div>
+        <p>投资者卖股票不是看「这只赚没赚」，而是看「它在我的组合里排第几」——<strong>极端的（最好和最差）最容易卖</strong>。这是比处置效应影响更大的<strong>组合层面</strong>行为偏误，根源是<strong>显著性启发式</strong>，并挑战了「逐只独立评估」的窄框架假设。</p>
+      </div>
+    </section>
+
+    <!-- ============ S3b ============ -->
+    <section id="selling-fast">
+      <h2 class="sec">机构投资者也会犯错：Selling Fast and Buying Slow <span class="badge">Akepanidtaworn et al. · 补充材料 2</span></h2>
+
+      <div class="box def">
+        <div class="box-title">研究设定</div>
+        <p>Akepanidtaworn, Di Mascio, Imas &amp; Schmidt 追踪了 <strong>783 个机构投资组合</strong>（2000–2016 年），平均 AUM 约 <strong>5.73 亿美元</strong>，共约 <strong>440 万笔交易</strong>。核心问题：以投资为职业、有整套研究流程的机构投资者，买卖两端是否同样老练？</p>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">核心发现：买有技能，卖没有</div>
+        <ul>
+          <li><strong>买入端有真技能</strong>：机构买入的股票，相对「随机买入」反事实每年跑赢 <strong>+116 bps</strong>——选股能力确实存在。</li>
+          <li><strong>卖出端系统性跑输</strong>：机构卖出的股票，相对「随机卖出」反事实每年<strong>跑输 −80 bps</strong>（factor-neutral 之后依然成立）。</li>
+          <li>结论：同一个组合经理，<strong>买的时候像专家，卖的时候像散户</strong>——注意力在买入端是稀缺的「搜索资源」，在卖出端却退化成快速启发式。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">机制：注意力的不对称 + 两阶段卖出</h3>
+      <ol class="steps">
+        <li><strong>注意力不对称</strong>：买入是「主动寻找下一个好主意」，会投入完整的研究流程；卖出则被当成清仓杂务，用启发式快速完成。</li>
+        <li><strong>阶段一：考虑集只装极端仓位</strong>——收益排名处于组合<strong>前/后 5%</strong> 的仓位，进入卖出考虑集的概率比中间仓位高约 <strong>50%</strong>；中间仓位几乎不会被考虑。</li>
+        <li><strong>阶段二：在考虑集里卖「被忽视」的那只</strong>——机构倾向卖出 <strong>active share 最低</strong>（与基准最像、最没有存在感）的仓位，而这些被卖的「被忽视」仓位之后每年跑输 <strong>−162 bps</strong>——卖错了。</li>
+      </ol>
+
+      <h3 class="sub">异质性与边界条件</h3>
+      <ul>
+        <li><strong>风格异质性</strong>：基本面型（value/fundamental）经理卖出端最差；动量型（momentum）经理卖出端表现最好——动量信号天然帮他们把注意力引向该卖的股票。</li>
+        <li><strong>大额卖出无此现象</strong>：足以影响价格的大额卖出会触发更正式的决策流程，启发式被绕过。</li>
+        <li><strong>财报日效应</strong>：在<strong>盈余公告日</strong>附近的卖出质量明显改善约 <strong>154 bps</strong>——强制信息披露把注意力拉回卖出决策，说明「注意力」正是病灶。</li>
+      </ul>
+
+      <div class="box theory">
+        <div class="box-title">可交易策略与理论贡献</div>
+        <ul>
+          <li><strong>策略</strong>：买入「被 PM 卖出」的股票、做空「被 PM 继续持有」的股票，组合 <strong>Sharpe = 1.49</strong>——机构的卖出错误本身成了可套利的信号。</li>
+          <li><strong>理论贡献一</strong>：把 Barber &amp; Odean 的「注意力驱动买入」两阶段模型扩展到<strong>卖出端</strong>——买卖都是两阶段，但卖出端的考虑集构造和最终选择都更粗糙。</li>
+          <li><strong>理论贡献二</strong>：为 Gagnon-Bartsch 的有限注意力通道（channel of limited attention）和 Schwartzstein 的「学习失败」提供机构层面的证据——<strong>专家也会系统性犯错，且错在注意力分配而非能力</strong>。</li>
+        </ul>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 本节要点</div>
+        <p>机构投资者的技能是<strong>不对称</strong>的：买入经过研究流程（+116 bps），卖出依赖「极端才进入考虑集 → 卖 active share 最低的」启发式（−80 bps）。注意力是稀缺资源，把它花在买入上，卖出就成了短板——这与 Rank Effect 的「显著性进入考虑集」是同一套心理学。</p>
+      </div>
+    </section>
+
+    <!-- ============ S4 ============ -->
+    <section id="post">
+      <h2 class="sec">退休后、负债侧与机构投资者 <span class="badge">Rest of the Map</span></h2>
+
+      <h3 class="sub">年金化不足 Under-annuitization</h3>
+      <div class="box key">
+        <div class="box-title">▸ Fact</div>
+        <p>基础的理性无摩擦模型预测：人们应当在退休时把财富的 <strong>100% 年金化（annuitize）</strong>（Yaari, 1965）。但<b>现实中极少有人这么做</b>。理性解释包括：遗赠动机、年金市场的逆向选择、以及对年金本身的框架效应（把年金看成"输了就一无所有"的赌博）。</p>
+      </div>
+
+      <h3 class="sub">负债 Liabilities</h3>
+      <ul>
+        <li>家庭债务随时间大幅上升：从 <strong>1970 年占 GDP 的 50%</strong> 上升到 <strong>2012 年的 100%</strong>；</li>
+        <li>家庭债务<b>几乎全部是按揭债务</b>；</li>
+        <li>可能从行为方法中获益的问题：<b>家庭累积的债务规模</b>、<b>按揭选择（ARM vs. FRM）</b>、<b>再融资行为</b>、<b>违约决策</b>、以及<b>同时存在未偿债务与流动资产/退休资产</b>的现象。</li>
+      </ul>
+      <div class="box note">
+        <div class="box-title">▸ 最后一项为什么值得注意</div>
+        <p>一边欠着高息信用卡/助学贷款，一边在低收益的活期账户里留着现金，甚至一边不参与股市——这是<b>窄框架</b>在负债侧的体现：<b>没有把资产与负债合并到同一个资产负债表上评估</b>。</p>
+      </div>
+
+      <h3 class="sub">机构投资者：平均业绩</h3>
+      <div class="box def">
+        <div class="box-title">▸ 无摩擦模型 + 有技能经理 + 理性投资者的预测</div>
+        <p>共同基金的<strong>毛 α（gross alpha）平均为正</strong>，而<strong>净 α（net alpha）平均为零</strong>。实践上共同基金的毛 α 似乎是正的，但<b>并不显著</b>。</p>
+      </div>
+      <p>这是否意味着<b>不存在错价</b>？参见 <strong>Rubinstein (2001)</strong>——在一个<b>没有错价</b>的市场里，基金之间会因为<b>投资需求、信息处理成本、税负、交易习惯</b>等差异而达到某种均衡，使得毛 α 恰好被成本吃掉。此外，大量文献研究了其他中介投资者的毛（与净）收益：<b>对冲基金、私募股权基金</b>等。</p>
+
+      <div class="box warn">
+        <div class="box-title">▸ 连接回 Part 1</div>
+        <p>这个(frame)与 Part 1 的<b>替代检验</b>直接对接：与其检验价格是否偏离某个模型，不如直接问「<b>是否有人能持续赚到 α</b>」。美国的混合结果与中国的显著 α（Chi, 2013），正是这条文献的两面。</p>
+      </div>
+    </section>
+
+    <!-- ============ S5 ============ -->
+    <!-- ============ Concept cheat-sheet ============ -->
+    <section id="concepts">
+      <h2 class="sec">概念考点速查：双语解释 + 例子 <span class="badge">Concept Cheat-Sheet</span></h2>
+      <p class="lede">下列每个投资者行为概念/假说都给出<b>英文解释、中文解释与佐证例子</b>，专供「解释类（explanation）」考题复习。点击展开。</p>
+
+      <details class="concept" data-concept="disposition-effect">
+        <summary class="concept-bar">
+          <span class="concept-en">The Disposition Effect</span>
+          <span class="concept-cn">处置效应</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Investors sell winners too early and hold losers too long, contrary to tax-minimizing and rational behavior (Shefrin &amp; Statman 1985; Odean 1998). Odean identified it from account data using "paper gain/loss" and "realized gain/loss" on the trade date, defining <b>PGR</b> (proportion of gains realized) and <b>PLR</b> (proportion of losses realized); empirically PGR &gt; PLR. Explained by loss aversion + mental accounting.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>投资者过早卖出赢家、过久持有输家，违背避税与理性行为（Shefrin &amp; Statman 1985；Odean 1998）。Odean 用账户数据，以交易日的"账面盈亏"与"实现盈亏"定义 <b>PGR</b>（实现盈利比例）与 <b>PLR</b>（实现亏损比例）；实证中 PGR &gt; PLR。由损失厌恶+心理账户解释。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Of 12 stocks (7 winners, 5 losers), the investor sells 5 of 7 winners but only 1 of 5 losers → PGR = 5/7 ≈ 0.71, PLR = 1/5 = 0.20, disposition effect = 0.51. <b>中文：</b>12 只股票（7 赢 5 输），卖出 7 赢家中的 5 只、5 输家中的 1 只→PGR=5/7≈0.71、PLR=1/5=0.20、处置效应=0.51。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="rank-effect">
+        <summary class="concept-bar">
+          <span class="concept-en">The Rank Effect</span>
+          <span class="concept-cn">组合排序效应</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Investors are more likely to <b>sell</b> the most <b>extreme-ranked</b> positions in their portfolio (ranked by return since purchase) — both the <b>best</b> (highest return) and the <b>worst</b> (lowest return) — while middle-ranked positions are least likely to be sold. Sale probability is <b>U-shaped</b> in rank (Hartzmark 2017). It is <b>distinct from</b> the disposition effect, which only predicts selling winners; the rank effect also includes selling extreme losers, and persists after controlling for gains/losses.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>投资者更可能卖出组合里<strong>排名极端</strong>的持仓（按自买入以来收益率排序）——无论<strong>最好</strong>还是<strong>最差</strong>，中间的持仓最不容易卖。卖出概率随排名呈 <strong>U 形</strong>（Hartzmark, 2017）。它<strong>区别于</strong>处置效应：处置效应只预测卖赢家，而排序效应还包含卖极端输家，且在控制盈亏后仍成立。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Among individual investors, sale probability is 24.7% for the best-ranked, 16.9% for the worst, but only 8.4% for the middle; the same U-shape holds for mutual funds (50.3% / 57.6% / 38.4%). A clean test: a stock ranked first or last <em>alphabetically</em> in a portfolio is +6.1% more likely to be sold, even though alphabetical order is orthogonal to fundamentals. <b>中文：</b>个人投资者中，最好/最差/中间排名的卖出概率分别为 24.7%/16.9%/8.4%（基金为 50.3%/57.6%/38.4%）。字母首/末位的股票也被多卖 6.1%，而字母顺序与经济基本面无关，说明是排序制造的显著性。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="buy-high-sell-low">
+        <summary class="concept-bar">
+          <span class="concept-en">Buy High, Sell Low</span>
+          <span class="concept-cn">买高卖低</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Individual investors systematically buy stocks that have recently performed well and sell those that have performed poorly (Odean 1999; Barber &amp; Odean 2000, 2011). This is the opposite of "buy low, sell high" and is linked to attention and the disposition effect.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>个人投资者系统性地买入近期表现好的股票、卖出近期表现差的（Odean 1999；Barber &amp; Odean 2000, 2011）。这与"低买高卖"相反，与注意力和处置效应相关。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Retail order flow chases last month's top performers, then underperforms as those stocks mean-revert. <b>中文：</b>散户资金追逐上月涨幅最大的股票，随后在这些股票均值回归时跑输。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="under-diversification">
+        <summary class="concept-bar">
+          <span class="concept-en">Under-Diversification &amp; Home Bias</span>
+          <span class="concept-cn">分散化不足与本土偏好</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Households hold too few stocks, concentrate in employer stock and domestic stock (home bias), and under-use low-cost index funds. This leaves them exposed to idiosyncratic risk that could be diversified away for free.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>家庭持股数量过少、集中于雇主股票与本国股票（本土偏好），且较少使用低成本指数基金。这使他们暴露在可被免费分散的特质风险中。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">An employee holding both her salary risk and her 401(k) in company stock is doubly exposed to one firm's failure. <b>中文：</b>一名员工既承担工资风险、又把 401(k) 押在本公司股票上，对单一公司失败是双重暴露。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="under-saving">
+        <summary class="concept-bar">
+          <span class="concept-en">Under-Saving &amp; Non-Participation</span>
+          <span class="concept-cn">储蓄不足与不参与</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Many people save too little for retirement and many eligible workers do not participate in retirement plans at all (even when there is an employer match — "free money"). Explained by present bias / hyperbolic discounting and inertia.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>许多人退休储蓄不足，许多合格员工根本不参与退休计划（即便有雇主配比这等"白给的钱"）。由现期偏差/双曲线折现与惰性解释。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Auto-enrollment (a nudge) dramatically raises participation vs. opt-in, showing inertia — not lack of desire — was the barrier. <b>中文：</b>自动 enrolment（助推）相比"主动加入"大幅提高了参与率，说明障碍是惰性而非意愿缺失。</div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="exercises" data-exgroup>
+      <h2 class="sec">Part 5 练习 <span class="badge">Exercises</span></h2>
+      <p class="lede">重点是三个可算的量：<b>PGR / PLR</b>、<b>资金加权 vs. 时间加权</b>、以及<b>分散化不足带来的多余波动</b>；另外准备了几道把事实与 Part 3 机制接起来的解释题。</p>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> The cost of under-diversification</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Assume each stock has volatility 40% and any pair has correlation 0.25. An investor holds an equally weighted portfolio of N stocks. Using \(\sigma_P^2=\sigma^2\bigl[\tfrac1N+(1-\tfrac1N)\rho\bigr]\), compute portfolio volatility for N = 1, 4, 10 and 40. How much idiosyncratic risk remains at N = 10, expressed as a fraction of market-type risk (take the N → ∞ limit)?</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>把组合方差拆成「分散的部分」与「无法分散的部分」，后者就是 <b>ρ σ²</b>。这是评估「少于 10 只股票有多危险」的直接 tool。</p></div>
+            <ol class="steps">
+              <li>\(\sigma^2=0.40^2=0.16\)；\(\rho=0.25\) ⇒ 系统性部分 \(\rho\sigma^2=0.25\times0.16=0.04\)（标准差 20%）。</li>
+              <li>N=1：\(\sigma_P^2=0.16\) ⇒ \(\sigma_P=40.0\%\)。</li>
+              <li>N=4：\(\sigma_P^2=0.16[0.25+0.75\times0.25]=0.16\times0.4375=0.07\) ⇒ \(\sigma_P\approx26.5\%\)。</li>
+              <li>N=10：\(\sigma_P^2=0.16[0.10+0.90\times0.25]=0.16\times0.325=0.052\) ⇒ \(\sigma_P\approx22.8\%\)。</li>
+              <li>N=40：\(0.16[0.025+0.975\times0.25]=0.16\times0.26875=0.043\) ⇒ \(\sigma_P\approx20.7\%\)。</li>
+              <li>N → ∞（系统性极限）：\(\sqrt{0.04}=20.0\%\)。<b>N=10 时组合波动 22.8%，相对理论最低 20.0% 仍高出 14% 的相对水平（≈2.8 个百分点）</b>。</li>
+              <li>解读：从 N=1 到 N=4 已经拿掉了绝大部分可分散风险；但<b>少于 10 只股票时</b>，仍然承担了显著的特质风险，却<b>没有任何</b>与之对应的补偿 ⇒ 这正是 CCS (2007) 说「至少 10% 人口处于危险状态」的统计学依据。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> N = 1: 40.0%; N = 4: 26.5%; N = 10: 22.8%; N = 40: 20.7%; N → ∞: 20.0%. At N = 10 volatility is still about 2.8pp above the undiversifiable minimum.<br><strong>中文：</strong>N=1/4/10/40 对应波动 40.0%/26.5%/22.8%/20.7%，理论最低 20.0%。N=10 时仍高出约 2.8 个百分点。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Participation and fixed costs</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Assume participating costs $200 per year regardless of how much is invested, and the expected equity premium is 4%. (a) Compute the net excess return, net of costs, for investors with financial assets of $5,000, $25,000 and $200,000. (b) Explain how this accounts for the fact that participation rises with wealth, even though even wealthy households often stay out.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>思想是<b>固定成本在规模上被摊薄</b>——这是 Vissing-Jorgensen (2003) 的核心。</p></div>
+            <ol class="steps">
+              <li>(a) $5,000：成本 = 200/5000 = <b>4.0%</b> ⇒ 净超额 = 4% − 4% = <b>0%</b>。</li>
+              <li>$25,000：成本 = 200/25000 = <b>0.8%</b> ⇒ 净超额 = <b>3.2%</b>。</li>
+              <li>$200,000：成本 = 200/200000 = <b>0.1%</b> ⇒ 净超额 = <b>3.9%</b>。</li>
+              <li>(b) 含义：<b>越富有的人</b>参与成本占资产的比重越低 ⇒ 参与率随财富<b>上升</b>，这与 SCF 的证据一致。</li>
+              <li>但它解释不了全部：流动资产 <b>&gt; 10 万美元</b>的家庭里也只有约 <b>48%</b> 持有股票 ⇒ 必须引入<b>行为因素</b>（模糊厌恶、信任缺失、以及胜任感不足）或<b>更高的隐性成本</b>（认知时间成本）。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Net excess returns: 0% ($5k), 3.2% ($25k), 3.9% ($200k). (b) Fixed costs are amortised over larger portfolios, so participation rises with wealth; but since even wealthy households often stay out, behavioural frictions (ambiguity, trust, cognitive costs) must also matter.<br><strong>中文：</strong>(a) 0%、3.2%、3.9%；(b) 固定成本随规模被摊薄 ⇒ 参与率随财富上升，但仍需行为因素解释富户不参与。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Explaining the disposition effect <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Odean (1998) finds that PGR exceeds PLR. Discuss: (a) how prospect theory predicts this pattern; (b) why information-based and tax-based explanations are rejected by the empirical design; (c) one additional prediction you would test with the same four-bucket framework.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>把 Part 3 的<b>损失厌恶 + 窄框架 + 参考点</b>落到具体的<b>卖出决策</b>上。</p></div>
+            <ol class="steps">
+              <li><b>(a) PT 的预测</b>：以<b>买入价</b>为参考点 ⇒ 卖出亏损股就是<b>实现一次损失</b>，而损失区的价值函数更陡（λ ≈ 2.25）⇒ 实现亏损格外痛苦 ⇒ <b>不愿割肉</b>；反之卖出盈利股是<b>实现一次收益</b>，凹函数下确定性收益更有吸引力 ⇒ 急于落袋。合起来 ⇒ <b>PGR &gt; PLR</b>。（可再补一句：<b>边际递减敏感度</b>还预测，在损失区投资者会变得<b>风险寻求</b>——只要有一线希望回本，就愿意继续持有。）</li>
+              <li><b>(b) 为什么排除</b>：①<b>信息</b>解释预测卖出后<b>表现差异</b>——但被卖出的<b>盈利股后续反而表现更好</b>（Odean 1998），方向不对；②<b>流动性</b>解释预测卖出与盈亏系统相关之外的原因；③<b>税收</b>解释预测<b>12 月</b>会更愿意<b>卖出亏损</b>（税损收割），而实际数据显示税损收割弱得惊人；④<b>再平衡</b>解释预测卖出取决于<b>权重偏离</b>，而 PGR/PLR 是在控制了多个维度后仍显著的。</li>
+              <li><b>(c) 额外推论</b>：在同一个四桶框架里，可以检验①<b>V 型关系</b>（Ben-David &amp; Hirshleifer 2012：大幅亏损也会被卖）；②<b>rank 效应</b>（Hartzmark 2015：组合中最极端排名的股票更容易被卖）；③更成熟的投资者 PGR−PLR 更小（Dhar &amp; Zhu 2006）；④<b>房地产</b>同样存在（Genesove &amp; Mayer 2001）。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) With the purchase price as the reference point, realising a loss is disproportionately painful while the concavity over gains makes taking a sure win attractive, so PGR &gt; PLR. (b) Information is rejected because sold winners subsequently outperform; tax-loss selling should concentrate in December but is remarkably weak; rebalancing predicts sales driven by weight deviations, not by gains/losses. (c) Test the V-shape in realised returns, the portfolio-rank effect, or heterogeneity by investor sophistication.<br><strong>中文：</strong>(a) 损失厌恶 + 参考点 + 收益区凹性；(b) 信息与税收方向都不对；(c) 检验 V 型、排名效应与投资者成熟度差异。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Which fact is illustrated? <span class="kbd">概念</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Match each episode to the individual-investor fact it illustrates. (a) A household keeps 90% of its equity portfolio in domestic shares. (b) A survey shows two-thirds of employees say they save too little, yet few of those who planned to raise saving actually do. (c) Fund investors' dollar-weighted return is about 1.6% per year below the time-weighted return. (d) A retiree holds no annuities despite having no bequest motive. (e) Investors increase purchases of a stock after it has risen.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>掌握<b>事实清单 → Part 3 机制</b>的双向索引，是本 Part 的最低要求。</p></div>
+            <ol class="steps">
+              <li>(a) <b>分散化不足：本土偏好（home bias）</b>——French &amp; Poterba (1991)。</li>
+              <li>(b) <b>储蓄不足（under-saving）</b>——计划与执行的落差对应<b>双曲折现</b>与拖延。</li>
+              <li>(c) <b>买高卖低（buy high, sell low）</b>——Friesen &amp; Sapp (2007)。</li>
+              <li>(d) <b>年金化不足（under-annuitization）</b>——Yaari (1965) 的反面。</li>
+              <li>(e) <b>买入行为 / 外推信念</b>——Barber &amp; Odean (2009)。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Under-diversification: home bias. (b) Under-saving. (c) Buying high and selling low. (d) Under-annuitization. (e) Buying behaviour / extrapolative beliefs.<br><strong>中文：</strong>(a) 本土偏好；(b) 储蓄不足；(c) 买高卖低；(d) 年金化不足；(e) 追涨的买入行为。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Scenario: fixing the retirement plan <span class="kbd">拓展</span> <span class="kbd">场景</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">A company's 401(k) plan records show: only 62% of eligible employees are enrolled, the median contribution rate is 3%, most employees never change their allocation after joining, and about 20% of the portfolio sits in own-company stock. Using behavioural findings, diagnose each problem and propose one concrete design change for each.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这道场景题的作用是<b>从 Part 5 的事实走向 Part 7 的规范性设计</b>——记住这个「事实 → 设计」的映射，写作open 题很实用。</p></div>
+            <ol class="steps">
+              <li><b>问题 1：只有 62% 参保</b> —— 诊断：<b>现状偏差（status quo bias）与惰性</b>（Choi et al. 2004；Huberman &amp; Jiang 2006 的 401(k) 证据）。设计：<b>自动加入（automatic enrollment）</b>，把「要主动 opt-in」改成「可主动 opt-out」。文献中的参保率通常能从 60% 量级提升到 90% 以上。</li>
+              <li><b>问题 2：中位缴费率仅 3%</b> —— 诊断：<b>默认值锚定</b> + <b>损失厌恶</b>（提高缴费会感觉到当期到手收入下降）。设计：<b>提高默认缴费率</b> + <b>Save More Tomorrow（SMarT）</b>：承诺把未来的提缴<b>绑定在每次加薪上</b>（Thaler &amp; Benartzi, 2004）。</li>
+              <li><b>问题 3：几乎无人调整配置</b> —— 诊断：<b>惰性</b>与「<b>确定好了就不再看</b>」。设计：①提供<b>目标日期基金（target-date fund）</b>作为默认投资选项；②<b>年度自动再平衡</b>；③同时这也<b>顺带解决</b>了「不看 ⇒ 过度承担风险」的问题。</li>
+              <li><b>问题 4：20% 押在本公司股票</b> —— 诊断：<b>熟悉偏好/过度自信/模糊厌恶</b> + 对「<b>公司配捐机制</b>」的误解（Benartzi 2001 显示股票匹配计划下该比例更高）。设计：①对本公司股票设置<b>比例上限</b>；②把配捐改为<b>现金匹配</b>；③在<b>参保决策界面</b>上提示集中风险。</li>
+              <li><b>Caveat</b>：这些设计要用<b>随机实验（A/B 测试）</b>来验证；同时要注意<b>异质性</b>——自动加入对低收入者的适用性需要单独评估（如果预期不能持续缴，反而可能有费用拖累）。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (1) Enrolment: status-quo bias/inertia → automatic enrolment. (2) Low contribution: default anchoring and loss aversion → higher default rate plus Save More Tomorrow escalation tied to pay rises. (3) No reallocation: inertia → target-date default and automatic rebalancing. (4) 20% own-company stock: familiarity/overconfidence and matching incentives → caps, cash matching, and risk warnings. Evaluate all changes with randomised pilots.<br><strong>中文：</strong>①惰性 ⇒ 自动加入；②默认锚定 + 损失厌恶 ⇒ 提高默认率 + SMarT；③惰性 ⇒ 目标日期基金默认 + 自动再平衡；④熟悉/配捐机制 ⇒ 设上限、改现金匹配、做风险提示。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Homework 1 · Three patterns of individual investors <span class="kbd">HW1</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">List three patterns about individual investors' portfolio choice and trading behavior.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这是本 Part"投资者行为的事实"的<b>清单题</b>。选三个最有代表性、且能在 Part 3 找到机制答案的即可。</p></div>
+            <ol class="steps">
+              <li><b>① 过度交易 / 过度自信（Excessive trading / overconfidence）</b>：个人投资者换手率过高、且<b>净收益低于市场</b>；资金加权收益（dollar-weighted）比时间加权收益低约 1.6%/年，即"买高卖低"（Barber &amp; Odean, 2000, 2001；Friesen &amp; Sapp, 2007）。机制：Part 3 的过度自信 + 错误校准。</li>
+              <li><b>② 处置效应（Disposition effect）</b>：过早卖出盈利股、长期持有亏损股（Odean, 1998）。机制：Part 3 的损失厌恶 + 以买入价为参考点的窄框架。→ 见下一题 (HW1 Q7) 的计算。</li>
+              <li><b>③ 分散化不足 / 本土偏好（Under-diversification / home bias）</b>：组合过度集中于本国 / 本公司股票，未充分利用全球分散化（French &amp; Poterba, 1991；Huberman, 2001）；另有"参保不足、储蓄不足、年金化不足"等参与型事实。机制：熟悉偏好、模糊厌恶、惰性 / 现状偏差。</li>
+              <li><b>补充（可替换）</b>：④<b>追涨买入（extrapolative buying）</b>——股价上涨后买入增加（Barber &amp; Odean, 2009）；⑤<b>交易与注意力</b>——只交易被新闻 / 高换手吸引的股票（Barber &amp; Odean, 2008）。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> Three robust patterns are: (1) excessive trading driven by overconfidence, which lowers net returns (buy high, sell low; Barber &amp; Odean 2000/2001). (2) The disposition effect — selling winners too early and holding losers too long (Odean 1998). (3) Under-diversification / home bias — concentrated domestic (and own-firm) portfolios instead of globally diversified ones (French &amp; Poterba 1991). Other candidates: extrapolative buying after price rises, and attention-driven trading.<br><strong>中文：</strong>三个典型模式：①过度自信导致过度交易、净收益偏低；②处置效应（早卖赢、久持亏）；③分散化不足 / 本土偏好。补充：追涨买入、注意力驱动交易。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Homework 1 · Disposition effect calculation <span class="kbd">HW1</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Consider a portfolio. There are 12 stocks. 7 out of them are in gain status and 5 are in loss status. Among these 7 winner stocks, 5 of them are sold while the other 2 are kept. Among these 5 loser stocks, 1 is sold while the other 4 are kept. (i) Calculate the disposition effect for this simple example.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>按 Odean (1998) 的定义：先算 PGR（盈利股卖出比例）与 PLR（亏损股卖出比例），处置效应 = PGR − PLR（或写成比值）。</p></div>
+            <ol class="steps">
+              <li><b>定义参考点</b>：以<b>买入价</b>为参考点，盈利股（winner）= 市价高于成本，亏损股（loser）= 市价低于成本。</li>
+              <li><b>PGR（Proportion of Gainers Realized）</b> = 卖出的盈利股 / 盈利股总数 = \(5/7 \approx 0.714\)。</li>
+              <li><b>PLR（Proportion of Losers Realized）</b> = 卖出的亏损股 / 亏损股总数 = \(1/5 = 0.20\)。</li>
+              <li><b>处置效应（Disposition Effect, DE）</b> = PGR − PLR = \(0.714 - 0.20 = 0.514\)。</li>
+              <li><b>解读</b>：投资者卖出盈利股的概率比卖出亏损股<b>高出约 0.51</b>（或写成比值 \(0.714/0.20 \approx 3.57\) 倍）。这正是处置效应——因为确认亏损<b>痛苦</b>（Part 3 的损失厌恶），所以"赢的拿太早、输的拿太久"。</li>
+              <li><b>Caveat</b>：Odean 的 DE 也常用 <b>比值</b> PGR/PLR 表达；本题只需给出 PGR、PLR 与差值即可。实证中 DE 通常为正（0.3–0.6 量级）。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> PGR = 5/7 ≈ 0.714; PLR = 1/5 = 0.20. Disposition effect = PGR − PLR = 0.714 − 0.20 = 0.514 (or as a ratio PGR/PLR ≈ 3.57). Investors are far more likely to sell winners than losers — the classic disposition effect driven by loss aversion at the purchase-price reference point.<br><strong>中文：</strong>PGR = 5/7 ≈ 0.714，PLR = 1/5 = 0.20，处置效应 = 0.714 − 0.20 = 0.514（比值约 3.57 倍）。投资者更倾向于卖赢持亏，即处置效应。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> The Rank Effect <span class="kbd">解释</span> <span class="kbd">补充材料</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Hartzmark (2017) documents the "rank effect" in portfolio trading. (a) Define the rank effect and state how it differs from the disposition effect. (b) Describe one piece of empirical evidence supporting it. (c) What psychological mechanism is proposed, and what is the "alphabetical-order" clean test?</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这是把「补充阅读材料」转成考试解释题的标准问法：定义 → 区分 → 证据 → 机制。</p></div>
+            <ol class="steps">
+              <li><b>(a) 定义与区分</b>：Rank Effect = 投资者更可能卖出组合内<strong>排名极端</strong>的持仓（按自买入以来收益率排序），最好与最差都更容易被卖，中间最难卖，卖出概率呈 <strong>U 形</strong>。与处置效应的区别：处置效应只预测「卖盈 &gt; 卖亏」，而 Rank Effect <strong>还包含卖出极端亏损</strong>，方向与之相反；且在控制处置效应后绝对收益效应消失，<strong>排名才是真正驱动</strong>。</li>
+              <li><b>(b) 实证证据</b>：个人投资者（美国折扣券商 1991–1996，10,619 账户）中，最好/最差/中间排名的<strong>卖出概率</strong>分别为 <strong>24.7% / 16.9% / 8.4%</strong>；共同基金中为 <strong>50.3% / 57.6% / 38.4%</strong>，均呈 U 形。或用稳健性证据：同一只股票、同一天，在某人组合里排极端、在另一人组合里排中间 → 极端组仍被多卖（排除公司特定信息）。</li>
+              <li><b>(c) 机制与干净检验</b>：机制是<strong>显著性（salience）</strong>——联合评估组合时极端排名更抓注意力，加上<strong>考虑集（consideration set）</strong>启发式，极端持仓更可能进入候选集。干净检验：投资组合按<strong>字母顺序</strong>排列，字母首/末位的股票被多卖 <strong>6.1%</strong>——而字母顺序与经济基本面正交，说明是「排序本身」制造显著性，支持心理机制而非基本面解释。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) The rank effect: investors sell extreme-ranked portfolio positions (best and worst by return since purchase) more than middle-ranked ones; sale probability is U-shaped. Unlike the disposition effect (sell winners &gt; losers), it also includes selling extreme losers and survives controlling for gains/losses. (b) Sale probability is 24.7%/16.9%/8.4% for best/worst/middle among individuals, and 50.3%/57.6%/38.4% for funds. (c) Mechanism: portfolio-specific salience plus a consideration-set heuristic; the alphabetical-order test (first/last letter +6.1% more likely sold) shows ordering itself creates salience, orthogonal to fundamentals.<br><strong>中文：</strong>(a) 排序效应：卖最好也卖最差，呈 U 形，区别于处置效应（还卖极端亏、控制盈亏后仍成立）；(b) 个人 24.7/16.9/8.4%，基金 50.3/57.6/38.4%；(c) 显著性 + 考虑集；字母首末位多卖 6.1% 证明是排序制造显著性。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Selling fast and buying slow <span class="kbd">解释</span> <span class="kbd">补充材料</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Akepanidtaworn, Di Mascio, Imas and Schmidt study 783 institutional portfolios (2000–2016). (a) What is the central asymmetry between buying and selling skill, and what are the magnitudes? (b) Describe the two-stage selling heuristic and why it destroys value. (c) Which two pieces of evidence show that attention — not ability — is the root cause?</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>数字要记牢：买 +116 bps、卖 −80 bps、被忽视仓位 −162 bps、财报日改善 154 bps、策略 Sharpe 1.49。</p></div>
+            <ol class="steps">
+              <li><b>(a) 不对称与量级</b>：买入端相对随机买入反事实每年 <strong>+116 bps</strong>（真有选股技能）；卖出端相对随机卖出反事实每年 <strong>−80 bps</strong>（factor-neutral 后仍成立）。同一批经理，买是专家、卖是散户。</li>
+              <li><b>(b) 两阶段启发式</b>：阶段一，只有收益排名组合<strong>前/后 5%</strong> 的极端仓位进入卖出考虑集（概率高约 <strong>50%</strong>）；阶段二，在考虑集中卖出 <strong>active share 最低</strong>（最被忽视）的仓位。这些「被忽视」仓位之后每年跑输 <strong>−162 bps</strong>——卖掉的恰恰是日后表现更好的股票。</li>
+              <li><b>(c) 注意力的两条证据</b>：其一，<strong>财报日附近的卖出质量改善约 154 bps</strong>——强制披露把注意力拉回决策，卖出立刻变好；其二，<strong>大额卖出无此现象</strong>——走正式流程时启发式被绕过。若病灶是能力，这两个「注意力被强制激活」的场景不该有差别。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Buys beat a random-buy counterfactual by +116 bps/yr; sells underperform a random-sell counterfactual by −80 bps/yr — skill is asymmetric. (b) Stage 1: only extreme positions (top/bottom 5% by return) enter the consideration set (~50% more likely); stage 2: sell the position with the lowest active share, which subsequently underperforms by −162 bps/yr. (c) Sales around earnings announcements improve by ~154 bps, and large sales (formal process) show no effect — forcing attention fixes selling, so attention, not ability, is the root cause.<br><strong>中文：</strong>(a) 买 +116、卖 −80 bps/年，技能不对称；(b) 极端仓位进考虑集（+50%）→ 卖 active share 最低者（−162 bps）；(c) 财报日卖出改善 154 bps、大额卖出无现象——注意力是病灶。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 本 Part 一句话总结</div>
+        <p>投资者的真实行为可以压缩成一句：<b>入场太少、赌得太集中、赢的拿太早、输的拿太久，而且总在涨完之后才加仓</b>。这每一条都能在 Part 3 的偏好/信念工具箱里找到对应的机制。</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  FIN 4080 Behavioral Finance · Part 5 投资者行为的事实 · 内容依据 Lecture 9–10 课件 + Hartzmark (2017) 补充材料整理
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta property="og:title" content="FIN4080 行为金融学学习站"><meta property="og:description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta name="description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta property="og:image" content="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg"><link rel="icon" href="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+<title>FIN4080 行为金融学学习站</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="assets/tex-mml-svg.js" id="MathJax-script" async></script>
+<script>
+/* Fallback: 若本地 MathJax 包不可用，从 jsDelivr 兜底加载。 */
+(function () {
+  function loadCdn() {
+    if (window.MathJax && window.MathJax.startup) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-svg.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function () { setTimeout(loadCdn, 400); });
+})();
+</script>
+    <script src="assets/figures.js"></script>
+    <script src="assets/mindmap.js"></script>
+    <script src="assets/marks.js?v=20261017a"></script>
+</head>
+<body data-page="part4" data-root="">
+
+<header id="site-topbar"></header>
+
+<div class="layout">
+  <aside class="toc" id="site-toc"></aside>
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Part 4 · Lecture 5–6</div>
+      <h1>资产价格的事实：三个总量谜题与横截面异象</h1>
+      <p>在提出模型之前，必须先把<b>要解释的东西</b>摆出来。本 Part 回顾关于<b>总体股票市场</b>（股权溢价、波动、可预测性三大谜）与<b>横截面平均收益</b>（一长串异象）的基本事实，顺带扫过<strong>其他资产类别</strong>与<strong>泡沫</strong>。Part 6 的模型，正是因为它们能<b>同时</b>解释这里的多个事实，才被学界认真对待。</p>
+      <div class="tags">
+        <span>Equity Premium Puzzle</span><span>Excess Volatility</span><span>Predictability</span><span>Momentum</span><span>Long-term Reversal</span><span>Value Premium</span><span>Hansen–Jagannathan Bound</span>
+      </div>
+    </div>
+
+    <div id="mindmap-host"></div>
+
+    <!-- ============ S1 ============ -->
+    <section id="overview">
+      <h2 class="sec">共识是如何改变的 <span class="badge">History</span></h2>
+
+      <div class="box note">
+        <div class="box-title">▸ 本讲 Learning Objectives</div>
+        <ul>
+          <li>能说出 1970 年代与当下学界在<b>资产定价观</b>上的三点核心差异。</li>
+          <li>能推导 Hansen–Jagannathan 上界，并<b>算出</b>隐含的风险厌恶系数。</li>
+          <li>能解释<b>波动之谜</b>的" Sketch proof"逻辑：为什么<b>固定折现率 + 理性预期</b>注定无法匹配实际波动。</li>
+          <li>能写出<b>可预测性回归</b>，并说明「P/D 预测不了现金流 ⇒ 只能预测收益」这条推理。</li>
+          <li>能列举至少 8 个横截面预测变量、各自的<b>符号</b>与主要代表人物。</li>
+          <li>能说明<b>发表一个异象</b>通常需要完成哪两类分析。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">1970 年代：一度以为全都搞清楚了</h3>
+      <p>到 1970 年代初，金融经济学已经建立了几项奠基性理论：<strong>CAPM</strong>、<strong>随机游走假说</strong>、<strong>有效市场假说</strong>与<strong>组合投资框架</strong>。这些结论并非猜测，而是建立在大量实证研究之上。当时盛行的看法包括：</p>
+      <ul>
+        <li><strong>CAPM 能有效度量系统性风险</strong>并解释横截面的收益差异；</li>
+        <li><strong>收益大体不可预测</strong>：股价服从随机游走；基于历史价格与成交量的技术分析无效；债券收益几乎没有可预测性；汇率也呈随机游走；股市波动随时间基本恒定；</li>
+        <li><strong>主动型基金经理在风险调整后跑不赢被动指数</strong>。</li>
+      </ul>
+      <p>这些观点共同支撑了<strong>信息有效的市场</strong>这一概念（Fama, 1970, 1991）：价格完全反映了关于内在价值的全部可得信息；要获得更高收益，只能承担更高风险——主要是提高 CAPM 框架下的 beta 暴露。</p>
+
+      <h3 class="sub">今天的共识：三点都被推翻了</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>维度</th><th>1970 年代看法</th><th>当下的看法</th></tr></thead>
+        <tbody>
+          <tr><td>横截面</td><td>β 解释一切</td><td>存在大量<b>资产、组合、基金与策略</b>，其平均收益<b>无法</b>被市场 β 解释</td></tr>
+          <tr><td>可预测性</td><td>收益不可预测</td><td>收益<b>可预测</b>：股息/价格比与期限溢价能在<b>较长</b>期限上解释相当比例的股价变动；美国市场的日/周/月收益仍难预测；债券与外汇收益可预测</td></tr>
+          <tr><td>波动率</td><td>恒定</td><td>股市波动<b>随时间变化</b>，<b>条件夏普比率</b>也随之变化</td></tr>
+          <tr><td>主动管理</td><td>无 α</td><td>主动管理的确产生了<b>异常收益</b>（但净 α 的争论仍在）</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">为什么持「变了的」、「不变的」两者都可能是对的</h3>
+      <p>我们观察到的资产定价模式随时间变化，为什么？候选解释有四种：<strong>①之前的统计方法不可靠；②之前的样本太短；③市场在演化；④实证证据本身</strong>：</p>
+      <div class="box key">
+        <div class="box-title">▸ McLean &amp; Pontiff (2016)：异象公开发表后会衰减</div>
+        <p>投资者会<b>利用</b>这些学术出版物所揭示的异常收益机会。也就是说，一旦一个异象被写进论文并广为人知，套利资本涌入 ⇒ <b>异象本身被交易掉了</b>。这既解释了一部分「模式随时间变化」，也反过来验证了 Part 2 的逻辑：<b>能被交易掉的错价是那些套利限制较弱的</b>。</p>
+      </div>
+    </section>
+
+    <!-- ============ S2 ============ -->
+    <section id="aggregate">
+      <h2 class="sec">总体股票市场：三个谜题 <span class="badge">The Aggregate Market</span></h2>
+
+      <p>总量市场有三个基本特征：<strong>长期平均收益、收益波动率、时间序列上的可预测性</strong>。每一个都对应一个让理性模型难堪的谜题：</p>
+
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>基本特征</th><th>对应的谜题</th><th>为什么难</th></tr></thead>
+        <tbody>
+          <tr><td>长期平均收益</td><td><b>Equity Premium Puzzle</b> 股权溢价之谜</td><td>实际的超额收益<b>太高</b>，理性模型给不出</td></tr>
+          <tr><td>收益波动率</td><td><b>Volatility Puzzle</b> 波动之谜</td><td>实际波动<b>太大</b>，固定折现率 + 理性预期给不出</td></tr>
+          <tr><td>时间序列可预测性</td><td><b>Predictability Puzzle</b> 可预测性之谜</td><td>理性预期下投资者本该提前消化掉</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">谜题一：股权溢价之谜</h3>
+      <div class="box def">
+        <div class="box-title">▸ Fact</div>
+        <p>1889–2005 年间，美国股票市场相对无风险资产的<b>平均超额收益为每年 6.4%</b>。而<b>基础的理性无摩擦模型</b>预测出的股权溢价<b>远低于此</b>。</p>
+      </div>
+
+      <p>为什么难？因为在基础理性模型里，股票市场的风险由<b>其收益与消费增长的协方差</b>决定：</p>
+      <ul>
+        <li>这个<b>协方差很低</b> ⇒ 预测出的股权溢价很低；</li>
+        <li>试图通过<b>极高的风险厌恶系数 γ</b> 来补救也很难自洽 ⇒ 会同时引出<b>无风险利率之谜</b>（Weil, 1989），并且与内省不符。</li>
+      </ul>
+
+      <h3 class="sub">量化：Hansen–Jagannathan 上界</h3>
+      <p>对任意随机贴现因子（<strong>stochastic discount factor, SDF</strong>）\(m\)，任何资产 \(i\) 的夏普比率都受下列不等式约束：</p>
+
+      <div class="formula">
+        \[\left|\frac{E(R_i)-R_f}{\sigma(R_i)}\right| \le \frac{\sigma(m)}{E(m)}\]
+        <div class="fnote">\(m\)：随机贴现因子；\(\sigma(m)/E(m)\)：SDF 的变异系数。含义非常强——<b>市场上所有资产的夏普比率，不可能超过 SDF 本身的波动率与其均值之比</b>。</div>
+      </div>
+
+      <p>在<strong>幂效用（power utility）</strong>下，跨期边际替代率为 \(m=\beta(c_{t+1}/c_t)^{-\gamma}\)，于是：</p>
+
+      <div class="formula">
+        \[\left|\frac{E(R_i)-R_f}{\sigma(R_i)}\right| \le \frac{\sigma\!\left[(c_{t+1}/c_t)^{-\gamma}\right]}{E\!\left[(c_{t+1}/c_t)^{-\gamma}\right]}\]
+      </div>
+
+      <p>若消费增长<b>对数正态</b>分布，上式简化为一个非常好用的形式：</p>
+
+      <div class="formula hi">
+        \[\left|\frac{E(R_i)-R_f}{\sigma(R_i)}\right| \le \sqrt{e^{\gamma^2\sigma^2(\Delta\ln c_{t+1})}-1}\;\approx\; \gamma\,\sigma(\Delta\ln c)\]
+        <div class="fnote">\(\Delta\ln c_{t+1}\)：对数消费增长率；\(\sigma(\Delta\ln c)\)：其标准差；\(\gamma\)：相对风险厌恶系数。含义：<b>夏普比率的上界</b>只能由两件事抬高——经济更危险（消费更波动）或者投资者更厌恶风险（γ 更大）。</div>
+      </div>
+
+      <div class="fig" data-fig="equity_premium" data-cap="美国的夏普比率约 0.5，而消费增长波动只有 1% ⇒ 隐含需要 γ ≈ 50，远超实验测得的合理范围。"></div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 1</span> 把 γ 算出来（这门课最经典的一道计算）</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">Over the last 50 years in the US, \(E(R_i)=9\%\), \(\sigma(R_i)=16\%\) and \(R_f=1\%\). The mean and standard deviation of consumption growth were both about 1%. (a) Compute the realized Sharpe ratio. (b) Using \(\text{Sharpe}\le\gamma\sigma(\Delta\ln c)\), find the implied \(\gamma\). (c) Compare it with laboratory estimates and explain the puzzle.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>(a) \(\dfrac{9\%-1\%}{16\%}=\dfrac{8\%}{16\%}=0.50\)。</li>
+              <li>(b) 由 \(0.50\le\gamma\times0.01\) ⇒ \(\gamma\ge\dfrac{0.50}{0.01}=50\)。</li>
+              <li>(c) 而<b>实验室实验</b>测得的风险厌恶系数通常<b>小于 10</b>（多数在 1–5 之间）。</li>
+              <li>因此要把美国股市的历史溢价与基本理性模型调和起来，必须接受一个荒谬的 γ = 50 ⇒ 这就是<b>股权溢价之谜</b>。</li>
+              <li>若坚持合理的 γ（例如 5），模型预测的上界只有 \(5\times1\%=5\%\) 的夏普比率 ⇒ 远低于实际的 0.50。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> (a) Sharpe = 0.50. (b) Implied γ ≥ 0.50 / 0.01 = 50. (c) Laboratory estimates of γ are usually below 10, so reconciling the historical premium with a basic rational model requires implausibly high risk aversion — the equity premium puzzle.<br><strong>中文：</strong>(a) 夏普比率 0.50；(b) 隐含 γ ≥ 50；(c) 远高于实验测得的 &lt; 10 ⇒ 无法自洽。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 是不是历史溢价真的那么高？（答题时的两点 caveat）</div>
+        <ul>
+          <li><strong>统计显著性</strong>：平均超额收益的估计标准误不小，6.4% 这个数字本身有不确定性。</li>
+          <li><strong>幸存者偏差（survivorship bias）</strong>：我们主要考察的是美国这个「赢家市场」。</li>
+        </ul>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 寻找理性/摩擦less 解法的三条路线</div>
+        <ul>
+          <li><strong>习惯形成 Habit formation</strong>（Campbell &amp; Cochrane, 1999）：效用取决于相对习惯基准的消费 ⇒ 有效 γ 随状态变化。</li>
+          <li><strong>长期风险 Long-run risk</strong>（Bansal &amp; Yaron, 2004；Bansal, Kiku &amp; Yaron, 2012）：消费的增长<b>预期</b>本身就有小幅持久波动。</li>
+          <li><strong>罕见灾难 Rare disasters</strong>（Rietz 1988；Barro 2006；Gabaix 2012；Wachter 2013）：引入小幅概率的极大消费损失。</li>
+        </ul>
+        <p>课件提醒：股权溢价之谜在 1990 年代是炽手话题，近十年热度下降——<b>为什么？</b>（开放题：因为理性模型给出了一批「可以调和」的解释，争论焦点转向了波动与横截面。）</p>
+      </div>
+
+      <details class="concept" open data-concept="equity-premium">
+        <summary class="concept-bar">
+          <span class="concept-en">The Equity Premium Puzzle</span>
+          <span class="concept-cn">股权溢价之谜</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>The <b>equity premium</b> is the extra return investors earn on stocks over a safe asset. The puzzle (Mehra &amp; Prescott, 1985): the historical U.S. premium (≈6.4% per year, 1889–2005) is far larger than any basic rational, frictionless model can produce. The reason is that stock returns covary only weakly with consumption growth, so a low risk-aversion coefficient γ gives a tiny premium. To match the data you need γ ≈ 50 — absurdly high versus laboratory estimates (γ &lt; 10) — and that same γ also creates the <b>risk-free rate puzzle</b> (Weil, 1989).</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p><b>股权溢价</b>指股票相对无风险资产多赚的那部分收益。谜题（Mehra &amp; Prescott, 1985）：美国历史股权溢价（1889–2005 年均约 6.4%）远高于标准理性无摩擦模型能给出的水平。根源在于股票收益与消费增长的协方差很低，所以低的风险厌恶系数 γ 只能给出极小的溢价。要把模型调到和数据一致，需要 γ ≈ 50——远高于实验室测得的（γ &lt; 10），而且这个 γ 还会引出<b>无风险利率之谜</b>（Weil, 1989）。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card"><b>Hansen–Jagannathan bound.</b> The Sharpe ratio of the U.S. market is about 0.50, while consumption-growth volatility is only ≈1%. Since Sharpe ≤ γ·σ(Δln c), we need γ ≥ 0.50 / 0.01 = 50. A "reasonable" γ of 5 would predict a Sharpe bound of only 5×1% = 5% ≪ 50%. <b>中文：</b>美国市场夏普比率约 0.5，而消费增长波动仅约 1%，于是隐含 γ ≥ 50；合理的 γ = 5 只能给出 5% 的夏普上界，远小于实际的 50%。</div>
+          </div>
+        </div>
+      </details>
+
+      <h3 class="sub">谜题二：波动之谜</h3>
+      <div class="box def">
+        <div class="box-title">▸ Fact</div>
+        <ul>
+          <li>股票市场年度收益的历史标准差约为 <b>20%</b>，而基础的理性无摩擦模型预测的数值<b>低得多</b>；</li>
+          <li>年度采样的 <b>P/D 比率</b>的历史标准差约为 <b>7</b>，而理性模型同样预测出<b>低得多</b>的数值。</li>
+        </ul>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">▸ 起源与 Sketch proof（Shiller, 1981；LeRoy &amp; Porter, 1981）</div>
+        <p>基本观点：<b>任何</b>满足「①折现率恒定」且「②投资者对<b>未来现金流</b>做出理性预测」的模型，都无法匹配实证上观察到的股价波动水平。Shiller 的证明覆盖了两种情况——「现金流增长率恒定」（简单情形）与「现金流增长率可以随时间变化」（微妙情形）。</p>
+      </div>
+
+      <div class="fig" data-fig="vol_puzzle" data-cap="超额波动：实际股价的波动远大于事后实现现金流的贴现所能解释的范围。"></div>
+
+      <div class="box note">
+        <div class="box-title">▸ 为什么曾经的「出路」都失败了</div>
+        <ul>
+          <li><b>理性地变动利率预期</b>：不行——因为我们被要求解释的是<b>超额收益</b>（价格）的过高波动，单纯的利率变动不足以解释。</li>
+          <li><b>理性地变动未来风险预期</b>：也不太成立——在这种观点下，P/D 应该预测<b>后续的风险</b>，而实证上 P/D 预测的是<b>收益</b>，并不预测后续的风险。</li>
+          <li><b>可行的出路</b>：<b>时变的风险厌恶</b>（time-varying risk aversion），这正是习惯形成路径处理波动之谜的出发点（Campbell &amp; Cochrane, 1999）。</li>
+        </ul>
+      </div>
+
+      <p>课件还列出了另外两种理性/摩擦less 的候选：<strong>学习（Learning, Timmermann, 1993）</strong>与上面的罕见灾难类解法。</p>
+
+      <details class="concept" open data-concept="volatility">
+        <summary class="concept-bar">
+          <span class="concept-en">The Volatility Puzzle (Excess Volatility)</span>
+          <span class="concept-cn">波动之谜（超额波动）</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Shiller (1981) and LeRoy &amp; Porter (1981) showed that actual stock prices are <b>far more volatile</b> than the present value of rationally anticipated future dividends would imply ("excess volatility"). Sketch proof: under <em>any</em> model with (i) a constant discount rate and (ii) rational expectations of future cash flows, price volatility is bounded by the volatility of those cash flows. Empirically, the annual stock-return standard deviation is ≈20% and the P/D-ratio standard deviation is ≈7 — both far above what rational models predict. Varying the interest rate or expected risk rationally does <em>not</em> rescue the model; the viable exit is <b>time-varying risk aversion</b> (habit formation, Campbell &amp; Cochrane 1999).</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>Shiller (1981) 与 LeRoy &amp; Porter (1981) 发现，实际股价的波动<b>远大于</b>"理性预期下未来股息贴现值"所能解释的范围（即<b>超额波动</b>）。证明思路：只要模型满足①折现率恒定、②对未来现金流做理性预期，价格的波动就被现金流的波动所约束。实证中年化股票收益 σ≈20%、P/D 比率 σ≈7，都远高于理性模型预测。理性地变动利率或风险预期都救不了它；可行出路是<b>时变的风险厌恶</b>（习惯形成，Campbell &amp; Cochrane 1999）。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Reconstruct the "perfect-foresight" price path from <em>realized</em> dividends discounted at a constant rate: it is almost a straight line. The actual S&amp;P 500 price, by contrast, swings wildly around it. The gap is the excess volatility. <b>中文：</b>用"事后实现的股息"按恒定折现率反推一条"完美预期"价格路径，它几乎是一条平滑直线；而真实的标普 500 价格在其上下剧烈摆动——两者之差就是超额波动。</div>
+          </div>
+        </div>
+      </details>
+
+      <h3 class="sub">谜题三：可预测性之谜</h3>
+      <div class="box def">
+        <div class="box-title">▸ Fact</div>
+        <p>市场总体的<b>超额收益是可预测的</b>，例如可由<strong>股息–价格比（dividend/price ratio）</strong>预测（Campbell &amp; Shiller, 1988；Fama &amp; French, 1988）：</p>
+      </div>
+
+      <div class="formula hi">
+        \[R_{t\to t+k} = a + b\left(\frac{D_t}{P_t}\right)\]
+        <div class="fnote">\(R_{t\to t+k}\)：从 \(t\) 到 \(t+k\) 期间市场指数的<b>超额</b>收益；\(D_t\) 与 \(P_t\)：市场指数（例如标普 500）在 \(t\) 时刻的<b>总股息</b>与<b>总价格</b>。</div>
+      </div>
+
+      <div class="fig" data-fig="predictability" data-cap="股息/价格比与未来超额收益正相关：P/D 越高（D/P 越高通常对应估值越低），后续收益越高。"></div>
+
+      <div class="box key">
+        <div class="box-title">▸ 为什么这是谜</div>
+        <p>在<b>理性预期</b>下，投资者应当意识到这个规律：<b>P/D 高时预期低收益、P/D 低时预期高收益</b>。而在理性模型里，风险资产的预期收益 = <b>无风险利率 + 风险溢价</b> = <b>无风险利率 + 风险 × 风险价格</b>。所以可预测性必须通过<b>风险量</b>或<b>风险价格</b>的时变来解释：</p>
+        <ul>
+          <li><b>理性地变动未来利率预期</b>：不对，因为我们是在预测<b>超额</b>收益；</li>
+          <li><b>理性地变动未来风险预期</b>：在这种观点下 P/D 应该能预测<b>后续风险</b>；</li>
+          <li><b>时变风险厌恶</b>：这就是习惯形成路径处理可预测性之谜的思路。</li>
+        </ul>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 两条必背的 Notes</div>
+        <ul>
+          <li>可预测性之谜与波动之谜<b>密切相关</b>：两者都要求「折现率是<b>变动</b>的」。</li>
+          <li><b>P/D 必须预测以下两者之一</b>：后续现金流，或后续收益。<b>我们知道它预测不了后续现金流 ⇒ 它必定在预测收益。</b>（<em>We know that it does not predict subsequent cash flows ⇒ it must predict returns.</em>）因此可以说：<b>在当前，收益的可预测性是关于总体股票市场最本质的事实</b>。</li>
+        </ul>
+      </div>
+    </section>
+
+      <details class="concept" open data-concept="predictability">
+        <summary class="concept-bar">
+          <span class="concept-en">The Predictability Puzzle</span>
+          <span class="concept-cn">可预测性之谜</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Aggregate stock returns are <b>predictable</b> by variables such as the dividend–price ratio: R<sub>t→t+k</sub> = a + b·(D<sub>t</sub>/P<sub>t</sub>) (Campbell &amp; Shiller 1988; Fama &amp; French 1988). Under rational expectations, investors should have already impounded this relation into prices, so expected returns should not be forecastable from a publicly known variable — unless expected returns move because risk or the price of risk varies over time (time-varying risk aversion / habit). Crucially, P/D does <em>not</em> predict cash flows, so <em>it must be predicting returns</em> ("We know it does not predict subsequent cash flows ⇒ it must predict returns"). This is arguably the most fundamental fact about the aggregate market.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>总体股票收益可由<b>股息—价格比</b>等变量预测：R<sub>t→t+k</sub> = a + b·(D<sub>t</sub>/P<sub>t</sub>)（Campbell &amp; Shiller 1988；Fama &amp; French 1988）。理性预期下，投资者本应早已把这个关系纳入价格，预期收益不该被公开变量预测到——除非预期收益因风险或风险价格的时变而变动（时变风险厌恶 / 习惯形成）。关键是：P/D <b>预测不了现金流</b>，所以<b>它必然在预测收益</b>（"我们知道它预测不了后续现金流 ⇒ 它必定预测收益"）。这是关于总体市场最本质的事实。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Regress the annual excess market return on D/P: a ≈ 0.5%, b ≈ 1.6, R² ≈ 0.09 at 1 year (modest) but economically large at long horizons. When D/P is high (valuation low), subsequent returns are high; when D/P is low, subsequent returns are low. <b>中文：</b>把年度超额市场收益对 D/P 回归：a≈0.5%、b≈1.6、一年期 R²≈0.09（短期有限），但长期经济上很大。D/P 高（估值低）时后续收益高；D/P 低时后续收益低。</div>
+          </div>
+        </div>
+      </details>
+
+    <!-- ============ S3 ============ -->
+    <section id="crosssection">
+      <h2 class="sec">横截面平均收益 <span class="badge">Cross-section</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ 基本事实</div>
+        <p>按某个特征 \(F\) 给股票排序（例如市盈率 P/E），往往会发现<b>低 \(F\) 的股票比高 \(F\) 的股票长期平均收益更高</b>。而在理性无摩擦模型里，资产的平均收益只由<b>风险</b>决定——在最基础的 CAPM 里，风险就是 <strong>beta（β）</strong>，也就是「<b>平均收益由 β 且仅由 β 决定</b>」。</p>
+      </div>
+
+      <p>这个预测被鲜明地拒绝了：</p>
+      <ul>
+        <li><strong>β 在横截面上无法预测股票收益</strong>（Fama &amp; French, 1992）；</li>
+        <li>但在<b>控制 β 之后</b>，许多其他股票特征<b>确实</b>有预测力——这就是横截面收益的全部证据。</li>
+      </ul>
+
+      <h3 class="sub">历史的三阶段</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>阶段</th><th>时间</th><th>发生了什么</th></tr></thead>
+        <tbody>
+          <tr><td><b>Stage 1</b></td><td>1964 – mid 1970s</td><td>1964 年 CAPM 与 beta 被引入；1970 年代初的初期检验<b>前景良好</b>；1970 年代中期弥漫着一种满足感——「全都搞清楚了」</td></tr>
+          <tr><td><b>Stage 2</b></td><td>1979 – 1998</td><td>1979–81：β 之外的变量（规模、P/E）被证明有预测力；1985–98：<b>大量</b>股票特征被发现能预测收益；1992：<b>Fama &amp; French 证明 β 没有预测力</b>。这一段是<b>理性派与行为派激烈争论</b>的时期</td></tr>
+          <tr><td><b>Stage 3</b></td><td>2000 至今</td><td>广泛同意：<b>行为金融对这些累积事实的解释应当被认真对待</b>；争论在继续，但已是较平静的方式</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">方法论：两种基本做法</h3>
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ Fama–MacBeth 回归</div>
+          <p>逐期横截面回归，再对<b>时间序列上的斜率均值</b>做 t 检验。它的优点是<b>能控制多个特征</b>，直接回答「新特征 F 在控制已知预测变量后还有没有增量解释力」。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ 时间序列回归</div>
+          <p>构造高/低 F 的<b>组合</b>，检验其<b>时间序列收益</b>的 α 是否显著非零。这是「异象能不能变成真金白银的策略」的直接检验。</p>
+        </div>
+      </div>
+
+      <h3 class="sub">关键预测变量一览（连同符号）</h3>
+      <div class="fig" data-fig="anomaly_map" data-cap="横截面异象地图：每个变量给出预测符号与代表人物。"></div>
+
+      <div class="fig" data-fig="reversal_momentum" data-cap="同一个「过去收益」变量，在不同期限上的符号相反——这给模型提出了双重挑战。"></div>
+
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>预测变量</th><th>符号</th><th>代表人物</th><th>要点</th></tr></thead>
+        <tbody>
+          <tr><td><b>长期反转</b> Long-term reversal</td><td>−（3–5 年）</td><td>De Bondt &amp; Thaler (1985)</td><td>不是 β；Asness, Moskowitz &amp; Pedersen (2013) 证明多市场并存</td></tr>
+          <tr><td><b>中期动量</b> Momentum</td><td>+（2 个月–1 年）</td><td>Jegadeesh &amp; Titman (1993)</td><td>与价值并称「<b>两大异象</b>」；统计上可能来自自身正自相关、交叉负自相关等</td></tr>
+          <tr><td><b>短期反转</b> Short-term reversal</td><td>−（1 周–1 个月）</td><td>Lehmann (1990)</td><td>做市商与流动性冲击解释</td></tr>
+          <tr><td><b>季节性</b> Seasonality</td><td>+（12n 个月前）</td><td>—</td><td>\(n\in\{1,2,\dots,20\}\)</td></tr>
+          <tr><td><b>规模</b> Size</td><td>−</td><td>Banz (1981)</td><td>市值越大收益越低</td></tr>
+          <tr><td><b>价值</b> Value</td><td>−（P/E、P/B、P/CF）</td><td>Fama &amp; French (1992)</td><td>与动量并称「<b>big two</b>」；多资产类别并存</td></tr>
+          <tr><td><b>盈利惊喜</b> Earnings surprise</td><td>+</td><td>Bernard &amp; Thomas (1989, 1990)</td><td>惊喜的度量方式：相对<b>季节性随机游走</b>、相对<b>分析师一致预期</b>、或用<b>股价反应</b>；分析师预期的<b>修正</b>同样正向预测收益（Chan, Jegadeesh &amp; Lakonishok, 1996）</td></tr>
+          <tr><td><b>发行</b> Issuance</td><td>−（发行）/ +（回购）</td><td>Loughran &amp; Ritter (1995)；Ikenberry, Lakonishok &amp; Vermaelen (1995)</td><td>IPO/SEO 之后表现差，回购之后表现好；Daniel &amp; Titman (2006)</td></tr>
+          <tr><td><b>成交量</b> Volume</td><td>−（一年）/ +（一周）</td><td>Datar, Naik &amp; Radcliffe (1998)；Gervais, Kaniel &amp; Mingelgrin (2001)</td><td>长期反转，短期延续</td></tr>
+          <tr><td><b>波动率</b> Volatility</td><td>−</td><td>Black (1972)；Frazzini &amp; Pedersen (2010)；Ang et al. (2006)</td><td>beta 负向预测风险调整收益（<b>BAB</b>）；<b>特质波动</b>同样负向预测</td></tr>
+          <tr><td><b>应计</b> Accruals</td><td>−</td><td>Sloan (1996)</td><td>高应计（盈利能力质量差）后续收益低</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">▸ 关于横截面证据的四条 Remarks（常考）</div>
+        <ol class="steps">
+          <li>许多发现涉及<b>棘手的统计问题</b>，尤其是长期事件研究。</li>
+          <li><b>数据挖掘（data-mining）</b>是横截面研究中的主要隐患——这也是为什么现在要求样本外检验。</li>
+          <li>尽管 <b>CAPM 解释不了</b>上述任何结果，但<b>多因子模型</b>（例如基于 ICAPM）可能可以；一个<b>实证驱动</b>的模型——<b>三因子模型</b>（Fama &amp; French, 1993）——可以「解释」其中一部分结果。</li>
+          <li>要<b>发表一个新异象</b>，通常需要同时呈现两种分析：①<b>Fama–MacBeth 分析</b>，证明在控制已知预测变量后新特征 F 仍有解释力；②<b>时间序列分析</b>，证明高（或低）F 的组合能获得非零的<b>三因子 α</b>。</li>
+        </ol>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 两个值得记的「跨域」事实</div>
+        <ul>
+          <li>上述很多结果在其他资产类别里都有<b>对应物</b>：长期反转、中期动量、短期反转、价值、以「news」形式出现的盈利惊喜、以及（系统性）波动。</li>
+          <li>一个抢眼的近期结果：期货市场中的<strong>时间序列动量</strong>（Moskowitz, Ooi &amp; Pedersen, 2012）。</li>
+          <li>而且像 <b>AQR、GMO、LSV、Arrowstreet</b> 这样的<b>量化股票机构确实在利用</b>上述大部分异象 ⇒ 它们把这些结果<b>当作错价</b>（mispricing）看待，也就是更倾向于<b>行为或摩擦</b>的解释。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S4 ============ -->
+    <section id="other">
+      <h2 class="sec">其他资产类别与泡沫 <span class="badge">Beyond Equities</span></h2>
+
+      <h3 class="sub">其他资产类别中的关键异象</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>资产类别</th><th>关键异象 Key anomaly</th></tr></thead>
+        <tbody>
+          <tr><td><strong>国债</strong> Treasury bonds</td><td><b>预期假说的失效</b>（Failures of the expectations hypothesis）：远期利率可以预测未来的持有期收益</td></tr>
+          <tr><td><strong>公司债</strong> Corporate bonds</td><td><b>信用利差之谜</b>（Credit spread puzzle）：预期违约损失远不足以解释实际的信用利差</td></tr>
+          <tr><td><strong>房地产</strong> Real estate</td><td>短期内<b>正自相关</b>很强，长期则转为<b>负自相关</b></td></tr>
+          <tr><td><strong>外汇</strong> Currencies</td><td><b>套息交易（carry trade）</b>的高平均收益——经典且难以用风险解释</td></tr>
+          <tr><td><strong>商品</strong> Commodities</td><td>期货市场中的<b>时间序列动量</b></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>关于这些证据的综述与讨论，可参考 <strong>Ilmanen (2011)</strong>。</p>
+
+      <h3 class="sub">泡沫</h3>
+      <div class="box def">
+        <div class="box-title">▸ Definition</div>
+        <p><em>Situations where an asset trades at a price far above fundamental value — the price in an economy with rational investors and no frictions — for a significant period of time.</em></p>
+      </div>
+      <p>著名案例：<strong>郁金香泡沫（1630s）</strong>、<strong>南海泡沫与密西西比泡沫（1720）</strong>、<strong>1920 年代美国股市</strong>、<strong>1980 年代末日本房地产与股市</strong>、<strong>1990 年代中期亚洲各地（泰国、马来西亚、印尼）的房地产与股市</strong>、<strong>1990 年代美国股市</strong>、<strong>2000 年代美国房地产市场</strong>。</p>
+
+      <div class="box note">
+        <div class="box-title">▸ 泡沫的其他三个特征</div>
+        <ul>
+          <li>泡沫往往伴随着<strong>极高的成交量</strong>（Hong &amp; Stein, 2007）。</li>
+          <li>成熟交易者常常<strong>「骑」在泡沫上（ride the bubble）</strong>（Brunnermeier &amp; Nagel, 2004）。</li>
+          <li>泡沫常常由<strong>好</strong>的基本面消息<strong>触发</strong>（Kindleberger, 1978）——这解释了为什么纯粹的基本面分析常常在泡沫早期「看起来是对的」。</li>
+        </ul>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 挑战不只是解释泡沫，还有三件事</div>
+        <ol class="steps">
+          <li>为什么有时候<b>不形成</b>泡沫；</li>
+          <li>什么导致了它<b>破裂</b>；</li>
+          <li>泡沫在概念上与<b>超额波动</b>相关；破裂往往伴随严重的经济下行——传导渠道包括<b>金融中介渠道</b>与<b>家庭资产负债表渠道</b>。</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ S5 ============ -->
+    <section id="exercises" data-exgroup>
+      <h2 class="sec">Part 4 练习 <span class="badge">Exercises</span></h2>
+      <p class="lede">计算集中在三处：<b>Hansen–Jagannathan 上界</b>、<b>可预测性回归</b>、以及<b>三因子 α 的剥离</b>。概念题则要求你能在多个异象之间做横向对照。</p>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Hansen–Jagannathan bound with different economies</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Using \(\text{Sharpe}\le\gamma\sigma(\Delta\ln c)\), fill in the implied relative risk aversion for each economy: (a) σ(Δln c) = 1%, observed Sharpe = 0.50; (b) σ(Δln c) = 2.5%, observed Sharpe = 0.50; (c) σ(Δln c) = 1%, observed Sharpe = 0.30. Comment on how each dimension of the bound changes the puzzle.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>直接对 \(\gamma\ge \text{Sharpe}/\sigma(\Delta\ln c)\) 代入三个组合，再看哪个方向能缓解谜题。</p></div>
+            <ol class="steps">
+              <li>(a) \(\gamma\ge0.50/0.01=50\)。</li>
+              <li>(b) \(\gamma\ge0.50/0.025=20\)。</li>
+              <li>(c) \(\gamma\ge0.30/0.01=30\)。</li>
+              <li><b>对照</b>：(b) 显示<b>经济更危险（消费波动更大）</b>能显著缓解谜题，但 20 仍在实验估计之上；(c) 显示<b>降低观测到的夏普比率</b>同样缓解，但也不够。</li>
+              <li>结论：要把 γ 拉进合理区间（例如 &lt; 10），必须<b>同时</b>让消费波动更大、或让实际夏普比率更小。这正是<b>罕见灾难</b>与<b>长期风险</b>两条路线的共同策略。</li>
+              <li><b>Caveat</b>：该公式依赖对数正态假设，实际消费分布有厚尾时结论会改变。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) ≥ 50; (b) ≥ 20; (c) ≥ 30. Making consumption more volatile or lowering the observed Sharpe ratio each ease the puzzle, but not enough alone to bring γ below 10.<br><strong>中文：</strong>(a) ≥ 50；(b) ≥ 20；(c) ≥ 30。提高消费波动或压低观测夏普比率都能缓解，但单独一项不足以把 γ 拉到 10 以下。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Forecasting returns with the dividend yield</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Suppose a regression of the annual excess return \(R_{t\to t+1}\) on the dividend–price ratio gives \(a=0.5\%\) and \(b=1.6\) with \(R^2=0.09\). (a) Forecast next year's excess return when D/P = 2.0%, and again when D/P = 4.5%. (b) Interpret the \(R^2\) in one sentence. (c) Explain why this is a puzzle under rational expectations.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>简单线性代入 + 对 \(R^2\) 的正确解读 + 一句理性预期反思。</p></div>
+            <ol class="steps">
+              <li>(a) D/P = 2.0%：\(R=0.5\%+1.6\times2.0\%=0.5\%+3.2\%=3.7\%\)。</li>
+              <li>D/P = 4.5%：\(R=0.5\%+1.6\times4.5\%=0.5\%+7.2\%=7.7\%\)。</li>
+              <li>斜率 b = 1.6 的含义：D/P 每上升 1 个百分点，下一年超额收益上升 1.6 个百分点。</li>
+              <li>(b) \(R^2=0.09\) 的含义：D/P 只能解释收益方差的 <b>9%</b>——<b>短期预测力有限</b>，这正对应课件说的「日、周、月度收益仍难预测，长期收益可预测」。</li>
+              <li>(c) 为什么是谜：理性预期下投资者<b>早就知道</b>这个关系式，会在 D/P 高时买、低时卖，把这个规律交易掉。而且 P/D 预测不了<b>现金流</b>，只能预测<b>收益</b> ⇒ 投资者本可以让价格调整到让它不再预测收益为止。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) 3.7% and 7.7%. (b) D/P explains only 9% of return variation — modest at annual frequency but economically large at long horizons. (c) Under rational expectations, investors should already have impounded this relation into prices; also, P/D does not predict cash flows, so it must be predicting returns, which should have been arbitraged away.<br><strong>中文：</strong>(a) 3.7% 与 7.7%；(b) 只解释 9% 的方差；(c) 理性预期下该关系早该被交易掉。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Documenting a new anomaly <span class="kbd">拓展</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">You sort stocks on a new characteristic F and form a long-short portfolio. Its average annual return is 11%. Its loadings on the Fama–French three factors are: market β = 0.35, SMB = 0.80, HML = 0.55. Over the same period factor premia are: market 6%, SMB 2%, HML 4%, and the risk-free rate is 2%. (a) Compute the three-factor alpha. (b) Is the anomaly economically large? Briefly comment using a transaction-cost perspective.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>标准的「发现异象」操作流程：先算出策略收益，再剥离已解释的部分，剩下的 α 才是真正的「未被定价」。</p></div>
+            <ol class="steps">
+              <li>基准收益：\(r_f+\beta_m\times\text{MKT}+\beta_{smb}\times\text{SMB}+\beta_{hml}\times\text{HML}\)。</li>
+              <li>代入：\(2\%+0.35\times6\%+0.80\times2\%+0.55\times4\%\)。</li>
+              <li>逐项：\(0.35\times6\%=2.1\%\)；\(0.80\times2\%=1.6\%\)；\(0.55\times4\%=2.2\%\)。</li>
+              <li>合计基准：\(2\%+2.1\%+1.6\%+2.2\%=7.9\%\)。</li>
+              <li>(a) \(\alpha=11\%-7.9\%=+3.1\%\) / 年。</li>
+              <li>(b) 经济意义：<b>年化 3.1% 是相当大的</b>在<b>经济</b>意义上——但<b>做多+做空</b>的双边组合要支付<b>双边</b>交易成本与<b>卖空费用</b>，再加上小市值股的<b>冲击成本</b>；美国证据显示 α 在<b>扣费后往往消失</b>。是否「足够大」取决于 AUM 与实际容量。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Benchmark = 2% + 0.35(6%) + 0.80(2%) + 0.55(4%) = 7.9%, so α = 11% − 7.9% = +3.1% per year. (b) Economically large, but a long-short strategy pays two-sided transaction costs and short-selling fees, especially when tilted towards small caps; net α may be much smaller.<br><strong>中文：</strong>(a) 三因子 α = +3.1% / 年；(b) 数值很大，但多空双边要付双倍交易成本与卖空费用，净 α 会小得多。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Momentum and reversal together <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Empirically, past returns positively predict returns over 2–12 months (momentum) but negatively predict returns over 3–5 years (long-term reversal). Explain why a model that produces only one of these facts is regarded as inadequate, and outline the two-sided mechanism any successful model must contain.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这是通向 Part 6 的「桥樑题」。核心：只解释一半事实的模型，通常是<b>事后挑选</b>的产物。</p></div>
+            <ol class="steps">
+              <li><b>为什么不够</b>：同一个「过去收益」变量，在两个期限上的符号相反。如果模型只产生动量，它在长期会<b>预测错</b>；只产生反转，它在中期会<b>预测错</b>。能解释全部的数据压缩比很高，才是真正的<b>纪律</b>（回应 lack-of-discipline critique）。</li>
+              <li><b>所需机制（两面）</b>：①<b>信息扩散不足/反应不足</b> ⇒ 消息逐渐进入价格 ⇒ <b>动量</b>；②<b>过度自信/代表性/自我归因</b> ⇒ 追价过度 ⇒ <b>长期反转</b>。</li>
+              <li><b>候选模型</b>：<b>BSV (1998)</b> 用「保守性 + 代表性」；<b>DHS (1998)</b> 用「过度自信 + 自我归因」；<b>HS (1999)</b> 用「渐进信息扩散 + 动量交易者」。</li>
+              <li><b>可检验推论</b>：<b>换手率</b>应在两种效应都出现时放大；<b>分析师修正</b>滞后会加剧前者。</li>
+              <li><b>Caveat</b>：<b>Asness, Moskowitz &amp; Pedersen (2013)</b> 显示这两个效应在多资产共存，说明它们更可能是<b>市场结构</b>层面的，而不是特定国家/制度的产物。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> Because the same predictor has opposite signs at different horizons, a model explaining only one side makes a falsified prediction on the other. A successful model needs initial under-reaction (slow information diffusion) producing momentum plus eventual over-reaction (overconfidence/representativeness) producing reversal — the structure in BSV, DHS and Hong–Stein.<br><strong>中文：</strong>同一个变量在两个期限上符号相反 ⇒ 只解释一半的模型会在另一半被证伪；成功模型必须同时含「初期反应不足」与「最终过度反应」。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Which anomaly is it? <span class="kbd">概念</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Match each pattern to its usual name and sign. (a) Firms that issue SEOs subsequently underperform. (b) Stocks with high idiosyncratic volatility subsequently earn low returns. (c) Stocks with high accruals subsequently earn low returns. (d) Analysts revising forecasts upwards precede high returns. (e) Stocks with high P/E ratios subsequently earn low returns.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>匹配 + 符号。这是最容易拿分也最容易粗心的一道。</p></div>
+            <ol class="steps">
+              <li>(a) <b>发行 Issuance 异象</b>，符号为 <b>负</b>（Loughran &amp; Ritter, 1995）。</li>
+              <li>(b) <b>特质波动 IVOL 异象</b>，符号为 <b>负</b>（Ang et al., 2006）。</li>
+              <li>(c) <b>应计 Accruals 异象</b>，符号为 <b>负</b>（Sloan, 1996）。</li>
+              <li>(d) <b>分析师修正</b>，符号为 <b>正</b>（Chan, Jegadeesh &amp; Lakonishok, 1996）。</li>
+              <li>(e) <b>价值 Value 异象</b>，符号为 <b>负</b>（高 P/E ⇒ 低收益；Fama &amp; French, 1992）。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Issuance, negative. (b) Idiosyncratic volatility, negative. (c) Accruals, negative. (d) Analyst forecast revisions, positive. (e) Value, negative.<br><strong>中文：</strong>(a) 发行（负）；(b) 特质波动（负）；(c) 应计（负）；(d) 分析师修正（正）；(e) 价值（负）。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Scenario: anomalies after publication <span class="kbd">拓展</span> <span class="kbd">场景</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">A quantitative team finds that a new characteristic F earns a 4% annual three-factor alpha in-sample over 1970–2024. Discuss: (a) two statistical concerns to raise before publishing; (b) what McLean and Pontiff (2016) predict after publication, and why; (c) what a behavioural interpretation implies about which anomalies are most likely to survive.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>把「如何正确看待一个异象」写完整，这正是作业型开放题的标准答案结构。</p></div>
+            <ol class="steps">
+              <li><b>(a) 统计隐患</b>：①<b>数据挖掘 / p-hacking</b>——尝试了若干个 F 才找到这一个，则样本内 α 被<b>选择偏差</b>夸大；②<b>多重检验</b>、<b>长期事件研究的统计问题</b>；③<b>小市值与流动性</b>造成的 micro-structure 偏差；④<b>冗余年限</b>与<b>样本期选择</b>。</li>
+              <li><b>(b) McLean &amp; Pontiff (2016) 的预测</b>：论文发表后 α 会<b>衰减</b>（通常降至原值的三成左右）——因为投资者利用学术出版物中的发现，套利资本涌入把错价交易掉；同时<b>基金和做市商的数据订阅</b>会加速这个过程。</li>
+              <li><b>(c) 行为解读的含义</b>：最容易<b>存活</b>的是那些<b>套利限制最强</b>的异象——<b>卖空成本极高</b>（小盘、难以借券）、<b>噪声交易者风险高</b>（可被持续夸大叙事或散户情绪推动）、<b>期限风险长</b>（需要持有多年）。例如某些券商评级或盈余漂移型异象。</li>
+              <li><b>Caveat</b>：衰减也可能来自<b>运气回归</b>（样本内 α 本来就被高估），所以要区分「被交易掉」与「本来就没那么大」。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Data mining and multiple testing, micro-structure bias from small illiquid stocks, weak long-horizon tests. (b) McLean and Pontiff (2016) predict the alpha decays after publication because investors exploit published findings. (c) Behaviourally, anomalies survive longest where limits to arbitrage are strongest — expensive to short, high noise-trader risk, long horizons.<br><strong>中文：</strong>(a) 数据挖掘与多重检验、微结构偏差；(b) 发表后 α 会衰减；(c) 套利限制最强的异象最容易存活。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Homework 1 · The return predictability puzzle <span class="kbd">HW1</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Explain what is the return predictability puzzle.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这是本 Part"收益可预测性"这一 stylized fact 的<b>定义题</b>。核心是：它与"市场有效性 = 收益不可预测"直接冲突。</p></div>
+            <ol class="steps">
+              <li><b>现象</b>：尽管有效市场假说（EMH）的"硬版本"认为短期收益应近似随机游走、不可预测，但大量变量能<b>显著预测</b>未来<b>总体</b>股票收益，且在长期窗口里 \(R^2\) 经济上很大：股息率（dividend-price ratio）、盈利价格比（E/P）、账市比（B/M）、利率（短期国债利率、期限利差）、投资 / 资本比等（Campbell &amp; Shiller, 1988；Fama &amp; French, 1988）。</li>
+              <li><b>矛盾</b>：①若预期收益随时间<b>大幅变动</b>（时变风险溢价，Cochrane 的习惯 / 长期风险框架），则价格波动过大；②若价格相对股息<b>过度波动</b>（Shiller, 1981 / LeRoy &amp; Porter 的波动 bound 悖论），则价格偏离了基本面。两条路都挑战"最简单版 EMH"。</li>
+              <li><b>与课程的连接</b>：这正是本 Part 的"收益竟然可预测"之谜，和<b>股权溢价之谜</b>、<b>过度波动之谜</b>并列，是行为资产定价（Part 6）要同时解释的"四个事实"之一。</li>
+              <li><b>Caveat</b>：可预测性也可能来自<b>风险溢价随时间变化</b>（理性解释）而非误定价；区分二者是争论焦点。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> The return predictability puzzle is that, although the strong form of market efficiency implies short-horizon returns should be roughly unpredictable, a set of variables (dividend yield, E/P, book-to-market, interest rates, investment/capital) significantly forecast aggregate stock returns, especially at long horizons. This either means expected returns move a lot over time or that prices are excessively volatile relative to fundamentals — both contradict the simplest version of the EMH, and together with the equity-premium and excess-volatility puzzles they are the stylized facts that behavioral asset pricing must explain.<br><strong>中文：</strong>收益可预测性之谜：尽管有效市场说收益不可预测，但股息率、E/P、账市比、利率等变量能显著预测总体收益（尤其长期），意味着预期收益时变或价格相对基本面过度波动——与最简 EMH 冲突，是 Part 6 要解释的核心事实之一。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 本 Part 一句话总结</div>
+        <p>理性模型的困境可以浓缩成三句话：<b>溢价太高、波动太大、收益竟然可预测</b>；而横截面则告诉我们，<b>决定平均收益的根本不是 β</b>。Part 6 的任务，就是用最少的人类非理性同时把这四件事做出来。</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  FIN 4080 Behavioral Finance · Part 4 资产价格的事实 · 内容依据 Lecture 5–6 课件整理
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

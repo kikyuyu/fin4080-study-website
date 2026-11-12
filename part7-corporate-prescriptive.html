@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta property="og:title" content="FIN4080 行为金融学学习站"><meta property="og:description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta name="description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta property="og:image" content="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg"><link rel="icon" href="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+<title>FIN4080 行为金融学学习站</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="assets/tex-mml-svg.js" id="MathJax-script" async></script>
+<script>
+/* Fallback: 若本地 MathJax 包不可用，从 jsDelivr 兜底加载。 */
+(function () {
+  function loadCdn() {
+    if (window.MathJax && window.MathJax.startup) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-svg.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function () { setTimeout(loadCdn, 400); });
+})();
+</script>
+    <script src="assets/figures.js"></script>
+    <script src="assets/mindmap.js"></script>
+    <script src="assets/marks.js?v=20261017a"></script>
+</head>
+<body data-page="part7" data-root="">
+
+<header id="site-topbar"></header>
+
+<div class="layout">
+  <aside class="toc" id="site-toc"></aside>
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Part 7 · Lecture 11–13</div>
+      <h1>行为公司金融 &amp; 规范性行为金融</h1>
+      <p>课程结构的最后两站。先是<strong>行为公司金融（Behavioral Corporate Finance）</strong>：两条对称路线——<b>投资者非理性 + 管理者理性</b>（市场择时、迎合），与<b>管理者非理性 + 投资者理性</b>（过度自信、并购狂妄）。然后是<strong>规范性行为金融（Prescriptive Behavioral Finance）</strong>：既然知道了偏差，怎么用<b>制度设计</b>而不是说教来改善决策——助推、默认选项与 Save More Tomorrow。</p>
+      <div class="tags">
+        <span>Market Timing</span><span>Catering Theory</span><span>CEO Overconfidence</span><span>Hubris Hypothesis</span><span>Nudge</span><span>Save More Tomorrow</span><span>Choice Architecture</span>
+      </div>
+    </div>
+
+    <div id="mindmap-host"></div>
+
+    <!-- ============ S1 ============ -->
+    <section id="framework">
+      <h2 class="sec">两条对称路线：谁是不理性的那个 <span class="badge">The Framework</span></h2>
+
+      <div class="box note">
+        <div class="box-title">▸ 本讲 Learning Objectives</div>
+        <ul>
+          <li>能区分行为公司金融的<b>两条路线</b>，并为每条给出至少一个具体政策含义。</li>
+          <li>能解释 <b>Baker &amp; Wurgler (2002)</b> 的市场择时理论对<b>资本结构</b>的含义。</li>
+          <li>能说明<b>迎合理论</b>在股利、更名、拆股与真实投资上的表现。</li>
+          <li>能推导<b>过度自信的 CEO</b> 如何导致过度投资与债务保守，并会算一道简单的 NPV 高估题。</li>
+          <li>能解释 <b>Roll (1986)</b> 的狂妄假说，并会算一笔"溢价 vs. 协同"的账。</li>
+          <li>能说出<b>规范性行为金融</b>的两类处方，并解释 SMarT 为何有效。</li>
+          <li>能说明助推的<b>局限</b>：它解决不了能力与市场规模问题。</li>
+        </ul>
+      </div>
+
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ 路线一：理性管理者面对非理性投资者</div>
+          <p>管理者<b>知道</b>股价偏离了基本面，于是<b>顺势而为</b>：高估时发股 / 用股票支付并购；低估时回购 / 用现金收购。核心模型：<b>市场择时</b>与<b>迎合</b>。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ 路线二：非理性管理者面对理性投资者</div>
+          <p>投资者<b>看穿</b>了价格，但<b>管理者自己</b>有偏差——<b>过度自信</b>、<b>乐观</b>、<b>锚定</b> ⇒ 过度投资、并购溢价过高、债务保守。</p>
+        </div>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">▸ 关键区别：市场是「鏡子」还是「裁判」</div>
+        <p>在路线一里，市场是<b>被利用的镜子</b>——管理者知道它歪了，并借此优化融资。在路线二里，市场是<b>裁判</b>——管理者的错误会被股价<b>纠正</b>（通常表现为并购公告日的<b>负</b>异常收益）。做题时先把这一句说清楚，后面就不容易讲反。</p>
+      </div>
+    </section>
+
+    <!-- ============ S1b ============ -->
+    <section id="cf-facts">
+      <h2 class="sec">公司金融的经验事实：理性框架要过的一关 <span class="badge">Corporate Finance Facts</span></h2>
+
+      <div class="box def">
+        <div class="box-title">为什么先摆事实</div>
+        <p>在引入行为解释之前，课件先列出一组公司金融的<b>stylized facts（典型事实）</b>。理性框架并非没有候选——<b>代理问题（agency problems）</b>与<b>信息不对称（asymmetric information）</b>都能解释其中一部分；行为金融的贡献是解释那些理性机制「说过头」或「说反了」的部分。以下三组事实是后面的靶子。</p>
+      </div>
+
+      <h3 class="sub">事实一：融资决策</h3>
+      <ul>
+        <li><b>发股后长期表现差</b>：SEO / IPO 之后数年收益低于基准（Loughran &amp; Ritter 1995）——公司在股价「贵」的时候发股。</li>
+        <li><b>回购后表现好</b>：宣布回购的公司之后收益高于基准（Ikenberry, Lakonishok &amp; Vermaelen 1995）——公司在股价「便宜」的时候回购。</li>
+        <li><b>资本结构</b>：tradeoff theory（权衡：税盾 vs 破产成本）与 pecking-order theory（优序：内源资金 → 债务 → 股权）长期竞争。Rajan &amp; Zingales (1995) 给出四个稳健的决定因素：<b>规模（+）、有形资产（+）、盈利能力（−）、市值账面比（−）</b>——其中「盈利能力越高杠杆越低」是优序理论最得意的证据。</li>
+        <li><b>股利之谜</b>：Fama &amp; French (2001)——付息公司占比从 1978 年的 <b>66%</b> 跌到 1999 年的 <b>21%</b>；但 DeAngelo, DeAngelo &amp; Skinner (2004) 指出<b>总派息金额并没有下降</b>（派息向大集中）——「消失的股利」更多是结构变化而非整体退场。</li>
+      </ul>
+
+      <h3 class="sub">事实二：投资决策——投资-现金流相关性</h3>
+      <div class="box key">
+        <div class="box-title">Investment–cash flow sensitivity</div>
+        <p>即使控制了 <b>Tobin's Q</b>（投资机会的理性度量），公司投资仍对<b>内部现金流</b>高度敏感。理性解释（优序：外部融资有成本）与行为解释（管理者过度自信 + 自由现金流问题）都能产生该相关性——需要用<b>外生冲击</b>来区分：</p>
+        <ul>
+          <li>Blanchard, Lopez-de-Silanes &amp; Shleifer (1994)：公司意外获得一笔「横财」（诉讼赔偿等非经营现金）后，投资显著上升；</li>
+          <li>Lamont (1997)：石油价格冲击下，非石油部门的投资也随母公司现金流下降——不是投资机会的变化，是钱的问题；</li>
+          <li>Stein (2003) 综述：该相关性稳健存在，争论在于机制归属。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">事实三：并购 M&amp;A</h3>
+      <div class="tablewrap">
+        <table class="data">
+          <thead><tr><th>证据</th><th>数字</th><th>含义</th></tr></thead>
+          <tbody>
+            <tr><td>公告日（3 日）效应 · 合并方</td><td><b>+1.8%</b></td><td>目标方股东拿走大部分溢价，合并整体仍是正和</td></tr>
+            <tr><td>公告日 · 收购方</td><td><b>−0.7%</b></td><td>收购方 typically 受损</td></tr>
+            <tr><td>收购方 · 股票融资</td><td><b>−1.5%</b></td><td rowspan="2">公告日：股票融资 <b>−1.5%</b> vs 非股票融资 <b>+0.4%</b>（Andrade, Mitchell &amp; Stafford 2001）——市场对「用股票支付」的解读是「你的股票贵了」</td></tr>
+            <tr><td>收购方 · 非股票融资</td><td><b>+0.4%</b></td></tr>
+            <tr><td>三年长期 · 收购方</td><td><b>−5%</b></td><td rowspan="2">Mitchell &amp; Stafford (2000)：三年期收购方 <b>−5%</b>，其中股票融资的 <b>−9%</b>——长期同样呈现融资方式差异</td></tr>
+            <tr><td>三年长期 · 股票融资收购方</td><td><b>−9%</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 留给理性与行为框架的三个问题</div>
+        <ol class="steps">
+          <li><b>为什么并购这么多？</b>既然平均而言收购方受损，为何并购潮一波接一波（60 年代末、80 年代、90 年代末）？——hubris / 过度自信 + 市场择时是行为答案。</li>
+          <li><b>为什么股票融资与非股票融资的结果差异这么大？</b>——信息不对称（Myers–Majluf）与择时（Baker–Wurgler）都能解释，注意两者的可区分含义。</li>
+          <li><b>为什么并购会「成波」出现？</b>——理性框架较难解释这种羊群式的时间聚集，行为框架（管理者情绪、市场估值周期）更顺手。</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ S2 ============ -->
+    <section id="timing">
+      <h2 class="sec">市场择时与迎合 <span class="badge">Irrational Investors</span></h2>
+
+      <h3 class="sub">市场择时 Market timing</h3>
+      <div class="box def">
+        <div class="box-title">▸ 基本逻辑</div>
+        <p>当股价<b>被高估</b>时，股权融资的<b>成本被低估</b>，于是发行股票；当股价<b>被低估</b>时，则<b>回购</b>股票、或用<b>现金</b>支付并购对价。<b>理性</b>的管理者只是在利用投资者的错误定价。</p>
+      </div>
+
+      <div class="fig" data-fig="corporate_timing" data-cap="高估 ⇒ 发股 / 股票支付并购；低估 ⇒ 回购 / 现金收购。"></div>
+
+      <div class="box key">
+        <div class="box-title">▸ Baker &amp; Wurgler (2002) 的核心命题</div>
+        <p><em>Capital structure is the cumulative outcome of past attempts to time the equity market.</em> 资本结构是<b>历史上股权融资窗口</b>的累积结果，而不是向某个目标杠杆率收敛的过程。</p>
+        <p>可检验推论：<b>当前的杠杆率与历史市净率（M/B）负相关</b>——那些历史上<b>运气好</b>（上市时正好赶上高估值）的公司，杠杆率会<b>系统性偏低</b>。</p>
+      </div>
+
+      <h3 class="sub">迎合理论 Catering</h3>
+      <div class="box note">
+        <div class="box-title">▸ 四种「迎合」</div>
+        <ul>
+          <li><b>股利迎合</b>：投资者对<b>分红型股票</b>的偏好（股利溢价）变化时，管理层迎合 —— 溢价高时发股利，溢价低时取消。</li>
+          <li><b>更名 / 互联网标签</b>：迎合投资者对<b>成长叙事</b>的偏好（1990 年代末加入 ".com" 或相关字样的效应）。</li>
+          <li><b>拆股</b>：迎合投资者对<b>低名义股价</b>的偏好。</li>
+          <li><b>真实投资的迎合</b>：<b>Polk &amp; Sapienza (2009)</b> 显示，管理层会为了<b>迎合投资者对短期业绩的偏好</b>而<b>削减</b>长期投资（或反之过度投资）。</li>
+        </ul>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 易错点：迎合 ≠ 造假</div>
+        <p>迎合理论<b>不需要</b>假设管理层欺骗市场。它假设的是：投资者对某个<b>特征</b>（股利、名字、成长标签）有<b>时变</b>的偏好，管理层<b>理性地</b>提供这个特征以抬高股价。<b>关键在于"投资者的偏好是时变的"</b>，而不是"管理层在说谎"。</p>
+      </div>
+    </section>
+
+    <!-- ============ S3 ============ -->
+    <section id="managers">
+      <h2 class="sec">管理者非理性：过度自信与狂妄 <span class="badge">Irrational Managers</span></h2>
+
+      <h3 class="sub">过度自信的 CEO</h3>
+      <div class="box def">
+        <div class="box-title">▸ 机制</div>
+        <p>过度自信的管理者<b>高估自己项目的现金流</b>与<b>成功率</b>，同时<b>低估风险</b>。两个直接后果：</p>
+        <ul>
+          <li><b>过度投资</b>：把 NPV 为负的项目当成正的来做（Malmendier &amp; Tate, 2005）。</li>
+          <li><b>债务保守</b>：因为他们<b>认为</b>市场低估了自己的股价（Heaton, 2002） ⇒ 觉得股权"太便宜"而不愿发行 ⇒ 偏好内源资金 ⇒ 杠杆率偏低。</li>
+        </ul>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 1</span> 过度自信导致的过度投资</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">A project costs $150 today and produces $10 per year forever. The true growth rate of these cash flows is 2% and the cost of capital is 10%. An overconfident CEO believes growth will be 4%. (a) Compute the true NPV. (b) Compute the CEO's perceived NPV. (c) Explain the resulting decision and its consequence for shareholders.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li>永续增长公式：\(PV=\dfrac{CF_1}{r-g}\)。</li>
+              <li>(a) 真实 \(PV=\dfrac{10}{0.10-0.02}=\dfrac{10}{0.08}=\$125\) ⇒ \(NPV=125-150=\mathbf{-\$25}\)。</li>
+              <li>(b) CEO 感知的 \(PV=\dfrac{10}{0.10-0.04}=\dfrac{10}{0.06}\approx\$166.7\) ⇒ 感知 \(NPV=166.7-150=\mathbf{+\$16.7}\)。</li>
+              <li>(c) 决策：CEO <b>接受</b>这个项目；但真实 NPV 为负 ⇒ 股东价值<b>损失 25</b>。</li>
+              <li><b>放大效应</b>：注意 \((r-g)\) 在分母上 ⇒ <b>g 的微小高估</b>在<b>接近 r</b>时被<b>极度放大</b>。这里只高估了 2 个百分点，估值却差了 33%。</li>
+              <li>这也是<b>为什么</b>成熟市场里<b>过度自信型 CEO</b> 的公司<b>投资对现金流的敏感性更高</b>（Malmendier &amp; Tate, 2005），且并购更多、并购回报更差（Malmendier &amp; Tate, 2008）。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> (a) True NPV = 10/(0.10 − 0.02) − 150 = 125 − 150 = −$25. (b) Perceived NPV = 10/(0.10 − 0.04) − 150 ≈ 166.7 − 150 = +$16.7. (c) The CEO accepts a project that destroys $25 of value; the (r − g) denominator means a small growth overestimate becomes a large valuation gap.<br><strong>中文：</strong>(a) 真实 NPV −25；(b) 感知 NPV +16.7；(c) CEO 接受了一个毁灭 25 美元价值的项目——分母 (r−g) 会把增长率的小幅高估大幅放大。</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub">并购中的狂妄 Hubris</h3>
+      <div class="box def">
+        <div class="box-title">▸ Roll (1986) Hubris hypothesis</div>
+        <p>收购方的管理者<b>过度相信自己的估值能力</b>，为一个协同效应<b>并不存在</b>（或远没那么大）的目标支付了过高溢价。结果是：并购<b>创造不了价值</b>，收购方的股价在公告日<b>下跌</b>。</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 其他管理者偏差</div>
+        <ul>
+          <li><b>锚定</b>：要约收购的定价会锚在<b>目标公司过去的 52 周高点</b>附近；薪酬谈判会锚在<b>对标公司</b>的水平。</li>
+          <li><b>证实偏差</b>：一旦发起并购，管理层会<b>忽视反面证据</b>，一路推进到交易完成。</li>
+          <li><b>群体思维</b>：董事会内部追求一致的压力使得<b>反对意见</b>被压制。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S4 ============ -->
+    <section id="prescriptive">
+      <h2 class="sec">规范性行为金融：知道了又怎样 <span class="badge">Prescriptive BF</span></h2>
+
+      <div class="box key">
+        <div class="box-title">▸ 定义</div>
+        <p><em>Prescriptive behavioral finance: how insights from psychology can improve the functioning of financial markets and the decisions of individuals and institutions.</em> 与描述性（descriptive）部分的区别：<b>描述性部分告诉你哪里会错，规范性部分告诉你怎么改</b>。</p>
+      </div>
+
+      <h3 class="sub">处方一：自我纠偏 Self-correction</h3>
+      <div class="fig" data-fig="prescriptive" data-cap="规范性行为金融的两条路径：个人层面的自我纠偏，与制度层面的选择架构。"></div>
+
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>偏差</th><th>自助处方</th><th>原理</th></tr></thead>
+        <tbody>
+          <tr><td><b>短视损失厌恶</b>（Part 3）</td><td><b>少看账户</b>；把评估周期<b>拉长</b>到至少一年</td><td>减少"评估事件"的次数 ⇒ 减少累计的损失厌恶痛苦</td></tr>
+          <tr><td><b>损失厌恶 + 拖延</b></td><td><b>预设规则</b>：再平衡规则、止损规则、定投计划</td><td>用<b>规则</b>替代<b>临场判断</b>，避开情绪窗口</td></tr>
+          <tr><td><b>事后聪明</b>（hindsight bias）</td><td><b>写投资日记</b>：把买入理由<b>记录</b>下来</td><td>让未来的自己无法<b>重写</b>记忆</td></tr>
+          <tr><td><b>过度自信</b></td><td><b>减少交易频率</b>；做<b>概率化</b>记录（记录每次判断的<b>信心区间</b>并事后打分）</td><td>用<b>校准反馈</b>对抗自信膨胀</td></tr>
+          <tr><td><b>时间不一致</b></td><td><b>承诺装置</b>：锁定期、自动定投</td><td>成熟型（sophisticated）的主动预承诺</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">处方二：选择架构与助推 Nudge</h3>
+      <div class="box def">
+        <div class="box-title">▸ Thaler &amp; Sunstein, Nudge (2021)</div>
+        <p>核心思想：<em>improve decisions through choice architecture</em>——通过<b>设计选择的环境</b>（而非禁止任何选项、也非显著改变经济激励）来改善决策。最有力的工具是<b>默认选项（default）</b>，因为人的<b>惰性</b>与<b>现状偏差</b>会使默认项被大量保留。</p>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">▸ Save More Tomorrow（SMarT，Thaler &amp; Benartzi, 2004）</div>
+        <p>把三个行为洞察组合成一个设计：</p>
+        <ol class="steps">
+          <li><b>自动加入（automatic enrollment）</b>——把"要主动 opt-in"改成"可主动 opt-out"，直接利用惰性。</li>
+          <li><b>默认缴费率</b>——默认项会被大量保留，因此默认值本身就是政策。</li>
+          <li><b>把提缴绑在加薪上</b>——这是最关键的一步：加薪时提缴，员工<b>不会感觉到当期到手收入下降</b>，从而<b>绕过了损失厌恶</b>；同时也绕过了双曲折现造成的拖延。</li>
+        </ol>
+        <p>换成一句话：<b>用惰性（加入）与损失厌恶（绑加薪）去克服拖延</b>——这是规范性行为金融最漂亮的范例。</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ Naive vs. Sophisticated 的政策含义</div>
+        <p>同样是时间不一致，<b>天真型</b>（naive）的人需要<b>外部设计的默认项</b>来帮助他；<b>成熟型</b>（sophisticated）的人会自己<b>提前设置承诺装置</b>（O'Donoghue &amp; Rabin, 1999）。好的政策应当<b>同时</b>照顾两者：既提供默认值，也允许主动<a href="part3-psychology.html#hyperbolic">预承诺</a>。</p>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 助推的三条边界</div>
+        <ol class="steps">
+          <li><b>助推解决不了能力不足</b>：如果问题是<b>金融素养缺失</b>或<b>信息处理成本高</b>，那么改变默认项并不总能奏效，需要<b>教育 + 简化</b>并行。</li>
+          <li><b>助推解决不了市场规模问题</b>：如果问题是<b>费用过高</b>或<b>产品不适配</b>，制度干预才是关键。</li>
+          <li><b>助推要按异质性设计</b>：同一个默认选项对<b>低收入者</b>可能有害（自动加入但缴不久，反被费用拖累），因此<b>上线前必须做随机实验（A/B 测试）评估</b>。</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ S5 ============ -->
+    <!-- ============ Concept cheat-sheet ============ -->
+    <section id="concepts">
+      <h2 class="sec">概念考点速查：双语解释 + 例子 <span class="badge">Concept Cheat-Sheet</span></h2>
+      <p class="lede">下列每个行为公司金融概念/假说都给出<b>英文解释、中文解释与佐证例子</b>，专供「解释类（explanation）」考题复习。点击展开。</p>
+
+      <details class="concept" data-concept="market-timing-catering">
+        <summary class="concept-bar">
+          <span class="concept-en">Market Timing &amp; Catering</span>
+          <span class="concept-cn">市场择时与迎合理论</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>(a) <b>Market timing</b> (Bayless &amp; Chaplinsky; Graham &amp; Harvey): managers issue equity when they believe it is overvalued and repurchase when undervalued — exploiting mispricing. (b) <b>Catering theory</b> (Baker &amp; Wurgler 2002): managers cater to investors' current tastes — e.g., creating dual-class shares or conglomerates when the market pays a premium for them, even if it destroys value, because the short-term price responds.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>(a) <b>市场择时</b>（Bayless &amp; Chaplinsky；Graham &amp; Harvey）：管理者在认为股票被高估时增发、被低估时回购——利用错误定价。(b) <b>迎合理论</b>（Baker &amp; Wurgler 2002）：管理者迎合投资者当前偏好——例如当市场为某类结构（双重股权、多元化集团）支付溢价时去创造它，即便破坏长期价值，因为短期价格会反应。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">A wave of SPAC/IPO issuance at market peaks, followed by underperformance — a classic market-timing footprint. <b>中文：</b>市场顶部出现 SPAC/IPO 增发浪潮、随后跑输——典型的市场择时痕迹。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="overconfidence-hubris">
+        <summary class="concept-bar">
+          <span class="concept-en">Managerial Overconfidence &amp; Hubris</span>
+          <span class="concept-cn">管理者过度自信与狂妄</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Overconfident CEOs (a) think their firm is undervalued, so they under-issue equity and prefer debt or internal funds (Malmendier &amp; Tate 2005); (b) overestimate synergies in M&amp;A → overpay, and the market corrects on announcement (Roll 1986 "hubris hypothesis": acquirers systematically overpay because of CEO hubris).</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>过度自信的 CEO：(a) 认为本公司被低估，因而少发股权、偏好债务或内源资金（Malmendier &amp; Tate 2005）；(b) 高估并购协同效应→出价过高，市场在公告日即做出负面反应（Roll 1986"狂妄假说"：收购方因 CEO 狂妄而系统性出价过高）。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Acquirer stock drops ~2–3% on merger announcement — the market prices in the hubris premium the CEO paid. <b>中文：</b>收购公告日收购方股价平均跌约 2–3%——市场把 CEO 支付的"狂妄溢价"计入价格。</div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="exercises" data-exgroup>
+      <h2 class="sec">Part 7 练习 <span class="badge">Exercises</span></h2>
+      <p class="lede">计算集中在<b>管理者的项目估值高估</b>与<b>并购的溢价–协同账</b>；规范性部分则要求你能<b>为给定的偏差设计干预</b>。</p>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Market timing and leverage</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Firm A has assets of $200 and debt of $100. After a run-up, the market value of its equity doubles from $100 to $200. (a) Compute the debt ratio before and after the run-up. (b) The firm then issues $50 of equity and uses the proceeds to repay debt. Compute the new debt ratio. (c) Explain how this illustrates Baker and Wurgler (2002).</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>重点在于：杠杆率的下降<b>不来自任何主动决策</b>，而是来自市场估值的<b>时点运气</b>。</p></div>
+            <ol class="steps">
+              <li>(a) 前：\(100/(100+100)=50.0\%\)；后：\(100/(100+200)=33.3\%\)。</li>
+              <li>(b) 发股 50 后：资产 \(200+50=250\)（账上现金增加），债务先<b>仍为</b> 100 ⇒ \(100/(100+250)\)… 注意这里要用<b>股权市值</b>：发股后股权市值变为 \(200+50=250\) ⇒ 债务比 \(100/(100+250)=28.6\%\)；再用 50 还债 ⇒ 债务 50，股权 250 ⇒ \(50/(50+250)=16.7\%\)。</li>
+              <li>(c) <b>Baker &amp; Wurgler (2002)</b>：杠杆率是<b>历史融资窗口的累积结果</b>。这家公司<b>恰好在股价高时</b>发股还债，于是把杠杆率永久性地压低了——即便它事后<b>从不</b>再融资，杠杆率也回不去了。推论：<b>当前杠杆率应与历史 M/B 负相关</b>。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) 50.0% then 33.3%. (b) After the equity issue and debt repayment: 50/(50 + 250) = 16.7%. (c) A firm that happens to face a high valuation can permanently lower its leverage, so capital structure reflects cumulative timing luck — the Baker and Wurgler (2002) market-timing view.<br><strong>中文：</strong>(a) 50.0% → 33.3%；(b) 16.7%；(c) 杠杆率被"高估值时点"永久压低，体现历史融资窗口的累积效应。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> The synergy–premium arithmetic</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Acquirer A (value $800m) bids for target T (stand-alone value $200m) at a 40% premium. (a) Compute the total price paid and the NPV to A's shareholders if the true synergies are $120m. (b) If the CEO believes synergies are $250m, what NPV does he perceive? (c) Explain the hubris hypothesis prediction for A's announcement-day return.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>把协同效应与溢价分开算：<b>NPV = 协同 − 溢价</b>，这是并购题的通用公式。</p></div>
+            <ol class="steps">
+              <li>对价：\(200\times(1+40\%)=\$280\text{m}\) ⇒ <b>溢价 = 80m</b>。</li>
+              <li>(a) 真实协同 120 ⇒ \(NPV=120-80=\mathbf{+\$40\text{m}}\)。</li>
+              <li>(b) CEO 认为协同 250 ⇒ 感知 \(NPV=250-80=\mathbf{+\$170\text{m}}\)，因此<b>他会愿意</b>把溢价抬得更高（例如为竞标而加到 60%）。</li>
+              <li>若因竞标把溢价抬到 60%：对价 = 320 ⇒ 溢价 120 ⇒ 真实 \(NPV=120-120=\$0\)；再高一点即为<b>负</b>。</li>
+              <li>(c) <b>狂妄假说（Roll, 1986）</b>的预测：由于<b>过度自信</b>，管理者<b>系统性地</b>高估协同、支付过高溢价 ⇒ 收购方在<b>公告日</b>的<b>异常收益为负</b>（或至少显著低于目标方的正收益）。<b>实证上</b>：目标方大幅为正，收购方平均<b>接近零甚至为负</b>。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Premium = $80m and NPV = 120 − 80 = +$40m. (b) Perceived NPV = 250 − 80 = +$170m, which justifies bidding the premium higher. (c) Hubris predicts the acquirer's announcement-day abnormal return is around zero or negative.<br><strong>中文：</strong>(a) 溢价 80，NPV +40；(b) 感知 NPV +170 ⇒ 会抬价；(c) 狂妄假说预测收购方公告日收益≈0 或为负。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Designing an intervention <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Employees of a firm rarely join the pension plan (35% enrolment), leave the default contribution rate unchanged, and panic-sell their equity allocation after every market drop. Propose one intervention for each problem, name the bias it targets, and state how you would evaluate whether it worked.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>规范性题目的标准三段：<b>干预 → 目标偏差 → 评估方式</b>。缺了评估会明显扣分。</p></div>
+            <ol class="steps">
+              <li><b>参保率低 35%</b> —— 偏差：<b>现状偏差 + 惰性</b>。干预：<b>自动加入</b>（默认 opt-out）。评估：<b>随机对照实验</b>——随机把部分新员工设为自动加入，比较参保率的<b>差异</b>；同时看<b>停止参保</b>的行为是否被诱发。</li>
+              <li><b>从不调整缴费率</b> —— 偏差：<b>默认项锚定 + 损失厌恶 + 拖延</b>。干预：把<b>默认缴费率</b>设为<b>更高</b>的水平，并提供 <b>Save More Tomorrow</b>：<b>在未来每次加薪时自动提高</b>缴费率。评估：随机分组比较<b>1 年、3 年后的实际缴费率</b>；并且要按<b>收入水平</b>分组，检查低收入者是否被费用拖累。</li>
+              <li><b>每次下跌就恐慌卖出</b> —— 偏差：<b>短视损失厌恶 + 窄框架</b>。干预：①<b>降低披露频率</b>（月度<b>而非</b>日度报表）；②<b>目标日期基金</b>作为默认投资选项（<b>自动</b>下滑路径 + 自动再平衡）；③<b>锁定期</b>与<b>默认不调仓</b>。评估：比较干预组与对照组在<b>下跌月份</b>的<b>仓位变动幅度</b>，以及长期的<b>资金加权收益</b>（真正 KPI 是<b>净收益</b>，不是交易次数）。</li>
+              <li><b>共同注意</b>：所有干预都应以<b>随机实验</b>评估，并检查<b>异质性</b>（收入、年龄、金融素养）。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> Automatic enrolment (targets status-quo bias/inertia); higher default contribution plus Save More Tomorrow escalation tied to pay rises (targets default anchoring, loss aversion and procrastination); lower disclosure frequency and a target-date default (targets myopic loss aversion and narrow framing). Evaluate each with randomised controlled trials, and use dollar-weighted returns — not trading activity — as the outcome for the last one.<br><strong>中文：</strong>自动加入（惰性/现状偏差）；提高默认率 + SMarT（锚定、损失厌恶、拖延）；降低披露频率 + 目标日期默认（短视损失厌恶）。全部用随机实验评估，KPI 用资金加权收益。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Two routes in a takeover <span class="kbd">拓展</span> <span class="kbd">场景</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">In a hot stock market, Acquirer A pays for Target T entirely with shares; later, in a depressed market, Acquirer B pays cash for a similar target. Discuss: (a) which behavioural corporate finance route each choice illustrates; (b) what the market-timing view predicts about the two firms' subsequent stock returns; (c) what limits to arbitrage keep this "free lunch" from being competed away immediately.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>把<b>支付方式</b>当作择时工具，是行为公司金融最经典的一道题。</p></div>
+            <ol class="steps">
+              <li>(a) <b>路线</b>：两者都属<b>路线一</b>（理性管理者 + 非理性投资者）。股价<b>高</b>时用<b>股票</b>支付 —— 实质上是<b>卖出被高估的货币</b>（自己的股票）；股价<b>低</b>时用<b>现金</b>支付 —— 不愿贱卖股权。</li>
+              <li>(b) <b>市场择时观点的预测</b>：以<b>股票</b>支付的收购，其后续<b>收益较低</b>（因为"发行股票"本身就是高估值信号）；以<b>现金</b>支付的收购，后续<b>收益较高</b>。这与<b>发行/回购异象</b>（Part 4：Loughran &amp; Ritter 1995；Daniel &amp; Titman 2006）在<b>逻辑上完全一致</b>——只是把"发行股票"换成了"用股票支付并购"。</li>
+              <li>(c) <b>为什么这份"免费午餐"没被立刻吃掉</b>：①<b>时机不可直接交易</b>——市场无法提前做空"即将被高估的收购方"，因为<b>并购事件不可预测</b>、<b>标的不可知</b>；②<b>期限风险</b>——并购从公告到完成有数月，且收益要等到事后才实现；③<b>模型风险</b>——你无法确知协同效应是真还是高估；④<b>实施成本</b>——对<b>收购方</b>做空需要<b>借券</b>且要承担<b>并购完成/失败</b>的事件风险。</li>
+              <li><b>Caveat</b>：若市场能<b>立刻</b>看穿支付方式所包含的估值信息，则<b>公告日</b>的收益差异会<b>部分</b>被立即price in；实证上观察到的是<b>事后</b>仍有<b>漂移</b>（这与<b>有限关注</b>一致）。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Both are the rational-manager/irrational-investor route: share payment sells overvalued equity, cash payment avoids selling undervalued equity. (b) Stock-financed deals should subsequently underperform cash-financed deals — the same logic as the issuance anomaly. (c) Mergers are unpredictable events held for months, with model risk about synergies and short-selling costs, so the opportunity cannot be arbitraged away instantly.<br><strong>中文：</strong>(a) 高估用股票、低估用现金；(b) 股票支付型收购后续收益更低（与发行异象同构）；(c) 并购不可预测、持有期长、且有模型风险与卖空成本，因此无法被立刻套利掉。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Which route? <span class="kbd">概念</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Classify each as "irrational investors + rational managers", "irrational managers + rational investors", or "prescriptive". (a) A firm repurchases shares after its stock falls 40%. (b) A CEO invests in a negative-NPV project because he is certain about the growth rate. (c) A firm adds a "digital" tag to its name during a tech boom. (d) A pension plan auto-enrols employees with automatic escalation. (e) An acquirer overpays and its stock falls on announcement.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>分类题。判断口诀：<b>谁在被利用 / 谁在被惩罚</b>。</p></div>
+            <ol class="steps">
+              <li>(a) <b>理性管理者 + 非理性投资者</b>：股价被<b>低估</b> ⇒ 回购是<b>理性</b>的择时行为。</li>
+              <li>(b) <b>非理性管理者 + 理性投资者</b>：CEO 的<b>过度自信</b>导致过度投资（Heaton 2002；Malmendier &amp; Tate 2005）。</li>
+              <li>(c) <b>理性管理者 + 非理性投资者</b>：<b>迎合</b>投资者对<b>成长叙事</b>的偏好。</li>
+              <li>(d) <b>规范性</b>：用<b>默认项与自动递增</b>改善决策（Thaler &amp; Benartzi 2004）。</li>
+              <li>(e) <b>非理性管理者 + 理性投资者</b>：<b>狂妄假说</b>——支付过高溢价 ⇒ 股价在公告日<b>下跌</b>（Roll 1986）。注意这个惩罚发生在<b>管理者非理性</b>的场合，與 (a)(c) 的"被利用"正好相反。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Irrational investors + rational managers (market timing). (b) Irrational managers + rational investors (overconfidence). (c) Irrational investors + rational managers (catering). (d) Prescriptive. (e) Irrational managers + rational investors (hubris).<br><strong>中文：</strong>(a) 投资者非理性（择时）；(b) 管理者非理性（过度自信）；(c) 投资者非理性（迎合）；(d) 规范性；(e) 管理者非理性（狂妄）。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 本 Part 一句话总结</div>
+        <p>行为公司金融的全部内容可以压缩成一张对称图：<b>投资者错 ⇒ 管理者利用（择时/迎合）</b>，与<b>管理者错 ⇒ 市场惩罚（过度投资/狂妄并购）</b>。而规范性行为金融则是对这两种错误的回应：<b>用制度（默认值、承诺装置）而不是说教，去修补人性</b>。</p>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Corporate finance facts <span class="kbd">补充</span> <span class="kbd">事实</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">(a) Summarize the evidence on long-run performance after SEOs versus repurchases. (b) What is the investment–cash flow sensitivity, and why do Blanchard et al. (1994) and Lamont (1997) use exogenous cash windfalls to discipline the explanation? (c) State the acquirer announcement returns by financing method and the three questions these facts pose for rational vs behavioral frameworks.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这组事实是后面「择时/迎合/过度自信」的靶子；记住关键文献名与数字。</p></div>
+            <ol class="steps">
+              <li><b>(a) 融资后的长期表现</b>：SEO/IPO 后数年收益低于基准（Loughran–Ritter 1995）——贵时发股；回购公告后收益高于基准（Ikenberry et al. 1995）——便宜时回购。两者共同构成「市场择时」的经验基础。</li>
+              <li><b>(b) 投资-现金流敏感性与外生冲击</b>：控制 Tobin's Q 后投资仍显著依赖内部现金流。Blanchard et al. (1994) 用诉讼赔偿式「横财」、Lamont (1997) 用石油价格冲击下的非石油部门——排除「投资机会变化」这一混杂，把机制锁定在「钱本身」。</li>
+              <li><b>(c) 并购数字与三问</b>：公告日收购方 −0.7%，其中股票融资 −1.5% vs 非股票 +0.4%；三年期收购方 −5%，股票融资 −9%。三问：为何并购这么多（平均受损仍频繁发生）？为何融资方式差异这么大（信息不对称 vs 择时）？为何并购成波出现（60s 末、80s、90s 末）？</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Post-SEO long-run underperformance (Loughran–Ritter 1995) vs post-repurchase outperformance (Ikenberry et al. 1995) — firms issue when expensive, repurchase when cheap. (b) Investment depends on internal cash flow even controlling for Q; windfall/exogenous-shock designs (Blanchard et al. 1994; Lamont 1997) rule out investment-opportunity confounds. (c) Acquirer announcement return −0.7% overall, −1.5% stock-financed vs +0.4% non-stock; 3-year −5%, −9% for stock deals. Open questions: why so much M&A, why the financing wedge, why M&A waves.<br><strong>中文：</strong>(a) 发股后差、回购后好 ⇒ 择时；(b) 投资依赖现金流，外生横财/油价冲击排除机会混杂；(c) 收购方公告 −0.7%（股票 −1.5% vs 非股票 +0.4%），三年 −5%/−9%；三问：并购为何多、融资方式差异、并购成波。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 全站收尾：把七个 Part 串起来</div>
+        <ol class="steps">
+          <li><b>Part 1</b>：EMH 依赖两条假设 —— <b>理性</b>与<b>无摩擦</b>。</li>
+          <li><b>Part 2</b>：放松<b>无摩擦</b> ⇒ 套利受限 ⇒ 错价可以长期存在。</li>
+          <li><b>Part 3</b>：放松<b>理性</b> ⇒ 偏好侧（PT）与信念侧（偏差）的具体形式。</li>
+          <li><b>Part 4 / Part 5</b>：把它们放到<b>价格</b>与<b>人的行为</b>上去检验，得到一长串事实。</li>
+          <li><b>Part 6</b>：用<b>一个模型同时解释多个事实</b>，并提出新预测 ⇒ 回应缺乏纪律质疑。</li>
+          <li><b>Part 7</b>：把同样的机制搬进<b>公司决策</b>与<b>制度设计</b>。</li>
+        </ol>
+        <p>答题时只要能定位题目处在这个链条的哪一环，剩下的就是按「<b>机制 → 套利限制 → 可检验推论 → 边界</b>」四步展开。</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 延伸：Part 8–9 把链条再往前推一步</div>
+        <ol class="steps">
+          <li><b>Part 8</b>：把 Part 3 的<b>前景理论偏好</b>直接接入定价与交易——偏度被定价、短视损失厌恶解释股权溢价、实现效用解释处置效应。</li>
+          <li><b>Part 9</b>：当 PT 的固定加权解释不了 Allais 悖论时，<b>显著性理论</b>用「注意力聚焦最显著 payoff」给出 context-dependent 的替代，并产出可交易的 <b>ST 因子</b>。</li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  FIN 4080 Behavioral Finance · Part 7 行为公司金融与规范性行为金融 · 对应 Lecture 11–13
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

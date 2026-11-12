@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta property="og:title" content="FIN4080 行为金融学学习站"><meta property="og:description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta name="description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><link rel="icon" href="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+<title>FIN4080 行为金融学学习站</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="assets/tex-mml-svg.js" id="MathJax-script" async></script>
+<script>
+/* Fallback: 若本地 MathJax 包不可用，从 jsDelivr 兜底加载。 */
+(function () {
+  function loadCdn() {
+    if (window.MathJax && window.MathJax.startup) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-svg.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function () { setTimeout(loadCdn, 400); });
+})();
+</script>
+    <script src="assets/figures.js"></script>
+    <script src="assets/mindmap.js"></script>
+    <script src="assets/marks.js?v=20261017a"></script>
+</head>
+<body data-page="part8" data-root="">
+
+<header id="site-topbar"></header>
+
+<div class="layout">
+  <aside class="toc" id="site-toc"></aside>
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Part 8 · Lecture 4（Models &amp; Predictions）</div>
+      <h1>前景理论的应用：偏度定价、股权溢价与交易行为</h1>
+      <p>Part 3 建立了<b>前景理论（Prospect Theory, PT）</b>的偏好框架，本 Part 回答下一个问题：把 EU 换成心理学上更现实的 PT 之后，我们能在多大程度上<b>解释并预测</b>金融现象？课件沿着三条线展开——<strong>横截面股票定价</strong>（偏度被定价）、<strong>总体股市</strong>（股权溢价与波动之谜）、<strong>交易行为</strong>（处置效应与实现效用）。贯穿三条线的结论是：<b>概率加权（probability weighting）的作用可能比损失厌恶更大</b>。</p>
+      <div class="tags">
+        <span>Prospect Theory Applications</span><span>Skewness Pricing</span><span>Myopic Loss Aversion</span><span>TK Value (BMW 2016)</span><span>Realization Utility</span><span>Investment Frame</span>
+      </div>
+    </div>
+
+    <div id="mindmap-host"></div>
+
+    <!-- ============ S1 ============ -->
+    <section id="overview">
+      <h2 class="sec">导览：为什么要换偏好框架 <span class="badge">Chapter Overview</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ 出发点（课件原文逻辑）</div>
+        <ul>
+          <li>几乎所有股票市场模型都假设投资者按 <b>Expected Utility (EU)</b> 评估风险——但这个框架在匹配大量实证事实上遇到了困难。</li>
+          <li>于是自然的问题：<b>Can we make progress by replacing EU with a psychologically more realistic preference specification?</b>——比如换成 <b>Prospect Theory</b>？</li>
+        </ul>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">▸ 三大核心应用（先记住这张表）</div>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>应用</th><th>模型类型</th><th>目标现象 / 新预测</th><th>PT 中起关键作用的部件</th></tr></thead>
+        <tbody>
+          <tr><td><b>[1] 横截面股票收益</b><br>Cross-section of Stock Returns</td><td>单期模型<br>One-period models</td><td><b>新预测：偏度的定价</b>（the pricing of skewness）——正偏度 ⇒ <b>更低</b>的超额收益</td><td><b>Probability weighting</b> 起最关键作用</td></tr>
+          <tr><td><b>[2] 总体股市</b><br>Aggregate Stock Market</td><td>跨期代表性代理人模型<br>Intertemporal representative agent models</td><td>股权溢价（equity premium）、不参与（non-participation）、波动（volatility）、可预测性（predictability）谜题</td><td><b>Loss aversion</b> 起关键作用；probability weighting 也重要</td></tr>
+          <tr><td><b>[3] 交易行为</b><br>Trading Behavior</td><td>多期模型<br>Multi-period models</td><td><b>处置效应</b>（disposition effect）及其他交易现象</td><td>PT 的<b>所有</b>部件都起作用</td></tr>
+        </tbody>
+      </table>
+      </div>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 根本挑战：「收益」与「损失」如何定义？</div>
+        <p>把 PT 用到金融里，第一道难关是<b>界定 gains 与 losses</b>——这包括两件事：</p>
+        <ol class="steps">
+          <li><b>参考点（reference point）</b>取什么？</li>
+          <li><b>窄框架（narrow framing）</b>的程度有多大？（即：投资者在多细的粒度上单独评估每项投资）</li>
+        </ol>
+        <p>常见做法：参考点取<b>按无风险利率放大后的初始财富</b>（initial wealth scaled up by the risk-free rate）。但学界对「<b>预期（expectations）</b>作为参考点决定因素」的兴趣正在增长——<b>Kőszegi &amp; Rabin (2006, 2007, 2009)</b>：参考点由事前的理性预期决定，而不是机械地由买入价决定。</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 本讲 Learning Objectives</div>
+        <ul>
+          <li>写出 <b>CPT</b> 的价值函数与概率加权函数形式，并记住 T&amp;K (1992) 的三参数值。</li>
+          <li>陈述 PT 在横截面的<b>新预测</b>（偏度定价），并列出至少四条支持证据。</li>
+          <li>解释 <b>Barberis–Mukherjee–Wang (2016)</b> 的 TK 值检验设计及其结论。</li>
+          <li>用「短视损失厌恶」三要素解释股权溢价，并说明<b>窄框架</b>为什么不可缺。</li>
+          <li>说明为什么<b>朴素 PT 解释不了处置效应</b>，以及 <b>realization utility</b> 如何补上。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S2 ============ -->
+    <section id="cpt">
+      <h2 class="sec">从 PT (1979) 到 CPT (1992)：函数形式 <span class="badge">Cumulative Prospect Theory</span></h2>
+
+      <h3 class="sub">原始前景理论的价值赋值</h3>
+      <div class="box def">
+        <div class="box-title">▸ Kahneman &amp; Tversky (1979)：对赌局 (x, p; y, q) 的赋值</div>
+        <p>同一个赌局（以概率 \(p\) 获得 \(x\)、以概率 \(q\) 获得 \(y\)）：</p>
+        <ul>
+          <li><b>EU 下</b>：\(p\,U(W+x) + q\,U(W+y)\) —— 效用定义在<b>最终财富</b>上；</li>
+          <li><b>PT 下</b>：\(\pi(p)\,v(x) + \pi(q)\,v(y)\) —— 效用定义在<b>相对参考点的损益</b>上，且概率经过加权函数 \(\pi(\cdot)\) 扭曲。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">累积前景理论：对 CDF 加权</h3>
+      <div class="box key">
+        <div class="box-title">▸ Cumulative Prospect Theory（T&amp;K 1992）的两个要点</div>
+        <ul>
+          <li>概率加权函数作用在<b>累积分布函数（CDF）</b>上——于是代理人<b>高估分布尾部（overweights the tails）</b>的概率；</li>
+          <li>这<b>保留了对彩票式赌局的偏好</b>（preserves a preference for lottery-like gambles）——右尾的小概率大奖被显著放大。</li>
+        </ul>
+      </div>
+
+      <div class="formula hi">
+        \[v(x)=\begin{cases} x^{\alpha}, & x\ge 0\\[2pt] -\lambda(-x)^{\alpha}, & x<0 \end{cases}\qquad\qquad \pi(P)=\frac{P^{\delta}}{\left(P^{\delta}+(1-P)^{\delta}\right)^{1/\delta}}\]
+        <div class="fnote"><b>Tversky &amp; Kahneman (1992) 校准值：\(\alpha=0.88,\ \lambda=2.25,\ \delta=0.65\)。</b>符号含义：\(v(\cdot)\) 为价值函数（参考点处不可微、损失域更陡）；\(\pi(\cdot)\) 为概率加权函数（小概率高估、大概率低估，呈倒 S 形）；\(\alpha\) 控制敏感度递减，\(\lambda\) 是<b>损失厌恶系数</b>（损失的心理冲击约为等量收益的 2.25 倍），\(\delta\) 控制概率扭曲程度。这组参数由实验证据校准而来，是后面所有应用的「默认参数」。</div>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 与 Part 3 的衔接</div>
+        <p>Part 3 介绍了 PT 的四要素（参考点依赖、损失厌恶、敏感度递减、概率加权）。本 Part 的每一条应用，本质上都是在问：<b>四要素中的哪一个在起主要作用？</b>先记住结论——横截面靠 <b>probability weighting</b>，总体市场靠 <b>loss aversion + narrow framing</b>，交易行为则要靠 PT 之外的新假设（realization utility）。</p>
+      </div>
+    </section>
+
+    <!-- ============ S2.5 ============ -->
+    <section id="cross">
+      <h2 class="sec">应用一：横截面股票收益——偏度被定价 <span class="badge">Cross-Section</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ 核心新预测（The Pricing of Skewness）</div>
+        <p><b>Model type: one-period models.</b> 正偏度（positively skewed）的股票——收益分布右尾长、像彩票——在 probability weighting 下被<b>高估（overpriced）</b>，因此 <b>平均收益更低</b>：positive skewness → lower excess return。这是一个<b>此前没有的新预测</b>，也是 PT 对资产定价最重要的贡献之一。</p>
+      </div>
+
+      <div class="fig" data-fig="skew_pricing" data-cap="概率加权 ⇒ 右尾被高估 ⇒ 彩票型股票定价过高 ⇒ 未来收益更低。"></div>
+
+      <h3 class="sub">支持证据：五组典型事实</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>事实</th><th>关键论文</th><th>与偏度定价的关系</th></tr></thead>
+        <tbody>
+          <tr><td><b>IPO 长期收益偏低</b></td><td>Green &amp; Hwang (2012)</td><td>IPO 收益高度正偏；预测偏度越大的 IPO，长期收益越低</td></tr>
+          <tr><td><b>困境股、破产股、OTC 股平均收益低</b></td><td>Eraker &amp; Ready (2012)</td><td>这类股票具有彩票特征（正偏 + 低价）</td></tr>
+          <tr><td><b>价外期权（OTM options）被「高估」</b></td><td>Boyer &amp; Vorkink (2013)</td><td>预测偏度越正的期权，后续收益越低</td></tr>
+          <tr><td><b>特质波动率（IVOL）高的股票收益低</b></td><td>Ang et al. (2006); Boyer, Mitton &amp; Vorkink (2010)</td><td>高 IVOL 通常伴随高偏度；彩票属性被高估</td></tr>
+          <tr><td><b>分散化折价（diversification discount）</b></td><td>Mitton &amp; Vorkink (2010)</td><td>单体公司比集团（conglomerate）更正偏；偏度差越大，折价越大</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">直接检验「偏度被定价」的三项研究</h3>
+      <div class="grid2">
+        <div class="box def">
+          <div class="box-title">▸ Boyer, Mitton &amp; Vorkink (2010)</div>
+          <p>用<b>回归模型预测未来偏度</b>（predicted skewness），再检验被预测为高偏的股票是否收益更低。</p>
+        </div>
+        <div class="box def">
+          <div class="box-title">▸ Conrad, Dittmar &amp; Ghysels (2013)</div>
+          <p>用<b>期权价格反推</b>标的股票的「感知收益分布」（perceived distribution），再检验偏度与收益的关系。</p>
+        </div>
+      </div>
+      <div class="box def">
+        <div class="box-title">▸ Bali, Cakici &amp; Whitelaw (2011)：MAX 效应</div>
+        <p>直接用过去一段时间的<b>最大日收益（maximum daily returns, MAX）</b>度量彩票吸引力——MAX 越高的股票未来收益越低。三项研究<b>都发现了支持性证据</b>。</p>
+      </div>
+
+      <h3 class="sub">组合选择层面的证据：分散化不足</h3>
+      <div class="box note">
+        <div class="box-title">▸ Mitton &amp; Vorkink (2007)</div>
+        <p>组合分散化不足（under-diversification）的个人投资者，持有的股票比平均股票<b>更不正偏地集中</b>——准确说：他们偏爱的股票<b>正偏度高于平均</b>。这与「投资者主动追求偏度（skewness preference）」一致。</p>
+      </div>
+
+      <h3 class="sub">这个应用的三个注记（课件强调）</h3>
+      <div class="box key">
+        <div class="box-title">▸ Notes</div>
+        <ul>
+          <li>这是「心理学如何带来<b>有趣的新预测</b>」的范例——不是事后解释，而是先推出偏度定价、再被数据证实。</li>
+          <li>结论对 gains/losses 的替代定义<b>稳健</b>（narrow framing 程度、其他参考点）。</li>
+          <li><b>Probability weighting 起核心作用</b>。</li>
+          <li>同一个模型能<b>同时</b>产生两个方向的结论：正偏股票上的<b>低</b>溢价 + 总体市场上的<b>高</b>溢价（后者见应用二）——这是 PT 框架的一大卖点。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">Barberis, Mukherjee &amp; Wang (2016)：TK 值的实证检验</h3>
+      <div class="box def">
+        <div class="box-title">▸ Prospect Theory and Stock Returns: An Empirical Test</div>
+        <p>检验 PT 在横截面的<b>另一种实现方式</b>：</p>
+        <ul>
+          <li>投资者用一只股票的<b>历史收益分布</b>来计算它的 PT 价值——即「用历史分布来代表（represent）一只股票」，因为很多投资者实际看到的就是这种展示形式；</li>
+          <li>一个简单的定价模型推出：<b>PT 价值高（high “TK”）的股票，后续平均收益更低</b>；</li>
+          <li>实证确认该预测——例如用<b>过去五年的月度收益</b>构造历史分布；</li>
+          <li>该效应<b>主要由概率加权驱动</b>（primarily driven by probability weighting），而不是损失厌恶。</li>
+        </ul>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 损失厌恶之谜（The Loss Aversion Puzzle）</div>
+        <ul>
+          <li>在<b>窄框架</b>下，损失厌恶预测：<b>波动越大的股票，平均收益应该越高</b>（承担更多心理痛苦 ⇒ 要求更多补偿）。</li>
+          <li>但实证上<b>恰恰相反</b>：高波动（尤其高 IVOL）股票收益<b>更低</b>。</li>
+          <li>一种解释：波动大的股票往往<b>同时更正偏</b>，而在 probability weighting 下正偏是有吸引力的 ⇒ 两股力量方向相反，偏度效应占优（Boyer, Mitton &amp; Vorkink, 2010）。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S3 ============ -->
+    <section id="aggregate">
+      <h2 class="sec">应用二：总体股市——短视损失厌恶 <span class="badge">Aggregate Market</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ Benartzi &amp; Thaler (1995)：Myopic Loss Aversion</div>
+        <p>核心观察：如果投资者对<b>其股票持仓的年度价值变化</b>是损失厌恶的，模型就能预测出<b>很高的股权溢价</b>。三个要素缺一不可：</p>
+        <ol class="steps">
+          <li><b>Loss aversion</b>（损失厌恶）；</li>
+          <li><b>Annual evaluation</b>（每年评估一次盈亏——评估越频繁，感受到的损失越多，要求的溢价越高）；</li>
+          <li><b>Narrow framing</b>（把股票账户单独框出来评估，而不是和总财富混在一起）。</li>
+        </ol>
+        <p>Benartzi &amp; Thaler 本人强调前两个要素，即「<b>短视损失厌恶（myopic loss aversion）</b>」——<b>短视</b>（评估频繁）+ <b>损失厌恶</b>。这个想法正在被广泛接受（the idea is gaining acceptance）。</p>
+      </div>
+
+      <div class="fig" data-fig="myopic_la" data-cap="评估频率如何放大损失体验：看得越勤，亏损出现得越频繁，要求的股权溢价越高。"></div>
+
+      <h3 class="sub">后续发展的四个方向</h3>
+      <div class="box note">
+        <div class="box-title">▸ Subsequent Developments</div>
+        <ul>
+          <li>把论证<b>形式化</b>（formalizing the argument）；</li>
+          <li>强调<b>窄框架</b>的作用；</li>
+          <li>研究<b>概率加权</b>的作用；</li>
+          <li>把<b>过度波动之谜</b>也一并处理（excess volatility puzzle）。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">窄框架的作用：为什么不可缺</h3>
+      <div class="box key">
+        <div class="box-title">▸ Barberis, Huang &amp; Santos (2001)；Barberis, Huang &amp; Thaler (2006)</div>
+        <ul>
+          <li>如果对<b>总财富波动</b>（total wealth fluctuations）损失厌恶：<b>产生不了</b>显著的股权溢价（股票只占总财富一小部分，盈亏被摊薄）；</li>
+          <li>也<b>产生不了</b>不参与之谜（non-participation：很多人根本不买股票）；</li>
+          <li>所以可行路线是「<b>损失厌恶 + 窄框架</b>」——但这就留下一个待答问题：<b>如何为窄框架本身辩护？</b>（how do we justify the narrow framing?）</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">概率加权的作用</h3>
+      <div class="box key">
+        <div class="box-title">▸ De Giorgi &amp; Legg (2012)</div>
+        <p>在 <b>Barberis &amp; Huang (2009)</b> 的框架中加入 probability weighting 与价值函数的凹/凸性，结果：probability weighting 能<b>显著放大股权溢价</b>——原因是<b>总体市场收益是负偏的</b>（aggregate market is negatively skewed）：左尾被高估 ⇒ 持有股市的心理成本更高 ⇒ 要求更高补偿。注意与应用一的方向对比：<b>负偏的市场 ⇒ 高溢价；正偏的个股 ⇒ 低溢价</b>，同一机制、两个方向。</p>
+      </div>
+
+      <h3 class="sub">波动之谜：动态损失厌恶</h3>
+      <div class="box key">
+        <div class="box-title">▸ BHS (2001) 的动态扩展</div>
+        <ul>
+          <li>基于 <b>Thaler &amp; Johnson (1990)</b> 的证据，假设<b>损失厌恶程度随前期盈亏变化</b>：前期盈利后损失厌恶<b>下降</b>（像「私房钱效应」house money），前期亏损后损失厌恶<b>上升</b>；</li>
+          <li>可解读为「<b>承受好消息/坏消息的能力（capacity for dealing with good or bad news）</b>」随近期经历变化；</li>
+          <li>这一动态性在产生高股权溢价<b>之外</b>，还能产生<b>过度波动（excess volatility）</b>——价格对冲击的反应被放大。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S4 ============ -->
+    <section id="trading">
+      <h2 class="sec">应用三：交易行为——处置效应与实现效用 <span class="badge">Trading Behavior</span></h2>
+
+      <div class="box def">
+        <div class="box-title">▸ 目标现象：处置效应（Disposition Effect）</div>
+        <p>个人投资者<b>卖出处于盈利（相对买入价）股票的倾向，显著高于卖出亏损股票</b>——greater propensity to sell stocks trading at a gain relative to purchase price, rather than at a loss（详见 Part 5）。乍看之下，<b>PT + 股票层面的窄框架</b>（每笔持仓单独评估、参考点=买入价）是很有希望的解释……</p>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 但是：朴素 PT 解释不了（Caveats）</div>
+        <ol class="steps">
+          <li><b>损失厌恶推出的是反方向的结论</b>：只有当期望收益足够高时，投资者才会在「参考点处有弯折（kink）」的价值函数下买入股票；<b>盈利之后，他离弯折更远了</b>——价值函数在盈利域近似线性甚至偏凹（\(\alpha=0.88\) 的温和凹性），卖出盈利的吸引力并不更大；</li>
+          <li>T&amp;K (1992) 估计出的<b>凹/凸程度太弱</b>，不足以压倒上述力量。</li>
+        </ol>
+        <p>结论：标准 PT（纸面盈亏 + 买入价参考点）<b>预测不出</b>处置效应，需要新的部件。</p>
+      </div>
+
+      <h3 class="sub">实现效用（Realization Utility）</h3>
+      <div class="box def">
+        <div class="box-title">▸ Shefrin &amp; Statman (1985)</div>
+        <p>核心假设：投资者直接从<b>已实现的（realized）</b>盈亏中获得效用，而不只是从纸面财富变化中。</p>
+        <ul>
+          <li>例子：以 <b>$40</b> 买入、以 <b>$60</b> 卖出——在<b>卖出成交的那一刻</b>，投资者基于<b>已实现盈利的大小</b>获得一阵正效用（a jolt of positive utility at the moment of sale）；</li>
+          <li>心理来源：人们常把投资史想成<b>一系列投资片段（investing episodes）</b>，而把「盈利卖出」记为一个「好片段」——<b>卖出盈利 = 创造一个新的正面投资片段 ⇒ 一阵愉悦</b>。</li>
+        </ul>
+      </div>
+
+      <div class="fig" data-fig="realization_util" data-cap="实现效用：效用脉冲发生在「卖出成交」时点，大小随已实现盈利增加——于是投资者热衷「兑现盈利」。"></div>
+
+      <div class="box key">
+        <div class="box-title">▸ 实现效用能解释的一组现象（不止处置效应）</div>
+        <ul>
+          <li><b>处置效应</b>（the disposition effect）——目标现象本身；</li>
+          <li><b>过度交易</b>（excessive trading）——兑现效用让交易本身变成「消费」；</li>
+          <li>个人投资者<b>扣除交易成本前</b>就已跑输（underperformance even before transaction costs）；</li>
+          <li><b>牛市中换手率更高</b>（greater turnover in bull markets）——盈利机会多、兑现频繁；</li>
+          <li>价格<b>突破历史高点后卖出倾向上升</b>（greater selling propensity above historical highs）；</li>
+          <li>横截面中<b>波动率的负溢价</b>（negative premium to volatility）——波动大 ⇒ 兑现机会分布更极端；</li>
+          <li><b>被高估的资产同时也被重度交易</b>（overpriced assets are also heavily traded）。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">神经科学证据：Frydman et al. (2014)</h3>
+      <div class="box note">
+        <div class="box-title">▸ 用 fMRI 检验实现效用假说</div>
+        <ul>
+          <li><b>Frydman, Barberis, Camerer, Bossaerts &amp; Rangel (2014)</b>：让被试在<b>实验股票市场</b>中交易，同时采集 <b>fMRI 脑扫描</b>数据；</li>
+          <li>逻辑：<b>腹侧纹状体（ventral striatum, vSt）</b>被认为编码<b>享乐价值 / 主观愉悦感（hedonic value）</b>；若实现效用为真，则当被试发出「<b>盈利卖出</b>」指令时，vSt 活动应出现<b>尖峰</b>——相对于发出「<b>持有</b>」指令但股票含有相似账面盈利的情形；</li>
+          <li>做法：分别画出 vSt 活动在「卖出指令」与「持有指令」时刻前后的时间序列并对比——结果支持实现效用假说。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S5 ============ -->
+    <section id="themes">
+      <h2 class="sec">小结与三个主题 <span class="badge">Summary &amp; Themes</span></h2>
+
+      <div class="box note">
+        <div class="box-title">▸ 三条应用线回顾</div>
+        <ol class="steps">
+          <li><b>横截面</b>：单期模型；新预测=偏度定价；probability weighting 最关键。</li>
+          <li><b>总体市场</b>：跨期代表性代理人模型；处理溢价/不参与/波动/可预测性谜题；loss aversion 关键，probability weighting 也重要。</li>
+          <li><b>交易行为</b>：处理处置效应及其他交易现象；需要 realization utility 补位。</li>
+        </ol>
+      </div>
+
+      <div class="box key">
+        <div class="box-title">▸ Themes（课件收尾的三句话）</div>
+        <ul>
+          <li>PT 对思考金融现象<b>很有帮助</b>（prospect theory is helpful for thinking about financial phenomena）；</li>
+          <li><b>Probability weighting 起着重要作用——很可能比损失厌恶更重要</b>（probably more important than loss aversion）；</li>
+          <li>在这些框架里，金融资产是在「<b>投资框架（investment frame）</b>」而非「消费框架（consumption frame）」中被评估的；</li>
+          <li>但基本的<b>表征问题（representation problem）</b>——如何定义 gains 与 losses——<b>仍然开放</b>（remains open）。</li>
+        </ul>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 本 Part 一句话总结</div>
+        <p>把 EU 换成 PT 之后，我们得到了一个「会开花」的框架：横截面上它预测<b>彩票股被高估</b>，总体市场上它预测<b>高溢价与高波动</b>，交易层面它逼出了<b>实现效用</b>这个新假设——而贯穿始终的主角是 <b>probability weighting</b>。</p>
+      </div>
+    </section>
+
+    <!-- ============ S6 ============ -->
+    <section id="cheatsheet">
+      <h2 class="sec">概念考点速查：双语解释 + 例子 <span class="badge">Concept Cheat-Sheet</span></h2>
+      <p class="lede">下列每个概念都给出<b>英文解释、中文解释与佐证例子</b>，专供「解释类（explanation）」考题复习。点击展开。</p>
+
+      <details class="concept" data-concept="cpt">
+        <summary class="concept-bar">
+          <span class="concept-en">CPT — Cumulative Prospect Theory (T&amp;K 1992)</span>
+          <span class="concept-cn">累积前景理论：对 CDF 加权、高估尾部</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Applies the probability weighting function to the cumulative distribution function: the agent overweights the tails of a distribution, preserving a preference for lottery-like gambles. Calibrated forms: v(x)=x^0.88 (gains), −2.25(−x)^0.88 (losses); π(P)=P^δ/(P^δ+(1−P)^δ)^{1/δ} with δ=0.65.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>把概率加权函数作用在累积分布上，使代理人高估分布尾部的概率，保留对彩票式赌局的偏好。校准形式：v(x)=x^0.88（盈利域），−2.25(−x)^0.88（亏损域）；π(P)=P^δ/(P^δ+(1−P)^δ)^{1/δ}，δ=0.65。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">A 1% chance of winning $2,000 feels much more than 1% as good as a sure $20 — π(0.01) ≈ 0.047 under T&amp;K parameters, i.e. the tail probability is inflated ~4.7×. <b>中文：</b>1% 概率赢 2000 美元的心理权重远高于 1%——按 T&amp;K 参数 π(0.01)≈0.047，尾部概率被放大约 4.7 倍。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="skew">
+        <summary class="concept-bar">
+          <span class="concept-en">Skewness Pricing — positive skewness ⇒ lower average return</span>
+          <span class="concept-cn">偏度定价：正偏股票被高估、未来收益更低</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Under probability weighting, investors overweight the right tail of a positively skewed stock's return distribution, so they overpay for lottery-like stocks. The model's new prediction: positively skewed assets (IPOs, OTC/distressed stocks, high-IVOL stocks, OTM options) earn lower average returns; the aggregate market, being negatively skewed, earns a high premium.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>概率加权使投资者高估正偏股票右尾的概率，于是为彩票型股票出价过高。模型的新预测：正偏资产（IPO、OTC/困境股、高 IVOL 股、价外期权）平均收益更低；而负偏的总体市场则要求很高的溢价。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Boyer–Mitton–Vorkink (2010): stocks predicted to be more positively skewed earn lower returns; Bali–Cakici–Whitelaw (2011): high MAX (lottery-like) stocks underperform. <b>中文：</b>BMV(2010)：被预测偏度越正的股票收益越低；BCW(2011)：MAX 越高的彩票型股票后续表现越差。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="tk2016">
+        <summary class="concept-bar">
+          <span class="concept-en">BMW (2016) — the "TK value" of a stock's historical distribution</span>
+          <span class="concept-cn">BMW (2016)：用历史分布算 TK 值，高 TK 股票后续收益低</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Barberis, Mukherjee &amp; Wang: investors evaluate a stock by computing the prospect-theory value of its historical return distribution (e.g., the past five years of monthly returns). A simple pricing model predicts high-PT-value ("high TK") stocks have lower subsequent returns on average — confirmed in the data, and the effect is primarily driven by probability weighting.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>Barberis、Mukherjee 与 Wang：投资者用股票的历史收益分布（如过去五年月度收益）计算其前景理论价值。简单定价模型预测：TK 值高的股票后续平均收益更低——实证证实，且效应主要由概率加权驱动。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Two stocks with identical mean and volatility but different shapes: the one with a fatter right tail gets a higher TK value, is bid up, and subsequently earns less. <b>中文：</b>两只均值与波动相同的股票，右尾更厚者 TK 值更高、被推高、随后收益更低。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="mla">
+        <summary class="concept-bar">
+          <span class="concept-en">Myopic Loss Aversion — Benartzi &amp; Thaler (1995)</span>
+          <span class="concept-cn">短视损失厌恶：损失厌恶 + 每年评估 + 窄框架 ⇒ 高股权溢价</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>A model in which investors are loss averse over annual changes in the value of their stock-market holdings predicts a large equity premium. Three elements: loss aversion, annual evaluation, and narrow framing; Benartzi–Thaler emphasize the first two ("myopic" loss aversion). Loss aversion over total wealth alone produces neither a significant premium nor non-participation (BHS 2001; BHT 2006).</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>若投资者对股票持仓的年度价值变化损失厌恶，模型即可预测很高的股权溢价。三要素：损失厌恶、年度评估、窄框架；Benartzi–Thaler 强调前两者（「短视」+损失厌恶）。只对总财富损失厌恶则既产生不了显著溢价、也产生不了不参与（BHS 2001；BHT 2006）。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Check your portfolio every day and you will frequently see red numbers; check once a year and losses are rare. More frequent evaluation → more pain → higher required premium. <b>中文：</b>每天看账户会经常看到亏损，一年看一次则很少见到——评估越频繁越痛苦，要求的溢价越高。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="dla">
+        <summary class="concept-bar">
+          <span class="concept-en">Dynamic Loss Aversion — BHS (2001), after Thaler &amp; Johnson (1990)</span>
+          <span class="concept-cn">动态损失厌恶：盈后减弱、亏后增强 ⇒ 溢价 + 过度波动</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Loss aversion decreases after past gains and increases after past losses — interpretable as a varying "capacity for dealing with good or bad news." This dynamic ingredient lets the model generate excess volatility in addition to a high equity premium. Probability weighting further amplifies the premium because the aggregate market is negatively skewed (De Giorgi &amp; Legg 2012).</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>损失厌恶在前期盈利后减弱、前期亏损后增强——可解读为「承受好消息/坏消息的能力」在变化。这一动态部件使模型在产生高股权溢价之外还能产生过度波动。概率加权进一步放大溢价，因为总体市场负偏（De Giorgi &amp; Legg 2012）。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">After a bull run, investors feel "playing with house money" and demand less compensation; after a crash they lick their wounds and demand much more — price swings are amplified. <b>中文：</b>牛市之后投资者觉得在玩「私房钱」，要求的补偿变少；崩盘之后则要求更多补偿——价格波动被放大。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="ru">
+        <summary class="concept-bar">
+          <span class="concept-en">Realization Utility — Shefrin &amp; Statman (1985)</span>
+          <span class="concept-cn">实现效用：卖出成交的一刻获得效用脉冲</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Investors derive utility directly from realized gains and losses: selling a stock at a gain delivers a burst of pleasure at the moment of sale, scaled by the size of the realized gain — because people think of their investing history as a series of episodes, and selling at a gain closes a "good" episode. Neural support: ventral-striatum activity spikes when subjects sell at a gain rather than hold a similar paper gain (Frydman et al. 2014).</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>投资者直接从已实现盈亏中获得效用：盈利卖出在成交一刻带来一阵愉悦，强度随已实现盈利放大——因为人们把投资史看作一系列片段，盈利卖出为「好片段」画上句号。神经证据：盈利卖出（而非持有相似账面盈利）时腹侧纹状体活动出现尖峰（Frydman et al. 2014）。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Explains not only the disposition effect but also excessive trading, pre-cost underperformance of individuals, higher turnover in bull markets, selling above historical highs, the negative volatility premium, and heavy trading in overpriced assets. <b>中文：</b>除处置效应外，还能解释过度交易、散户费前跑输、牛市高换手、破前高后卖出增多、波动率负溢价、高估资产被重度交易。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="frame">
+        <summary class="concept-bar">
+          <span class="concept-en">Investment Frame vs. Consumption Frame</span>
+          <span class="concept-cn">投资框架 vs. 消费框架；表征问题仍然开放</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>In these frameworks financial assets are evaluated in an "investment frame" rather than a "consumption frame": what matters is the distribution of the asset's own returns (gains/losses relative to a reference point), not the consumption stream it finances. The basic representation problem — how to define gains and losses (reference point, degree of narrow framing, possibly rational expectations à la Kőszegi–Rabin) — remains open.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>这些框架中，金融资产在「投资框架」而非「消费框架」下被评估：重要的是资产自身收益的分布（相对参考点的盈亏），而非它支撑的消费流。基本的表征问题——如何定义收益与损失（参考点、窄框架程度、乃至 Kőszegi–Rabin 式理性预期）——仍然开放。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">The same $1,000 paper loss hurts differently depending on whether you frame it as "my portfolio is down" (narrow framing) or "my lifetime consumption plan is intact" (broad framing). <b>中文：</b>同样 1000 美元的账面亏损，「我的组合亏了」（窄框架）与「我的终身消费计划不受影响」（宽框架）带来的痛感完全不同。</div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ S7 ============ -->
+    <section id="exercises" data-exgroup>
+      <h2 class="sec">Part 8 练习 <span class="badge">Exercises</span></h2>
+      <p class="lede">题型按考试常见方式混合：一部分是<strong>英文原题的计算题</strong>（CPT 价值、概率加权），一部分是<strong>偏解释的分析题</strong>（题干给英文，答案用中文框架组织）。</p>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> CPT value of a lottery-like stock</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">A speculative stock has a 1% chance of a gain of $2,000 and a 99% chance of a loss of $100 (per share, over the next year). Using the Tversky–Kahneman (1992) parameters α = 0.88, λ = 2.25, δ = 0.65: (a) Compute the prospect-theory value of this gamble using the value function only (no probability weighting). (b) Compute the decision-weighted CPT value with π(0.01) and π(0.99). (c) Compare both with the risk-neutral expected value and explain what the comparison illustrates about lottery-type stocks.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>分三步：先算价值函数，再算加权函数，最后比较。注意 T&amp;K 加权函数对 1% 的小概率是<b>高估</b>（约 4.7 倍）、对 99% 的大概率是<b>低估</b>的——这正是彩票型股票被高估的机制。</p></div>
+            <ol class="steps">
+              <li>价值函数：\(v(2000)=2000^{0.88}\approx 804.5\)；\(v(-100)=-2.25\times100^{0.88}\approx-2.25\times57.6\approx-129.6\)。</li>
+              <li>(a) 不加权：\(0.01\times804.5+0.99\times(-129.6)\approx 8.05-128.3\approx -120.3\)，为负 ⇒ 拒绝。</li>
+              <li>(b) 加权函数：\(\pi(0.01)=\dfrac{0.01^{0.65}}{(0.01^{0.65}+0.99^{0.65})^{1/0.65}}\approx\dfrac{0.0501}{1.0679}\approx 0.047\)（从 0.01 高估到约 0.047，约 4.7 倍）；\(\pi(0.99)=\dfrac{0.9935}{1.0679}\approx 0.930\)（从 0.99 低估到约 0.93）。</li>
+              <li>CPT 价值：\(0.047\times804.5+0.930\times(-129.6)\approx 37.7-120.6\approx -82.9\)——仍为负，但比 (a) 的 \(-120.3\) 明显「不那么差」。</li>
+              <li>(c) 风险中性 EV：\(0.01\times2000+0.99\times(-100)=20-99=-79\)。比较：概率加权把左尾的痛苦<b>压缩</b>、把右尾的快感<b>放大</b>，于是一个 EV 为负、但右尾丰厚的彩票型赌局在心理上变得「可以接受」——若右尾再厚一些（更高的正偏），CPT 价值甚至可能<b>转正</b>。这就是正偏股票被高估、后续收益偏低的微观机制。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Why are positively skewed stocks overpriced? <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Using prospect theory, explain why positively skewed stocks (e.g., IPOs, distressed stocks, high-IVOL stocks) have low average returns. Your answer should (i) name the PT ingredient doing the work, (ii) write the causal chain from preference to price, and (iii) explain why rational arbitrageurs do not correct the mispricing.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>按「四步法」组织：定位 → 机制 → 套利限制 → 可检验推论。关键部件是 <b>probability weighting</b>，而不是损失厌恶。</p></div>
+            <ol class="steps">
+              <li><b>Claim / 机制</b>：正偏股票的右尾（小概率大涨）在 \(\pi(\cdot)\) 下被高估 ⇒ 投资者愿意为它支付高于公平价值的价格 ⇒ 价格被推高 ⇒ 未来收益被摊薄。</li>
+              <li><b>证据</b>：IPO（Green–Hwang 2012）、困境/OTC 股（Eraker–Ready 2012）、OTM 期权（Boyer–Vorkink 2013）、高 IVOL（Ang et al. 2006; BMV 2010）、MAX（BCW 2011）、分散化折价（MV 2010）。</li>
+              <li><b>套利限制</b>：做空彩票型股票要付出高成本（卖空约束、借券费高），且基本面/特质风险大、噪声交易者可能把价格推得更高（Part 2）⇒ 错价可以长期存在。</li>
+              <li><b>可检验推论</b>：该效应应在卖空成本高、套利限制强的股票上更强；发表后随套利进入而衰减。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Myopic loss aversion and the equity premium <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">State the three elements of the Benartzi–Thaler (1995) explanation of the equity premium puzzle. Why is narrow framing indispensable — what goes wrong if investors are loss averse over total wealth instead? What does De Giorgi–Legg (2012) add to the story?</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>三要素 + 窄框架的「缺位反例」+ 概率加权的放大作用，按点给分。</p></div>
+            <ol class="steps">
+              <li><b>三要素</b>：loss aversion（损失厌恶）、annual evaluation（年度评估）、narrow framing（窄框架）。</li>
+              <li><b>窄框架不可缺</b>：若对<b>总财富波动</b>损失厌恶，股票盈亏只占总财富很小一部分 ⇒ 既产生不了显著溢价（BHS 2001），也产生不了不参与之谜（BHT 2006）。必须把股票账户<b>单独框出来</b>评估，损失体验才足够集中。</li>
+              <li><b>De Giorgi–Legg (2012)</b>：在 Barberis–Huang (2009) 框架中加入 probability weighting ⇒ 溢价被进一步显著放大，因为<b>总体市场负偏</b>：左尾被高估 ⇒ 持股的心理成本更高。</li>
+              <li><b>加分点</b>：动态损失厌恶（盈后减弱、亏后增强）进一步解释过度波动（BHS 2001）。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Why can't plain PT explain the disposition effect? <span class="kbd">概念</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">At first sight, prospect theory with stock-level narrow framing (reference point = purchase price) looks like a natural explanation of the disposition effect. Explain why it fails, and describe the alternative that succeeds, including its neural evidence.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>考点是「朴素 PT 推出反方向结论」这一反直觉点，以及 realization utility 的替代机制与 fMRI 证据。</p></div>
+            <ol class="steps">
+              <li><b>反方向</b>：价值函数在参考点处有弯折（kink）。只有当期望收益足够高时投资者才会买入；<b>盈利之后他离弯折更远</b>，继续持有 vs 卖出的效用差并不大 ⇒ 损失厌恶并不特别推动「卖盈」。</li>
+              <li><b>曲率太弱</b>：T&amp;K (1992) 估计的 \(\alpha=0.88\)（凹性温和）不足以压倒上述力量。</li>
+              <li><b>替代机制</b>：<b>Realization utility</b>（Shefrin–Statman 1985）——效用直接来自<b>已实现</b>盈亏；卖出盈利 = 关闭一个「好片段」⇒ 成交一刻获得效用脉冲。</li>
+              <li><b>神经证据</b>：Frydman et al. (2014) 的 fMRI 实验——腹侧纹状体（vSt，编码愉悦感）在「盈利卖出」指令时尖峰，而在「持有相似账面盈利」时不尖峰。</li>
+              <li><b>外延</b>：实现效用还能解释过度交易、费前跑输、牛市高换手、破前高卖出、波动率负溢价、高估资产高换手。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> The loss aversion puzzle in the cross-section <span class="kbd">拓展</span> <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Under narrow framing, loss aversion appears to predict that more volatile stocks should have HIGHER average returns — yet empirically they have lower returns. Reconcile this "loss aversion puzzle" using another ingredient of prospect theory, and name the paper that documents the resolution.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>两股力量方向相反：损失厌恶要求补偿，概率加权偏爱彩票——后者占优。</p></div>
+            <ol class="steps">
+              <li><b>矛盾</b>：窄框架 + 损失厌恶 ⇒ 波动大 = 心理痛苦多 = 应要求更高收益补偿；实证却是高波动（高 IVOL）股票收益<b>更低</b>。</li>
+              <li><b>调和</b>：高波动股票往往<b>同时更正偏</b>；在 probability weighting 下正偏是<b>吸引力</b>而非成本 ⇒ 投资者愿意为彩票属性付溢价 ⇒ 压低未来收益。</li>
+              <li><b>出处</b>：Boyer, Mitton &amp; Vorkink (2010)。</li>
+              <li><b> takeaway</b>：这也解释了为什么本讲说「probability weighting 可能比损失厌恶更重要」——在横截面证据面前，它确实是主导力量。</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  FIN 4080 Behavioral Finance · Part 8 前景理论的应用 · 内容依据 Lecture 4（Models &amp; Predictions: Prospect Theory Applications）课件整理
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

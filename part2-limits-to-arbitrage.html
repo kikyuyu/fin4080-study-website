@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta property="og:title" content="FIN4080 行为金融学学习站"><meta property="og:description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta name="description" content="CUHK-SZ FIN4080 行为金融学课程学习站：9 个 Part 的讲解、SVG 图示、自测练习与个人进度记录"><meta property="og:image" content="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg"><link rel="icon" href="https://lf3-static.bytednsdoc.com/obj/eden-cn/ylcylz_fsph_ryhs/ljhwZthlaukjlkulzlp/feisuda/avatar/7.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+<title>FIN4080 行为金融学学习站</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="assets/tex-mml-svg.js" id="MathJax-script" async></script>
+<script>
+/* Fallback: 若本地 MathJax 包不可用，从 jsDelivr 兜底加载。 */
+(function () {
+  function loadCdn() {
+    if (window.MathJax && window.MathJax.startup) return;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-svg.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load', function () { setTimeout(loadCdn, 400); });
+})();
+</script>
+    <script src="assets/figures.js"></script>
+    <script src="assets/mindmap.js"></script>
+    <script src="assets/marks.js?v=20261017a"></script>
+</head>
+<body data-page="part2" data-root="">
+
+<header id="site-topbar"></header>
+
+<div class="layout">
+  <aside class="toc" id="site-toc"></aside>
+  <main>
+
+    <div class="hero">
+      <div class="kicker">Part 2 · Lecture 7–8</div>
+      <h1>套利限制：为什么理性的钱也拉不回价格</h1>
+      <p>行为金融要主张「非理性投资者影响价格」，就必须跨过历史上最有杀伤力的一次反驳——<strong>套利批判（arbitrage critique）</strong>。本 Part 系统回答它：套利到底被什么限制住（<strong>四类风险 + 实施成本</strong>），现实中有没有长期存在的错价（<strong>孪生股、股权分拆、指数纳入</strong>三大实证），以及把这套机制写成模型的 <strong>DSSW (1990)</strong> 与 <strong>Shleifer &amp; Vishny (1997)</strong>。</p>
+      <div class="tags">
+        <span>Arbitrage Critique</span><span>Fundamental Risk</span><span>Noise Trader Risk</span><span>Horizon Risk</span><span>Implementation Costs</span><span>Twin Shares</span><span>Index Inclusion</span>
+      </div>
+    </div>
+
+    <div id="mindmap-host"></div>
+
+    <!-- ============ S1 ============ -->
+    <section id="critique">
+      <h2 class="sec">套利批判与四个术语 <span class="badge">The Critique</span></h2>
+
+      <div class="box note">
+        <div class="box-title">▸ 本讲 Learning Objectives</div>
+        <ul>
+          <li>能复述套利批判的内容，并解释它一度怎样拖慢了行为金融的发展。</li>
+          <li>能列举四类风险与一类成本，并说明各自<b>什么时候才真正限制套利</b>（关键句：<em>to limit arbitrage, the risk needs to be non-diversifiable</em>）。</li>
+          <li>能用三个实证事件作为「套利受限制的证据」，并<b>逐个</b>指出该事件主要由哪种限制起作用。</li>
+          <li>能解释为什么<b>管理别人的钱 + 杠杆</b>会使套利者视野变短（Shleifer &amp; Vishny, 1997）。</li>
+          <li>能应付动态版批判（<b>噪声交易者生存</b> literature）的基本思路。</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">批判的原始表述</h3>
+      <div class="box key">
+        <div class="box-title">▸ Claim: Arbitrage Critique</div>
+        <p>行为金融的资产定价应用假定<b>非理性投资者会影响价格</b>；但批判认为：<em>irrational investors cannot affect prices for any significant amount of time — as soon as they move prices, this creates an attractive opportunity for rational investors, who trade against the mispricing and quickly correct it.</em></p>
+      </div>
+      <p>这个论证在很长一段时间里说服了大量研究者，<strong>拖慢了行为金融的发展</strong>。行为金融在 1990 年代最大的成就，就是成功地把这套论证推回去——证明<strong>套利是有限的（limits to arbitrage）</strong>。这也是这门课在 1990 年代起飞的直接原因。</p>
+
+      <h3 class="sub">先把词统一：四个基本术语</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>English term</th><th>Definition</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>Fundamental value</td><td>The price in an economy with rational investors and no frictions — equivalently, the price that properly reflects all available information, equivalently the efficient-markets price.</td><td>内在价值 / 基本面价值</td></tr>
+          <tr><td>Mispricing / inefficiency</td><td>A departure of price from fundamental value, possible when there are frictions or when agents are not fully rational.</td><td>错价 / 无效率</td></tr>
+          <tr><td>Arbitrageurs</td><td>Rational investors who trade against mispricings.</td><td>套利者</td></tr>
+          <tr><td>Noise traders</td><td>Less-than-fully-rational investors whose demand is driven by "noise" rather than information.</td><td>噪声交易者</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 记忆技巧：三个「等价说法」</div>
+        <p>「基本面价值」在课件里给了三个等价说法：<b>①理性投资者 + 无摩擦经济里的价格</b>；<b>②恰当反映所有可得信息的价格</b>；<b>③有效市场价格</b>。这三个说法在答题时可以互换，用来把不同 Part 的语言缝起来。</p>
+      </div>
+    </section>
+
+    <!-- ============ S2 ============ -->
+    <section id="theory">
+      <h2 class="sec">套利限制：理论 <span class="badge">Theory</span></h2>
+
+      <p>批判说理性投资者纠正错价很容易。<strong>现实中它并不容易</strong>——存在各种风险与成本限制套利者的能力，这使得非理性投资者能够<b>显著且长期</b>地影响价格。</p>
+
+      <div class="fig" data-fig="limits_map" data-cap="套利限制的四大风险加上实施成本，共同决定了套利者的头寸能做多大。"></div>
+
+      <h3 class="sub">风险一：基本面风险 Fundamental risk</h3>
+      <div class="box def">
+        <div class="box-title">▸ Definition</div>
+        <p><em>The risk that there will be adverse news about the fundamental value of the mispriced asset.</em> 即关于被错价资产的<b>基本面出现坏消息</b>的风险。可以借助「<strong>替代证券（substitute securities）</strong>」对冲，<b>但只能对冲到一定程度</b>；在某些情况下，要真正限制套利，这种风险必须是<b>不可分散的（non-diversifiable）</b>。</p>
+      </div>
+
+      <h3 class="sub">风险二：噪声交易者风险 Noise trader risk <span class="kbd">最重要</span></h3>
+      <div class="box def">
+        <div class="box-title">▸ Definition（De Long, Shleifer, Summers &amp; Waldman 1990；Shleifer &amp; Vishny 1997）</div>
+        <p><em>The risk that, as a result of the mispricing worsening in the short run, the arbitrageur is forced to close out his trade at a loss.</em> 即<b>错价在短期内加深</b>，导致套利者在亏损状态下被迫平仓的风险。</p>
+      </div>
+      <p>它之所以存在，是因为现实中的套利者<strong>管理别人的钱</strong>并且<strong>使用杠杆</strong>：</p>
+      <ul>
+        <li>如果错价短期加深，焦虑的客户会从套利者的基金里<b>撤资</b>，迫使清算；</li>
+        <li>银行也可能<b>收回贷款（call their loans）</b>，同样迫使清算。</li>
+      </ul>
+
+      <div class="fig" data-fig="noise_trader" data-cap="典型的被迫平仓：错价在纠正之前先加深，套利者在最低点忍痛出场。"></div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 关键句（几乎必考）</div>
+        <p><em>In some cases, to limit arbitrage, the noise trader risk needs to be non-diversifiable.</em> 也就是：只要所有资产类别同时被同一波情绪推动，套利者就<b>找不到</b>可以对冲的另一边，只能在最难受的时候退出。</p>
+      </div>
+
+      <h3 class="sub">风险三：期限风险 Horizon risk</h3>
+      <div class="box def">
+        <div class="box-title">▸ Definition</div>
+        <p><em>The risk that the mispricing takes so long to correct that arbitrageurs end up earning less than the risk-free rate.</em> 错价纠正得太慢，慢到套利者最后连无风险利率都跑不赢。原因可能是非理性投资者<b>花了很长时间才修正错误信念</b>，也可能是别的套利者太慢才知道这个错价（<strong>同步风险 synchronization risk</strong>，Abreu &amp; Brunnermeier, 2002）。</p>
+      </div>
+
+      <h3 class="sub">风险四：模型风险 Model risk</h3>
+      <div class="box def">
+        <div class="box-title">▸ Definition</div>
+        <p><em>The risk that the perceived mispricing is not a mispricing at all.</em> 你所认为的错价，<b>根本不是错价</b>——错的是你的模型。（回想 Part 1 的联合假设问题：这一步是同一件事的另一面。）</p>
+      </div>
+
+      <h3 class="sub">第五件：实施成本 Implementation costs</h3>
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>成本类型</th><th>English</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>交易成本</td><td>Transaction costs, commissions, bid–ask spreads</td><td>佣金与买卖价差，每次进出都要付</td></tr>
+          <tr><td>卖空成本</td><td>Short-selling costs</td><td>借券费、召回风险、保证金；在 carve-out 案例里常常是主导因素</td></tr>
+          <tr><td>认知/理解成本</td><td>Cost of learning about, understanding and exploiting the mispricing</td><td>搞清楚错价到底有多少<b>基本面风险、噪声交易者风险、期限风险</b>——往往最难</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 答题套路：把三类成本排序</div>
+        <p>遇到「解释为什么套利者不進入」的问题，可以按下列顺序展开：①<b>有没有完美替代品</b>（基本面风险能否对冲）；②<b>能不能便宜地做空</b>；③<b>理解成本是否高到没人愿意做研究</b>。这三个条件全满足时，错价才会长期存在。</p>
+      </div>
+    </section>
+
+    <!-- ============ S3 ============ -->
+    <section id="special">
+      <h2 class="sec">两种特殊情况：反扑与 riders <span class="badge">Special Cases</span></h2>
+
+      <h3 class="sub">情况一：非理性交易者会「反扑」</h3>
+      <div class="box key">
+        <div class="box-title">▸ 理性人也跟着错的一方走</div>
+        <p>基础的套利限制论证说：理性交易者会对着错价交易，<b>但只做有限的量</b>。然而在某些情况下，理性交易者可能与<b>非理性交易者同向</b>交易——例如当非理性交易者在<b>外推（extrapolate）过去的收益</b>时（De Long et al., 1990, JF）。这种行为会让错价更容易存活下来。</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ 实证：Brunnermeier &amp; Nagel (2004)</div>
+        <p>他们用互联网泡沫期间的持仓数据证明：对冲基金在 1995–2000 年间<b>超配科技股</b>。也就是说，专业投资者明知泡沫存在，仍选择<b>ride the bubble</b>（骑在泡沫上）。原因是：他们预期泡沫还能涨上一程，而撤得太早会被客户约束与业绩比较惩罚。</p>
+      </div>
+
+      <h3 class="sub">情况二：动态版批判与「噪声交易者生存」</h3>
+      <div class="box def">
+        <div class="box-title">▸ Dynamic arbitrage critique</div>
+        <p>到此为止我们讨论的是<b>静态版</b>批判。动态版则主张：<em>even if rational traders are unable to quickly correct a mispricing, assets will eventually become correctly priced — by trading suboptimally, irrational traders become poorer over time and eventually become irrelevant to pricing.</em></p>
+      </div>
+      <p>这个想法催生了相当规模的「<strong>survival of noise traders（噪声交易者生存）</strong>」文献。判断它是否令人信服时要注意：短期之内，只要财富<b>流向</b>还没有完成洗牌，非理性人仍然可以主导定价。</p>
+
+      <div class="box warn">
+        <div class="box-title">▸ 顺手记住两处延展</div>
+        <ul>
+          <li><strong>共同基金与对冲基金不是唯一想利用错价的人</strong>——还要问：还有谁？（例如自营交易台、企业自身的回购行为。）</li>
+          <li><strong>套利限制对「摩擦金融」同样相关</strong>：它可以解释由摩擦产生的错价为什么也难以被纠正。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ S4 ============ -->
+    <section id="evidence">
+      <h2 class="sec">实证证据：三个长期存在的错价 <span class="badge">Evidence</span></h2>
+
+      <p>理论给出了套利<b>可能</b>受限的理由。但有证据表明套利<b>确实</b>受限吗？任何<b>大幅且长期存在</b>的错价都是套利受限的证据——但这类例子并不容易记录。仍有若干被广泛认定为错价的定价模式，它们既证明了套利的受限，也标示了<b>每种限制</b>分别扮演的角色。</p>
+
+      <h3 class="sub">案例一：孪生股 Twin shares</h3>
+      <div class="box def">
+        <div class="box-title">▸ Definition</div>
+        <p><em>"Twin shares" are distinct shares that are claims to the same cash-flow stream.</em> 最著名的例子是 <strong>Royal Dutch（壳牌荷兰）</strong>与 <strong>Shell（壳牌运输）</strong>：两者原本完全独立，1907 年合并利益但保持各自实体——Royal Dutch 对联合公司的现金流索取 <strong>60%</strong>，Shell 索取 <strong>40%</strong>。</p>
+      </div>
+      <p>在理性、无摩擦的经济里，<strong>Royal Dutch 的股价应该是 Shell 的 1.5 倍</strong>。但经验上相对估值远远偏离这个基准（<strong>Froot &amp; Dabora, 1999</strong>），这一事实被广泛认定为错价。</p>
+
+      <div class="fig" data-fig="twin_shares" data-cap="Royal Dutch / Shell 的价格比长期偏离 1.5 的理论基准，一度折价超过 30%。"></div>
+
+      <div class="box key">
+        <div class="box-title">▸ 这里的限制是什么？</div>
+        <p>纠正方式很清晰：<b>买入便宜的那一份、做空贵的那一份</b>。此时<b>基本面风险几乎为零</b>（两边索取的是同一个现金流），所以限制主要来自：①<b>卖空可执行性</b>与借券成本；②<b>噪声交易者风险</b>——在两种股票所属地不同（荷兰 vs. 英国）、投资者构成不同时，偏差可能继续扩大；③<b>融资约束</b>让套利者无法把头寸放大到足以修正价格。</p>
+      </div>
+
+      <div class="example">
+        <div class="ex-head"><span class="pill q">EXAMPLE 1</span> 孪生股：偏离度与套利收益</div>
+        <div class="ex-body">
+          <div class="q-block">
+            <span class="lbl lbl-en">EN</span>
+            <p class="en-q">Royal Dutch and Shell are twin shares: Royal Dutch claims 60% of the combined cash flow, Shell 40%. Suppose Shell trades at $80 per share and Royal Dutch at $84 per share. (a) What should Royal Dutch trade at if prices were in the 60/40 ratio? (b) Compute the percentage deviation. (c) Describe the arbitrage trade and list the limits to arbitrage that could prevent prices from converging.</p>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-step">解题步骤</span>
+            <ol class="steps">
+              <li><b>注意壳牌的真实比例</b>：两家公司的股权比例是 <b>60 : 40</b>，因此合理价格比为 \(60/40=1.5\)（Royal Dutch 更贵）。</li>
+              <li>(a) 合理价格：\(1.5\times \$80=\$120\)。</li>
+              <li>(b) 偏离：\(\dfrac{84-120}{120}=-30\%\)，即 Royal Dutch 相对 Shell <b>折价 30%</b>。</li>
+              <li>(c) 套利：<b>买入 Royal Dutch + 做空 Shell</b>（比例 2:3，即买 2 股 RD、卖空 3 股 Shell，因为 2×60% = 3×40% = 120%… 实务上按<b>现金流敞口</b>配平：每买入 2 份 RD，对应(Default)做空 3 份 Shell）。</li>
+              <li>限制套利的因素：借券成本与券源不足（<b>实施成本</b>）、两地投资者情绪差异继续扩大价差（<b>噪声交易者风险</b>）、以及资金方要求的保证金与特性差异（<b>融资约束</b>）。</li>
+            </ol>
+          </div>
+          <div class="q-block">
+            <span class="lbl lbl-ans">Answer</span>
+            <p><strong>EN:</strong> (a) $80 × 1.5 = $120. (b) (84 − 120)/120 = −30%, Royal Dutch trades at a 30% discount to parity. (c) Buy Royal Dutch and short Shell (matched so that exposure to the common cash flow nets out); the convergence is prevented by short-selling and borrowing costs, further sentiment-driven divergence, and capital/margin constraints.<br><strong>中文：</strong>(a) $120；(b) 折价 30%；(c) 买多 RD、做空 Shell，限制来自卖空成本、情绪进一步扩大价差、以及资金与保证金约束。</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub">案例二：股权分拆 Equity carve-outs</h3>
+      <div class="box def">
+        <div class="box-title">▸ Definition</div>
+        <p><em>An equity carve-out is an IPO of shares in a subsidiary company.</em> <strong>Mitchell, Pulvino &amp; Stafford (2002)</strong> 在 1985–2000 年间找到 <strong>70 起</strong>案例：分拆之后，<b>母公司整体的交易价格低于其持有的子公司股权价值</b>——也就是母公司的「剩余部分（stub）」隐含为负。交易所要我做空子公司、买入母公司。</p>
+      </div>
+
+      <div class="fig" data-fig="carveout" data-cap="负的 stub value：母公司市值甚至低于它持有的子公司股权价值。"></div>
+
+      <div class="tablewrap">
+      <table class="data">
+        <thead><tr><th>限制类型</th><th>在该案例中的表现</th></tr></thead>
+        <tbody>
+          <tr><td><strong>基本面风险</strong></td><td>坏消息的风险；70 起事件中有 <b>18 起</b>最终以失败告终</td></tr>
+          <tr><td><strong>噪声交易者风险</strong></td><td>若错价短期加深会被迫止损，可能来自<b>追加保证金或投资者赎回</b>。经典例子：<b>Creative Computers（母公司）与 Ubid（子公司）</b></td></tr>
+          <tr><td><strong>期限风险</strong></td><td>有时错价纠正之慢，使得交易者当年还不如投无风险利率</td></tr>
+          <tr><td><strong>实施成本</strong></td><td>卖空成本在多数案例中<b>中等</b>；真正高的是<b>理解</b>错价的成本——即估算各类风险的规模</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">▸ Lamont &amp; Thaler (2003) 的补充</div>
+        <p>他们研究的是 <b>6 起</b>母公司已<b>宣布</b>打算把剩余子公司股权 spin off（分拆）的案例。在这种场合，基本面风险 / 噪声交易者风险 / 期限风险都变得不太重要，套利主要受限于<b>高额的卖空费用</b>。（注意课件提醒：<b>样本可能太小</b>，不足以断定此处完全没有套利风险——考试时把这句限制讲出来很加分。）</p>
+      </div>
+
+      <h3 class="sub">案例三：指数纳入 Index inclusions</h3>
+      <div class="box def">
+        <div class="box-title">▸ Fact</div>
+        <p>成分股被加入标普 500（替换因并购或破产而退出的股票）时：<b>在公告日与生效日这两天，被纳入的股票价格显著跳涨，而且这个跳涨不会被反转</b>（Harris &amp; Gurel 1986；Shleifer 1986）。</p>
+      </div>
+      <p>为什么这被广泛认定为错价？因为<strong>标普的目标是编制一个有代表性的指数，而不是传递关于投资价值的信号</strong>。因此这种效应正是套利受限的证据。要纠正它，套利者需要<b>做空被纳入的股票、买入替代股票</b>。</p>
+
+      <div class="fig" data-fig="index_inclusion" data-cap="纳入标普 500：公告与生效两日的跳涨完全不反转，符合「无信息但有价格效应」的错价特征。"></div>
+
+      <ul>
+        <li><strong>Wurgler &amp; Zhuravskaya (2002)</strong>：替代品越差的股票，纳入时跳涨<b>越多</b>——因为基本面风险越难对冲。</li>
+        <li>支持错价观点的其他证据：①<b>标普效应随时间变大</b>；②真正「无信息」的加拿大 TSE 指数权重调整同样产生大价格效应（<strong>Kaul, Mehrotra &amp; Morck, 2000</strong>）。</li>
+      </ul>
+
+      <div class="box key">
+        <div class="box-title">▸ 三张表的对照记忆（把这个做成索引）</div>
+        <div class="tablewrap">
+        <table class="data">
+          <thead><tr><th>案例</th><th>主流限制</th><th>核心证据</th></tr></thead>
+          <tbody>
+            <tr><td>孪生股 Twin shares</td><td>卖空 + 融资约束（基本面风险近乎为零）</td><td>Froot &amp; Dabora (1999)</td></tr>
+            <tr><td>股权分拆 Carve-outs</td><td>噪声交易者风险 + 卖空费用</td><td>Mitchell et al. (2002)；Lamont &amp; Thaler (2003)</td></tr>
+            <tr><td>指数纳入 Index inclusion</td><td>替代品不完美 ⇒ 基本面风险</td><td>Wurgler &amp; Zhuravskaya (2002)</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ S5 ============ -->
+    <section id="models">
+      <h2 class="sec">把这些机制写成模型 <span class="badge">Key Papers</span></h2>
+
+      <h3 class="sub">DSSW (1990)：噪声交易者风险的正式化</h3>
+      <div class="box def">
+        <div class="box-title">▸ De Long, Shleifer, Summers &amp; Waldman, 1990</div>
+        <p>引入<strong>噪声交易者风险</strong>的概念，并证明：<em>even in the absence of fundamental risk, noise trader risk alone can be enough to limit arbitrage</em>——例如当套利者<b>风险厌恶且视野很短</b>时。</p>
+      </div>
+
+      <div class="fig" data-fig="dssw" data-cap="DSSW (1990) 均衡：价格偏离基本面的幅度随噪声交易者情绪 ρ 线性放大。"></div>
+
+      <div class="box note">
+        <div class="box-title">▸ 一句话机制</div>
+        <p>噪声交易者的<b>情绪 ρ</b> 直接进入均衡价格：价格 = 基本面 + ρ 的函数。套利者知道价格最终会回归，但因为<b>回归的时机不确定</b>、中途还可能继续恶化，他们不敢满仓 ⇒ 情绪<b>系统性地</b>进入价格。这为后面的<b>过度波动</b>与<b>泡沫的部分可预测性</b>提供了机制。</p>
+      </div>
+
+      <h3 class="sub">Shleifer &amp; Vishny (1997)：为什么视野天生就短</h3>
+      <div class="box key">
+        <div class="box-title">▸ 补充了 DSSW 缺的一环</div>
+        <p>在 DSSW 里，噪声交易者风险之所以重要是因为理性投资者<b>视野短</b>；Shleifer &amp; Vishny (1997) 进一步解释<b>为什么</b>他们会短视：<em>because they often manage other people's money, and use leverage — as a result, poor short-term performance is dangerous: it may lead to forced liquidation.</em></p>
+      </div>
+
+      <div class="formula">
+        \[\text{Capital under management} \downarrow \;\Longrightarrow\; \text{ability to hold the converging trade} \downarrow\]
+        <div class="fnote">核心机制：<b>错价越深，可用资本越少</b>。赎回与追保在错价最深时发生，恰好此时<b>忍受能力最关键也最稀缺</b>——这是 Performance-based Arbitrage (PBA) 的直观表达。</div>
+      </div>
+
+      <div class="box warn">
+        <div class="box-title">▸ 总结：不要自满</div>
+        <p>套利限制文献影响非常大，学界与实务界已<b>普遍同意套利是有限的</b>（尽管对「有限到什么程度」仍有分歧），这也是行为金融在 1990 年代起飞的主要原因。但课件提醒：<b>仍不应自满</b>——<em>whenever we argue that irrational investors affect prices, we should ask if arbitrage is truly limited in this case.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ S6 ============ -->
+    <!-- ============ Concept cheat-sheet ============ -->
+    <section id="concepts">
+      <h2 class="sec">概念考点速查：双语解释 + 例子 <span class="badge">Concept Cheat-Sheet</span></h2>
+      <p class="lede">下列每个「套利限制」都给出<b>英文解释、中文解释与佐证例子</b>，专供「解释类（explanation）」考题复习。点击展开。</p>
+
+      <details class="concept" data-concept="fundamental-risk">
+        <summary class="concept-bar">
+          <span class="concept-en">Limit 1 — Fundamental Risk</span>
+          <span class="concept-cn">基本面风险</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Even if a stock is mispriced, an arbitrageur cannot perfectly hedge it because there is no identical twin asset. The best hedge is a substitute (e.g., a peer firm), but the substitute's price can also move for fundamental reasons, so the position remains exposed to fundamentals.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>即便某股票被错误定价，套利者也无法完美对冲，因为没有完全相同的孪生资产。最好的对冲是用替代品（如同行业另一家公司），但替代品价格也会因基本面原因变动，于是套利仓位仍暴露于基本面风险。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Long Royal Dutch / short Shell should track a fixed ratio, but fundamental differences in the two firms' cash flows limited how tightly the spread could be arbitraged. <b>中文：</b>做多皇家荷兰/做空壳牌本应按固定比例交易，但两家公司现金流的基本面差异限制了套利能把价差缩到多紧。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="noise-trader-risk">
+        <summary class="concept-bar">
+          <span class="concept-en">Limit 2 — Noise Trader Risk (most important)</span>
+          <span class="concept-cn">噪声交易者风险（最重要）</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>The mispricing may worsen before it corrects, because irrational ("noise") traders can push prices further from fundamental value. If the arbitrageur is forced to liquidate (margin call, redemptions) while the mispricing is still open, he realizes a loss even though he was "right." The single most important limit to arbitrage (Shleifer &amp; Vishny 1997; DSSW 1990).</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>错误定价在修正前可能先恶化，因为非理性的"噪声交易者"会把价格推得更偏离基本面。若套利者在价差仍张开时被迫平仓（追加保证金、赎回），即使他"看对了"也会亏损。这是套利最首要的限制（Shleifer &amp; Vishny 1997；DSSW 1990）。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">A rational fund shorting an overpriced tech stock in 1999 faced mounting losses and investor redemptions long before the dot-com crash corrected the price. <b>中文：</b>1999 年理性基金做空被高估的科技股，会在互联网泡沫破裂、价格修正之前，先承受持续亏损与投资者赎回。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="horizon-risk">
+        <summary class="concept-bar">
+          <span class="concept-en">Limit 3 — Horizon Risk</span>
+          <span class="concept-cn">期限风险</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Arbitrageurs invest other people's money and are evaluated over short horizons (quarterly). Even if they are sure the price will converge eventually, they may be forced out by poor short-run mark-to-market performance before convergence happens. Their effective horizon is shorter than the mispricing's.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>套利者管的是别人的钱，并按短周期（季度）考核。即便他们确信价格终将收敛，也可能在收敛发生前，因短期账面亏损被提前清退。这使得套利者的有效期限短于错误定价的存续期。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Shleifer &amp; Vishny (1997): a fund that is "right" but early goes bankrupt from redemptions before the trade pays off. <b>中文：</b>Shleifer &amp; Vishny (1997)：一个"看对但太早"的基金，在交易兑现前就因赎回而破产。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="model-risk">
+        <summary class="concept-bar">
+          <span class="concept-en">Limit 4 — Model Risk</span>
+          <span class="concept-cn">模型风险</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>The arbitrageur can never be sure the asset is truly mispriced rather than fairly priced under a model he hasn't considered. If the "mispricing" is actually a missing risk factor, converging to his expected price means realizing a loss.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>套利者永远无法确定该资产真的被错误定价，还是只是自己没考虑到的某个模型下的合理定价。如果所谓"错误定价"其实是遗漏的风险因子，价格"收敛"到他预期的水平反而会亏损。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">A portfolio that looks cheap on book-to-market may simply be loaded on a risk factor your CAPM omitted. <b>中文：</b>一个按账市比看起来便宜的组合，可能只是承载了你 CAPM 漏掉的风险因子。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="concept" data-concept="implementation-costs">
+        <summary class="concept-bar">
+          <span class="concept-en">Limit 5 — Implementation Costs</span>
+          <span class="concept-cn">实施成本</span>
+          <span class="concept-toggle">▾</span>
+        </summary>
+        <div class="concept-panel">
+          <div class="concept-grid">
+            <div class="concept-col">
+              <h5><span class="lbl lbl-en">EN</span>Explanation</h5>
+              <p>Short-selling is often restricted (hard-to-borrow, margin, uptick rules), and trading incurs commissions, bid-ask spreads, and market impact. These frictions make many theoretical arbitrages unprofitable in practice.</p>
+            </div>
+            <div class="concept-col">
+              <h5><span class="lbl lbl-cn">中文</span>解释</h5>
+              <p>卖空常受限（借券难、保证金、报升规则），交易还有佣金、买卖价差与冲击成本。这些摩擦使许多理论上的套利在实践中无利可图。</p>
+            </div>
+          </div>
+          <div class="concept-eg">
+            <h5><span class="lbl lbl-ans">Example</span>例子作证</h5>
+            <div class="ex-card">Index-inclusion effects: added stocks jump on announcement, but the arbitrage is one-sided and costly to short the whole index. <b>中文：</b>指数纳入效应：被纳入股票在公告日跳涨，但套利是单边的，且做空整个指数成本高。</div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="exercises" data-exgroup>
+      <h2 class="sec">Part 2 练习 <span class="badge">Exercises</span></h2>
+      <p class="lede">重点是「写出主导的限制」+「估算套利能否落地」。计算题集中在负 stub value、被迫平仓的期望收益、以及同步/期限风险的量化。</p>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Negative stub value in a carve-out</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">TechNovo Inc. announces an equity carve-out and sells 20% of its subsidiary CloudOS to the public; immediately afterwards CloudOS trades at $1.2 billion in total equity value and TechNovo still holds 80% of CloudOS. TechNovo's own equity market value is $820 million. (a) Compute the implied value of TechNovo's non-CloudOS business ("stub value"). (b) Express the stub value as a percentage of TechNovo's market value. (c) Describe the arbitrage trade and identify which limit to arbitrage you think is most likely binding.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>典型的负 stub value 题。剩余部分价值 = 母公司市值 − 持有子公司股权的市场价值。</p></div>
+            <ol class="steps">
+              <li>持有的 CloudOS 股权价值：\(80\%\times \$1{,}200\text{m}=\$960\text{m}\)。</li>
+              <li>(a) Stub value：\(\$820\text{m}-\$960\text{m}=-\$140\text{m}\)。</li>
+              <li>(b) 占母公司市值比例：\(-140/820=-17.1\%\)。</li>
+              <li>(c) 套利：<b>做空 8 份 CloudOS（每 10 份中 TechNovo 持 8 份的对价），买入 TechNovo 股票</b>——严格地说，按 0.8 的比例做空 CloudOS 来复制 TechNovo 中的 CloudOS 敞口。</li>
+              <li>最可能的限制：<b>噪声交易者风险</b>（新上市的科技公司定价可以持续失控）与<b>卖空成本</b>（新股票的券源尤其稀缺、费用尤其高）；Lamont &amp; Thaler (2003) 指出这类案例中<b>卖空费用往往就是主导摩擦</b>。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Stub = 820 − 0.8 × 1,200 = −$140m. (b) −$140m / $820m = −17.1% of the parent's equity value. (c) Short CloudOS in proportion to the retained stake and buy TechNovo; the binding constraint is most likely short-selling costs plus noise-trader risk in a freshly listed subsidiary.<br><strong>中文：</strong>(a) −1.4 亿美元；(b) 相当于母公司市值的 −17.1%；(c) 做空子公司 + 买入母公司，主要限制是卖空成本与噪声交易者风险。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Forced liquidation and noise trader risk</div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">An arbitrageur short sells $10 million of an overpriced asset that is fairly worth 20% less. Transaction and borrowing costs are 1.5% of the position. With probability 0.30 the mispricing worsens for one year, forcing liquidation at a further 6% loss; with probability 0.70 he can hold until convergence and earn the full 20% convergence. Compute the expected net profit of the trade.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>把「错价加深 ⇒ 被迫平仓」这一条建模成概率分支，再扣掉实施成本。</p></div>
+            <ol class="steps">
+              <li>成本：\(1.5\%\times\$10\text{m}=\$0.15\text{m}\)（无论结果如何都要付）。</li>
+              <li>坏分支（p = 0.30）：\(-6\%\times\$10\text{m}=-\$0.60\text{m}\)。</li>
+              <li>好分支（p = 0.70）：\(+20\%\times\$10\text{m}=+\$2.00\text{m}\)。</li>
+              <li>期望毛收益：\(0.30\times(-0.60)+0.70\times2.00=-0.18+1.40=\$1.22\text{m}\)。</li>
+              <li>期望净利润：\(1.22-0.15=\$1.07\text{m}\)，即头寸的 <b>10.7%</b>。</li>
+              <li><b>解释力</b>：即使期望为正，套利者也<b>不会放大到无限</b>——因为坏分支发生时是<b>真实的现金出逃与赎回</b>，而<b>错的加深通常会同步引发更多撤离</b>。这就是「受限」的量化版本。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> Expected gross = 0.30(−6%) + 0.70(20%) = 12.2% of the position = $1.22m; after 1.5% costs ($0.15m), expected net profit = $1.07m, or 10.7% of the position.<br><strong>中文：</strong>期望净利 107 万美元，占头寸 10.7%。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Imperfect substitutes and fundamental risk <span class="kbd">拓展</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">A stock is overpriced by 8%. A hedge fund shorts it and buys a "substitute" portfolio whose return has correlation 0.70 with the stock's fundamental news. Explain, using the idea of non-diversifiable risk, why the fund's optimal position is far smaller than in the twin-shares case, and what Wurgler and Zhuravskaya (2002) predict about price jumps when substitutes are worse.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>核心是「不可分散的基本面风险」：组合留下 \(1-\rho^2\) 的方差无法对冲。</p></div>
+            <ol class="steps">
+              <li>如果替代品完美（\(\rho=1\)），组合<b>不含基本面风险</b>，只有噪声交易者风险 ⇒ 头寸可以开得很大。</li>
+              <li>当 \(\rho=0.70\)：该策略仍暴露 \(\sqrt{1-0.7^2}=\sqrt{0.51}\approx0.714\) 倍的基本面波动 ⇒ <b>71% 的基本面风险没有被对冲</b>。</li>
+              <li>结论：期望收益 8% 必须减去这部分的<b>风险溢价补偿</b>，最优头寸因此远小于孪生股情形。</li>
+              <li>Wurgler &amp; Zhuravskaya (2002) 的预测：<b>替代品越差的股票，纳入指数时跳涨越大</b>——因为不可分散的基本面风险越高，套利者越不敢交易。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> With ρ = 0.70, about 71% of the fundamental volatility remains unhedged (√(1 − 0.49) ≈ 0.71), so the 8% expected gain must compensate genuine non-diversifiable risk and the optimal position is small. Wurgler and Zhuravskaya show that stocks with worse substitutes jump more upon index inclusion.<br><strong>中文：</strong>约 71% 的基本面波动未被对冲 ⇒ 头寸必须很小；替代品越差，纳入时跳涨越大。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Explain the phenomenon: riding the bubble <span class="kbd">解释</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Brunnermeier and Nagel (2004) show that hedge funds were overweight technology stocks during 1995–2000. Discuss: (a) why sophisticated investors may rationally choose to ride rather than attack a bubble; (b) how this relates to noise trader risk and synchronization risk; (c) one additional testable implication you would propose.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>开放题。重点是「知情却仍 co-opt」的逻辑：适应性预期 + 客户约束 + 时机不确定。</p></div>
+            <ol class="steps">
+              <li><b>(a) 理性地骑上去</b>：①泡沫党助于 momentum/外推预期，继续上涨的<b>条件期望收益仍为正</b>；②过早做空会被<b>业绩比较与赎回</b>惩罚；③「理性地攻击」需要<b>无穷的资金与耐心</b>，现实中没有。</li>
+              <li><b>(b) 两种风险的映射</b>：<b>噪声交易者风险</b>体现在被迫平仓的风险，而<b>同步风险（synchronization risk, Abreu &amp; Brunnermeier 2002）</b>体现在「其他套利者还没出手」——你不知道自己是第几个卖的，提早退场意味着长期浮亏。</li>
+              <li><b>(c) 额外推论</b>：①<b>换手率与成交量应同步放大</b>（Hong &amp; Stein, 2007）；②持仓<b>减少时应发生在价格还在上涨的过程中</b>（而不是在顶部）；③基金业绩对科技因子的<b>暴露度</b>应滞后下降，且这<b>与冲击同步</b>。</li>
+              <li><b>Caveat</b>：基金持仓数据季度披露，存在观察滞后。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (a) Expected conditional returns stay positive while sentiment is extrapolated, early exit triggers redemptions and career costs, and attacks require unlimited capital/patience. (b) Noise trader risk = forced exit before convergence; synchronization risk = uncertainty about when other arbitrageurs attack. (c) Turnover should surge and funds should reduce exposure while prices are still rising.<br><strong>中文：</strong>(a) 续涨预期 + 赎回压力 + 资本约束；(b) 噪声与同步风险；(c) 换手率放大、减仓发生在上涨途中。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Horizon risk and the value of patience <span class="kbd">拓展</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">An arbitrageur expects convergence worth 12% in expectation, but the mispricing may take several years to close. If it closes in one year (probability 0.5) the trade earns 12%; if it takes three years (probability 0.5) the trade earns 12% total but with 2% per year of financing and borrowing costs. The risk-free rate is 4% per year. Compute the annualized return in each state and explain how horizon risk limits arbitrage even when the trade is ultimately profitable.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>把「期望为正」与「年化后跑输无风险利率」分开，就是期限风险的本质。</p></div>
+            <ol class="steps">
+              <li>状态一（1 年）：总收益 \(12\%-2\%=10\%\)，年化 <b>10%</b>。</li>
+              <li>状态二（3 年）：每年付 2% 融资/借券成本 ⇒ 三年累计成本约 \(2\%\times3=6\%\)，净收益约 \(12\%-6\%=6\%\)（按<b>总收益</b>计）。</li>
+              <li>年化：\((1+0.06)^{1/3}-1\approx1.96\%\)。</li>
+              <li>比较无风险利率 4%：状态二<b>年化 1.96% &lt; 4%</b>，明显跑输。</li>
+              <li>期望年化：\(0.5\times10\%+0.5\times1.96\%\approx5.98\%\)，只<b>略高于</b> 4%。</li>
+              <li>结论：即使「最终一定赚」，只要<b>纠正速度不确定</b>，年化后会接近甚至低于无风险利率 ⇒ 资本的机会成本让理性人不敢下手，这就是<b>期限风险</b>。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> One-year state: 10% per year. Three-year state: about 6% total ≈ 1.96% per year. Expected annualized ≈ 5.98%, only slightly above the 4% risk-free rate, so once financing costs and uncertainty about timing are included, capital has better uses — that is horizon risk.<br><strong>中文：</strong>一年期年化 10%，三年期年化约 1.96%；期望年化约 5.98%，仅略高于 4% 无风险利率，因此資本会望而却步。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Which limit binds? <span class="kbd">概念</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Match each episode to the limit to arbitrage that binds most, and justify in one sentence: (i) Royal Dutch/Shell deviation from the 60/40 parity; (ii) 3Com/Palm stub value of about −50%; (iii) a small utilities stock added to a major index with few close substitutes; (iv) a hedge fund whose prime broker raises margin requirements right after its largest short position moves against it.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>匹配题。关键是「该案例里基本面风险是否已经可以对冲」。</p></div>
+            <ol class="steps">
+              <li>(i) <b>孪生股</b>：两边索取相同现金流 ⇒ 基本面风险极低；限制来自<b>卖空/融资约束与两地市场情绪的差异</b>（Froot &amp; Dabora 1999）。</li>
+              <li>(ii) <b>股权分拆的负 stub</b>：<b>噪声交易者风险 + 卖空费用</b>（Lamont &amp; Thaler 2003 在现代数次案例里指出卖空费用是主导）。</li>
+              <li>(iii) <b>指数纳入</b>：替代品不完美 ⇒ <b>基本面风险不可分散</b>（Wurgler &amp; Zhuravskaya 2002：替代品越差跳涨越大）。</li>
+              <li>(iv) <b>追保后才被迫平仓</b>：<b>噪声交易者风险</b>的教科书版（Shleifer &amp; Vishny 1997：管理别人的钱 + 杠杆 ⇒ 短期亏损致命）。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (i) Short-selling/financing constraints (fundamental risk ≈ 0). (ii) Short-selling fees plus noise-trader risk. (iii) Non-diversifiable fundamental risk from imperfect substitutes. (iv) Noise-trader risk — performance-based capital withdrawal at the worst possible moment.<br><strong>中文：</strong>(i) 卖空与融资约束；(ii) 卖空费用 + 噪声交易者风险；(iii) 不可分散的基本面风险；(iv) 噪声交易者风险。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Scenario: you manage other people's money <span class="kbd">拓展</span> <span class="kbd">场景</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">You run a $500 million hedge fund (3× leverage) and identify a 15% mispricing that should close within two years. Your prime broker may cut leverage by half if the trade loses 8% first (probability 0.35), forcing you to realise the loss. Explain how Shleifer and Vishny (1997) would describe your situation, and derive whether the trade is attractive to a fund that must report monthly returns.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>把 Shleifer–Vishny 的机制代入一个具体资金规模，再做期望值比较。</p></div>
+            <ol class="steps">
+              <li>自有资金 5 亿、3 倍杠杆 ⇒ 名义头寸约 <b>15 亿美元</b>；15% 的错价意味着<b>期望毛收益 2.25 亿美元</b>（占自有资金的 45%）。</li>
+              <li>说明挣 scenario：①以 0.35 概率先亏 8%，<b>被减半杠杆</b>后被迫平仓 ⇒ 已实现亏损约 \(0.08\times\$1.5\text{b}=\$120\text{m}\)（相对自有资金 −24%）；②以 0.65 概率持有到回归 ⇒ 收益 \(0.15\times\$1.5\text{b}=\$225\text{m}\)。</li>
+              <li>期望：\(0.35\times(-120)+0.65\times225=-42+146.25=\$104.25\text{m}\)（自有资金 +20.9%）——<b>期望仍为正</b>。</li>
+              <li>但月度披露下真正的约束是：<b>亏损路径</b>，而非期望。①一次 −24% 的投资不足扣款/情绪阈值 ⇒ 赎回；②<b>被迫在最差时刻</b>把正确的交易平掉；③<b>错价越深，可用资本越少</b>。</li>
+              <li>Shleifer &amp; Vishny 的表述：<em>poor short-term performance may lead to forced liquidation</em> ⇒ 理性代理人<b>内生地</b>短视 ⇒ 头寸规模远小于「线性对错价应有的反击」。</li>
+              <li><b>Caveat</b>：prescriptive 层面上，可以申请<b>更长的锁定期</b>、SMA/MA 条款，或者干脆<b>不做杠杆</b>——这就是 Part 7 的「制度改进」思路。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> Expected profit ≈ +$104m (+20.9% of equity), but the binding issue is the loss path: a 35% chance of an 8% mark-to-market loss triggers deleveraging and realised losses, and redemptions arrive exactly when the trade still has positive expected value. Managing other people's money plus leverage therefore makes horizons endogenously short.<br><strong>中文：</strong>期望收益约 +20.9%，但对<b>月度披露</b>的基金而言，问题是亏损路径而非期望：35% 概率先亏 8% ⇒ 被强制降杠杆并平仓。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="exercise" data-ex>
+        <div class="ex-title"><span class="lbl lbl-en">Q<span class="num"></span></span> Homework 1 · Four theories for limits to arbitrage <span class="kbd">HW1</span></div>
+        <div class="q-block">
+          <span class="lbl lbl-en">EN</span>
+          <p class="en-q">Lay out the four different theories for limits to arbitrage; explain each of them.</p>
+        </div>
+        <details class="answer">
+          <summary>查看解答 / Answer</summary>
+          <div class="ans-body">
+            <div class="q-block"><span class="lbl lbl-cn">中文分析</span><p>这是本 Part 的"总纲题"——套利限制的本质就是：<b>理性的钱为什么没把错价吃掉</b>。四个理论分别对应四个不同的摩擦来源。</p></div>
+            <ol class="steps">
+              <li><b>① 基本面风险（Fundamental risk）。</b>套利需要"买入错杀的、卖空高估的"，但多数情况下<b>找不到完全替代品</b>，于是只能用一个近似资产对冲，残差风险无法消除。更糟的是：如果基本面本身变了，"看似错价"可能其实是对的。→ 与本 Part 的孪生股 / 指数纳入案例直接相关。</li>
+              <li><b>② 噪声交易者风险（Noise-trader risk）。</b>即使有完美替代品，<b>非理性交易者可能在短期内把价格推得更偏</b>（De Long, Shleifer, Summers &amp; Waldmann, 1990）。套利者若被迫在错价加深前平仓，就会实亏。→ 这是 Shleifer &amp; Vishny (1997) 的核心：短期亏损可能触发<b>强制平仓</b>。</li>
+              <li><b>③ 实施成本 / 交易成本（Implementation / transaction costs）。</b>卖空约束、借券费用、保证金要求、买卖价差——对小盘、难借券的股票尤其致命，直接限制了<b>头寸规模</b>。→ 对应 3Com/Palm 的"负 stub 价值"案例（Lamont &amp; Thaler, 2003）。</li>
+              <li><b>④ 代理 / 期限 / 模型风险（Agency / horizon / model risk）。</b>套利者管的是<b>别人的钱</b>，短期业绩考核会在最差时点逼其平仓（委托-代理错配）；此外还存在"自己对定价模型是否正确"的<b>模型风险</b>。→ 这是 Part 7 制度设计要缓解的根源之一。</li>
+            </ol>
+            <div class="q-block"><span class="lbl lbl-ans">Answer</span><p><strong>EN:</strong> (1) Fundamental risk — no perfect substitute, so basis risk remains and fundamentals may shift. (2) Noise-trader risk — irrational traders can push prices further away before correction, forcing premature liquidation (De Long et al. 1990; Shleifer &amp; Vishny 1997). (3) Implementation costs — short-sale constraints, borrowing fees, margin, bid-ask spreads cap position size. (4) Agency/horizon/model risk — delegated money and short-term evaluation force liquidation, plus mis-specification of the "true" model.<br><strong>中文：</strong>① 基本面风险；② 噪声交易者风险；③ 实施 / 交易成本；④ 代理-期限-模型风险。</p></div>
+          </div>
+        </details>
+      </div>
+
+      <div class="box tip">
+        <div class="box-title">▸ 本 Part 一句话总结</div>
+        <p>几乎所有行为金融现象的解释都必须配上这一句：<b>「理性的钱为什么没把机会吃掉？」</b>。你的工具箱只有五个词——<b>基本面风险、噪声交易者风险、期限风险、模型风险、实施成本</b>。答题时挑出主导的那一个，并说明它为什么<b>不可分散</b>，就赢了大半。</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  FIN 4080 Behavioral Finance · Part 2 套利限制 · 内容依据 Lecture 7–8 课件整理
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
